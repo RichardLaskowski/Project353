@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title></title>
+        <h:outputStylesheet library="css" name="signup.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <h:outputScript library="script" name="signup.js"/>   
+        
+    </h:head>
+    <h:body>
+        <div class="grid">
+            <header>
+                <h1>Company Name</h1>
+            </header>
+            <article>
+                <div class="box-login">
+                    <div class="box-login-title">
+                        <h1>Login Form</h1>
+                    </div>
+                    <div class="error-grid span-full" id="error-grid">
+                        <p class="input-error" id="input-error-firstName">Please Enter First Name</p>
+                        <p class="input-error" id="input-error-lastName">Please Enter Last Name</p>
+                        <p class="input-error" id="input-error-username">Please Enter Username</p>
+                        <p class="input-error" id="input-error-password">Please Enter Password</p>
+                        <p class="input-error" id="input-error-password-confirm">Please Confirm Password</p>
+                        <p class="input-error" id="input-error-emailAddress">Please Enter Email Address</p>
+                        <p class="input-error" id="input-error-securityQuestion">Please Enter Security Question</p>
+                        <p class="input-error" id="input-error-securityAnswer">Please Enter Security Answer</p>
+                        <p class="input-error" id="input-error-invalidUsername">Please Enter First Name 2-25 characters long</p>
+                        <p class="input-error" id="input-error-invalidPassword">Please Enter Last Name 2-25 characters long</p>
+                    </div>
+                    <div class="box-login-form">
+                        <h:form id="loginForm"> 
+                            <h:inputText pt:placeholder="Enter Username" class="span-full" value="#{loginController.username}"/>
+                            <h:inputSecret pt:placeholder="Enter Password" class="span-full" value="#{loginController.password}"/>
+                            <h:commandButton class="span-full" id="login" value="Login" action="#{loginController.validateLogIn()}"/>
+                        </h:form>
+                        <h:form class="button-grid span-full" id="signUpForm-buttons" >
+                            <h:commandButton class="span-two" id="signUp-login" action="signUp.xhtml" value="Sign-Up" ></h:commandButton>
+                            <h:commandButton value="Login" class="span-two" id="login-login" disabled="true"></h:commandButton>
+                        </h:form>  
+                    </div>
+                </div>
+            </article>
+            <aside>Sidebar</aside>
+            <footer>
+                <h1>Footer</h1>
+            </footer>
+        </div> 
+    </h:body>
+</html>
