@@ -1,0 +1,18 @@
+.grid{
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 5% 10fr 5%;
+    grid-template-areas:
+    ".. hd   .."
+    ".. hd   .."
+    ".. sidebar .."
+    ".. main .."
+    ".. ..   ..";    
+}
+
+header
+{
+    grid-area: hd;
+    color:#4CAF50;
+    text-align: center;
+}
