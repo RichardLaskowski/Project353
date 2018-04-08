@@ -15,17 +15,17 @@ public class StudentBean implements Serializable{
     
     private Date dateOfBirth;
      
-    private String height;
+    private Integer height;
      
     private Integer weight;
      
     private String street;
      
     private String city;
+    
+    private String country;
      
     private String postalCode;
-     
-    private String info;
      
     private String phoneNo;
      
@@ -33,11 +33,11 @@ public class StudentBean implements Serializable{
  
     private String endYear;
     
-    private String SAT;
+    private Integer SAT;
     
-    private String PSAT;
+    private Integer PSAT;
     
-    private String ACT;
+    private Integer ACT;
     
     private String certification;
     
@@ -67,14 +67,14 @@ public class StudentBean implements Serializable{
     /**
      * @return the height
      */
-    public String getHeight() {
+    public Integer getHeight() {
         return height;
     }
 
     /**
      * @param height the height to set
      */
-    public void setHeight(String height) {
+    public void setHeight(Integer height) {
         this.height = height;
     }
 
@@ -121,6 +121,20 @@ public class StudentBean implements Serializable{
     }
 
     /**
+     * @return the country
+     */
+    public String getCountry() {
+        return country;
+    }
+
+    /**
+     * @param country the country to set
+     */
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    /**
      * @return the postalCode
      */
     public String getPostalCode() {
@@ -132,20 +146,6 @@ public class StudentBean implements Serializable{
      */
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
-    }
-
-    /**
-     * @return the info
-     */
-    public String getInfo() {
-        return info;
-    }
-
-    /**
-     * @param info the info to set
-     */
-    public void setInfo(String info) {
-        this.info = info;
     }
 
     /**
@@ -193,42 +193,42 @@ public class StudentBean implements Serializable{
     /**
      * @return the SAT
      */
-    public String getSAT() {
+    public Integer getSAT() {
         return SAT;
     }
 
     /**
      * @param SAT the SAT to set
      */
-    public void setSAT(String SAT) {
+    public void setSAT(Integer SAT) {
         this.SAT = SAT;
     }
 
     /**
      * @return the PSAT
      */
-    public String getPSAT() {
+    public Integer getPSAT() {
         return PSAT;
     }
 
     /**
      * @param PSAT the PSAT to set
      */
-    public void setPSAT(String PSAT) {
+    public void setPSAT(Integer PSAT) {
         this.PSAT = PSAT;
     }
 
     /**
      * @return the ACT
      */
-    public String getACT() {
+    public Integer getACT() {
         return ACT;
     }
 
     /**
      * @param ACT the ACT to set
      */
-    public void setACT(String ACT) {
+    public void setACT(Integer ACT) {
         this.ACT = ACT;
     }
 

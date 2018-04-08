@@ -5,12 +5,12 @@
  */
 package Controller;
 
+import DAO.ProfileDAO;
+import DAO.ProfileDAOImpl;
 import Model.StudentBean;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import java.io.Serializable;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
+import javax.faces.bean.SessionScoped;
 import org.primefaces.event.FlowEvent;
 
 /**
@@ -18,7 +18,7 @@ import org.primefaces.event.FlowEvent;
  * @author IT353S843
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class StudentController implements Serializable {
 
     
@@ -49,9 +49,17 @@ public class StudentController implements Serializable {
     
     
     
-    public void save() {        
-        FacesMessage msg = new FacesMessage("Successful", "Welcome :");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+    public String insertDetails(String UserId) {
+        String signupStatus="";
+            ProfileDAO aProfileDAO = new ProfileDAOImpl();    // Creating a new object each time.
+            int status = aProfileDAO.insertStudentDetails(UserId, studentBean); // Doing anything with the object after this?
+            if (status == 1) {
+                return "LoginGood.xhtml"; // navigate to "LoginGood.xhtml"
+            } else {
+                signupStatus = "Issue Encounter";
+                return "";
+            }
+    
     }
     
     public boolean isSkip() {

@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title></title>
         <h:outputStylesheet library="css" name="signup.css"/>   
@@ -26,7 +27,7 @@
                                 <h:panelGrid columns="2" columnClasses="label, value" class="span-full">
 
                                     <p:outputLabel for="german" value="Date of Birth: " />
-                                    <p:calendar id="german" value="#{studentController.studentBean.dateOfBirth}" locale="de" navigator="true" pattern="yyyy-MMM-dd" required="true"/>
+                                    <p:calendar id="german" value="#{studentController.studentBean.dateOfBirth}" locale="de" navigator="true" pattern="yyyy-MM-dd" required="true"/>
 
                                     <h:outputText value="Height(cm): " />
                                     <p:inputText value="#{studentController.studentBean.height}" label="height"/>
@@ -48,17 +49,17 @@
                                     <h:outputText value="Street: " />
                                     <p:inputText value="#{studentController.studentBean.street}" />
 
-                                    <h:outputText value="Postal Code: " />
-                                    <p:inputText value="#{studentController.studentBean.postalCode}" />
-
                                     <h:outputText value="City: " />
                                     <p:inputText value="#{studentController.studentBean.city}" />
 
-                                    <h:outputText value="Phone: " />
-                                    <p:inputText value="#{studentController.studentBean.phoneNo}"/>
+                                    <h:outputText value="Country: " />
+                                    <p:inputText value="#{studentController.studentBean.country}" />
 
-                                    <h:outputText value="Additional Info: " />
-                                    <p:inputText value="#{studentController.studentBean.info}"/>
+                                    <h:outputText value="Postal Code: " />
+                                    <p:inputText value="#{studentController.studentBean.postalCode}" />
+
+                                    <h:outputText value="Phone #: " />
+                                    <p:inputText value="#{studentController.studentBean.phoneNo}"/>
 
                                     <h:outputText value="Skip to last: " />
                                     <h:selectBooleanCheckbox value="#{studentController.skip}" />
@@ -110,7 +111,7 @@
                                     <h:panelGrid columns="2" columnClasses="label, value">
                                         <h:outputText value="Date_Of_Birth: " />
                                         <h:outputText value="#{studentController.studentBean.dateOfBirth}" styleClass="outputLabel"/>
-
+                                              
                                         <h:outputText value="Height: " />
                                         <h:outputText value="#{studentController.studentBean.height}" styleClass="outputLabel"/>
 
@@ -121,19 +122,18 @@
                                     <h:panelGrid columns="2" columnClasses="label, value">
                                         <h:outputText value="Street: " />
                                         <h:outputText value="#{studentController.studentBean.street}" styleClass="outputLabel"/>
-
-                                        <h:outputText value="Postal: " />
-                                        <h:outputText value="#{studentController.studentBean.postalCode}" styleClass="outputLabel"/>
-
+                                        
                                         <h:outputText value="City: " />
                                         <h:outputText value="#{studentController.studentBean.city}" styleClass="outputLabel"/>
+                                        
+                                        <h:outputText value="Country: " />
+                                        <h:outputText value="#{studentController.studentBean.country}" styleClass="outputLabel"/>
+                                        
+                                        <h:outputText value="Postal_Code: " />
+                                        <h:outputText value="#{studentController.studentBean.postalCode}" styleClass="outputLabel"/>
 
                                         <h:outputText value="Phone_No: " />
                                         <h:outputText value="#{studentController.studentBean.phoneNo}" styleClass="outputLabel"/>
-
-                                        <h:outputText value="Info: " />
-                                        <h:outputText value="#{studentController.studentBean.info}" styleClass="outputLabel"/>
-
                                     </h:panelGrid>
 
                                     <h:panelGrid columns="2" columnClasses="label, value">
@@ -166,12 +166,10 @@
 
                                         <h:outputText value="Majors_Of_Choice: " />
                                         <h:outputText value="#{studentController.studentBean.majorsOfChoice}" styleClass="outputLabel"/>
-                                        <h:outputText />
-                                        <h:outputText />
                                     </h:panelGrid>
                                 </h:panelGrid>
 
-                                <p:commandButton value="Submit" actionListener="#{studentController.save}" update="growl" process="@this"/>
+                                <p:commandButton value="Submit" actionListener="#{studentController.insertDetails(profileController.theModel.userId)}" update="growl" process="@this"/>
                             </p:panel>
                         </p:tab>
                     </p:wizard>

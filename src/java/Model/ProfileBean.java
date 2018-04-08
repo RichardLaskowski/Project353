@@ -21,18 +21,15 @@ private String password;
 private String email;
 private String securityQuestion;
 private String securityAnswer;
-private String userName;
-private String password1;
-private String password2;
 private String userType;
 
    public ProfileBean() {
     }
    
-       public ProfileBean(String firstName, String lastName, String userName, String email, String securityQues, String securityAns) {
+       public ProfileBean(String firstName, String lastName, String userId, String email, String securityQues, String securityAns) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userName = userName;
+        this.userId = userId;
         this.email = email;
         this.securityQuestion = securityQues;
         this.securityAnswer = securityAns;
@@ -137,49 +134,6 @@ private String userType;
      */
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    /**
-     * @return the userName
-     */
-    public String getUserName() {
-        return userName;
-    }
-
-    /**
-     * @param userName the userName to set
-     */
-    public void setUserName(String userName) {
-        this.userName = userName;
-        
-    }
-
-    /**
-     * @return the password1
-     */
-    public String getPassword1() {
-        return password1;
-    }
-
-    /**
-     * @param password1 the password1 to set
-     */
-    public void setPassword1(String password1) {
-        this.password1 = password1;
-    }
-
-    /**
-     * @return the password2
-     */
-    public String getPassword2() {
-        return password2;
-    }
-
-    /**
-     * @param password2 the password2 to set
-     */
-    public void setPassword2(String password2) {
-        this.password2 = password2;
     }
 
     /**

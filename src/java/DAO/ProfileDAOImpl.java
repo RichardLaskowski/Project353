@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import Model.ProfileBean;
+import Model.RecruiterBean;
+import Model.StudentBean;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -34,7 +36,7 @@ public class ProfileDAOImpl implements ProfileDAO {
             try {
                 String myDB = "jdbc:derby://localhost:1527/ProjectLinkedU";// connection string
                 Connection DBConn = DriverManager.getConnection(myDB, "itkstu", "student");
-                String insertString;
+                String insertString, insertString1;
                 Statement stmt = DBConn.createStatement();
                 
                 String saltedPassword = SALT + aProfile.getPassword();
@@ -50,8 +52,25 @@ public class ProfileDAOImpl implements ProfileDAO {
                         + "','" + aProfile.getSecurityAnswer()
                         + "','" + aProfile.getUserType()
                         + "')";
-
+                
                 rowCount = stmt.executeUpdate(insertString);
+                if(rowCount==1){
+                    
+                    if(aProfile.getUserType().equalsIgnoreCase("Student")){
+                rowCount = 0;
+                insertString1 = "INSERT INTO ProjectLinkedU.StudentDetail (USERNAME) VALUES('"
+                        + aProfile.getUserId()
+                        + "')";
+                rowCount = stmt.executeUpdate(insertString1);
+                }
+                    else{
+                        rowCount = 0;
+                insertString1 = "INSERT INTO ProjectLinkedU.RecruiterDetail (USERNAME) VALUES('"
+                        + aProfile.getUserId()
+                        + "')";
+                rowCount = stmt.executeUpdate(insertString1);
+                    }
+                }
                 System.out.println("insert string =" + insertString);
                 DBConn.close();
             } catch (SQLException e) {
@@ -78,7 +97,7 @@ public class ProfileDAOImpl implements ProfileDAO {
             String selectString;
             Statement stmt = DBConn.createStatement();
             selectString = "select * from ProjectLinkedU.LoginInfo where username = "
-                    + "'" + aProfile.getUserName() + "'";
+                    + "'" + aProfile.getUserId() + "'";
 
             ResultSet rs = stmt.executeQuery(selectString);
             while (rs.next()) {
@@ -148,4 +167,88 @@ public class ProfileDAOImpl implements ProfileDAO {
         }
         return value;
     }
+    
+    @Override
+    public int insertStudentDetails(String UserId, StudentBean astudent) {
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+        } catch (ClassNotFoundException e) {
+            System.err.println(e.getMessage());
+            System.exit(0);
+        }
+        int rowCount = 0;
+
+            try {
+                String myDB = "jdbc:derby://localhost:1527/ProjectLinkedU";// connection string
+                Connection DBConn = DriverManager.getConnection(myDB, "itkstu", "student");
+                String insertString;
+                Statement stmt = DBConn.createStatement();
+                
+                insertString = "UPDATE ProjectLinkedU.STUDENTDETAIL SET"
+                        + " DOB = '" + astudent.getDateOfBirth() +"'" 
+                        + ", HEIGHT = " + astudent.getHeight() 
+                        + ", WEIGHT = " + astudent.getWeight() 
+                        + ", ADDRESS = '" + astudent.getStreet() + "'"
+                        + ", CITY = '" + astudent.getCity() + "'"
+                        + ", COUNTRY = '" + astudent.getCountry() + "'"
+                        + ", POSTALCODE = '" + astudent.getPostalCode() + "'"
+                        + ", PHONENO = '" + astudent.getPhoneNo() + "'"
+                        + ", SCHOOL = '" + astudent.getSchoolName() + "'"
+                        + ", ENDYEAR = '" + astudent.getEndYear() + "'"
+                        + ", SAT = " + astudent.getSAT() 
+                        + ", PSAT = " + astudent.getPSAT() 
+                        + ", ACT = " + astudent.getACT()
+                        + ", CERTIFICATION = '" + astudent.getCertification() + "'"
+                        + ", HOBBIES = '" + astudent.getHobbies() + "'"
+                        + ", ESSAY = '" + astudent.getEssayOfChoice()+ "'"
+                        + ", UNIVERSITY = '" + astudent.getUniversitiesOfChoice()+ "'"
+                        + ", MAJOR = '" + astudent.getMajorsOfChoice() + "'"
+                        + " WHERE USERNAME = '" + UserId + "'";
+                
+                rowCount = stmt.executeUpdate(insertString);
+                
+                
+                System.out.println("insert string =" + insertString);
+                DBConn.close();
+            } catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        // if insert is successful, rowCount will be set to 1 (1 row inserted successfully). Else, insert failed.
+        return rowCount;
+    }
+
+    @Override
+    public int insertRecruiterDetails(String UserId, RecruiterBean arecruiter) {
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+        } catch (ClassNotFoundException e) {
+            System.err.println(e.getMessage());
+            System.exit(0);
+        }
+        int rowCount = 0;
+
+            try {
+                String myDB = "jdbc:derby://localhost:1527/ProjectLinkedU";// connection string
+                Connection DBConn = DriverManager.getConnection(myDB, "itkstu", "student");
+                String insertString;
+                Statement stmt = DBConn.createStatement();
+                
+                insertString = "UPDATE ProjectLinkedU.RECRUITERDETAIL SET"
+                        + " UNIVERSITY = '" + arecruiter.getUniversity()+"'" 
+                        + ", DEPARTMENT = '" + arecruiter.getDepartment()+"'"
+                        + ", PhoneNo = '" + arecruiter.getPhoneNo()+"'"
+                        + " WHERE USERNAME = '" + UserId + "'";
+                
+                rowCount = stmt.executeUpdate(insertString);
+                
+                
+                System.out.println("insert string =" + insertString);
+                DBConn.close();
+            } catch (SQLException e) {
+                System.err.println(e.getMessage());
+            }
+        // if insert is successful, rowCount will be set to 1 (1 row inserted successfully). Else, insert failed.
+        return rowCount;
+    }
+
 }

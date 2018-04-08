@@ -24,7 +24,7 @@
                     <div class="box-login-form">
                         <h:form id="loginForm"> 
                             <h3><h:outputText value="#{loginController.loginStatus}" id="loginStatus"/></h3>
-                            <h:inputText pt:placeholder="Enter Username" class="span-full" value="#{loginController.theModel.userName}"/>
+                            <h:inputText pt:placeholder="Enter Username" class="span-full" value="#{loginController.theModel.userId}"/>
                             <h:inputSecret pt:placeholder="Enter Password" class="span-full" value="#{loginController.theModel.password}"/>
                             <h:commandButton class="span-full" id="login" value="Login" action="#{loginController.loginAuthentication()}"/>
                             <h:commandButton class="span-full" id="signUp-login" action="signUp.xhtml" value="Sign-Up" ></h:commandButton>
