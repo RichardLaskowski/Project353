@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title></title>
+        <h:outputStylesheet library="css" name="signup.css"/>   
+    </h:head>
+
+    <h:body>
+        <div class="grid">
+            <header>
+                <h1>LinkedU</h1>
+            </header>
+            <article>
+
+                <h:form style="width: auto">
+                    <p:growl id="growl" sticky="true" showDetail="true"/>
+
+                    <p:wizard flowListener="#{studentController.onFlowProcess}">
+
+                        <p:tab id="personal" title="Personal">
+                            <p:panel header="Personal Details" style="width:auto; text-align: center">
+                                <p:messages />
+                                <h:panelGrid columns="2" columnClasses="label, value" class="span-full">
+
+                                    <p:outputLabel for="german" value="Date of Birth: " />
+                                    <p:calendar id="german" value="#{studentController.studentBean.dateOfBirth}" locale="de" navigator="true" pattern="yyyy-MMM-dd" required="true"/>
+
+                                    <h:outputText value="Height(cm): " />
+                                    <p:inputText value="#{studentController.studentBean.height}" label="height"/>
+
+                                    <h:outputText value="Weight(lbs): " />
+                                    <p:inputText value="#{studentController.studentBean.weight}" />
+
+                                    <h:outputText value="Skip to last: " />
+                                    <h:selectBooleanCheckbox value="#{studentController.skip}" />
+
+                                </h:panelGrid>
+                            </p:panel>
+                        </p:tab>
+
+                        <p:tab id="address" title="Address">
+                            <p:panel header="Address Details" style="width:auto; text-align: center">
+                                <p:messages />
+                                <h:panelGrid columns="2" columnClasses="label, value">
+                                    <h:outputText value="Street: " />
+                                    <p:inputText value="#{studentController.studentBean.street}" />
+
+                                    <h:outputText value="Postal Code: " />
+                                    <p:inputText value="#{studentController.studentBean.postalCode}" />
+
+                                    <h:outputText value="City: " />
+                                    <p:inputText value="#{studentController.studentBean.city}" />
+
+                                    <h:outputText value="Phone: " />
+                                    <p:inputText value="#{studentController.studentBean.phoneNo}"/>
+
+                                    <h:outputText value="Additional Info: " />
+                                    <p:inputText value="#{studentController.studentBean.info}"/>
+
+                                    <h:outputText value="Skip to last: " />
+                                    <h:selectBooleanCheckbox value="#{studentController.skip}" />
+                                </h:panelGrid>
+                            </p:panel>
+                        </p:tab>
+
+                        <p:tab id="education" title="Academics">
+                            <p:panel header="Academics">
+                                <p:messages />
+                                <h:panelGrid columns="2" columnClasses="label, value" style="width:auto; text-align: center">
+                                    <h:outputText value="High School *" />
+                                    <p:inputText value="#{studentController.studentBean.schoolName}" required="true" label="HighSchool"/>
+
+                                    <h:outputText value="End Year: " />
+                                    <p:inputText value="#{studentController.studentBean.endYear}"/>
+
+                                    <h:outputText value="SAT Score " />
+                                    <p:inputText value="#{studentController.studentBean.SAT}"/>
+
+                                    <h:outputText value="PSAT Score " />
+                                    <p:inputText value="#{studentController.studentBean.PSAT}"/>
+
+                                    <h:outputText value="ACT Score " />
+                                    <p:inputText value="#{studentController.studentBean.ACT}"/>
+
+                                    <h:outputText value="Certifications " />
+                                    <p:inputText value="#{studentController.studentBean.certification}"/>
+
+                                    <h:outputText value="Hobbies " />
+                                    <p:inputText value="#{studentController.studentBean.hobbies}"/>
+
+                                    <h:outputText value="Essay of Choice " />
+                                    <p:inputText value="#{studentController.studentBean.essayOfChoice}"/>
+
+                                    <h:outputText value="Universities of Choice" />
+                                    <p:inputText value="#{studentController.studentBean.universitiesOfChoice}"/>
+
+                                    <h:outputText value="Majors of Choice " />
+                                    <p:inputText value="#{studentController.studentBean.majorsOfChoice}"/>
+                                </h:panelGrid>
+
+                            </p:panel>
+                        </p:tab>
+
+                        <p:tab id="confirm" title="Confirmation">
+                            <p:panel header="Confirmation">
+                                <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
+                                    <h:panelGrid columns="2" columnClasses="label, value">
+                                        <h:outputText value="Date_Of_Birth: " />
+                                        <h:outputText value="#{studentController.studentBean.dateOfBirth}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Height: " />
+                                        <h:outputText value="#{studentController.studentBean.height}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Weight: " />
+                                        <h:outputText value="#{studentController.studentBean.weight}" styleClass="outputLabel"/>
+                                    </h:panelGrid>
+
+                                    <h:panelGrid columns="2" columnClasses="label, value">
+                                        <h:outputText value="Street: " />
+                                        <h:outputText value="#{studentController.studentBean.street}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Postal: " />
+                                        <h:outputText value="#{studentController.studentBean.postalCode}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="City: " />
+                                        <h:outputText value="#{studentController.studentBean.city}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Phone_No: " />
+                                        <h:outputText value="#{studentController.studentBean.phoneNo}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Info: " />
+                                        <h:outputText value="#{studentController.studentBean.info}" styleClass="outputLabel"/>
+
+                                    </h:panelGrid>
+
+                                    <h:panelGrid columns="2" columnClasses="label, value">
+                                        <h:outputText value="School_Name: " />
+                                        <h:outputText value="#{studentController.studentBean.schoolName}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="End_Year: " />
+                                        <h:outputText value="#{studentController.studentBean.endYear}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="SAT_Score: " />
+                                        <h:outputText value="#{studentController.studentBean.SAT}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="PSAT_Score: " />
+                                        <h:outputText value="#{studentController.studentBean.PSAT}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="ACT: " />
+                                        <h:outputText value="#{studentController.studentBean.ACT}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Certifications: " />
+                                        <h:outputText value="#{studentController.studentBean.certification}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Hobbies: " />
+                                        <h:outputText value="#{studentController.studentBean.hobbies}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Essay_Of_Choice: " />
+                                        <h:outputText value="#{studentController.studentBean.essayOfChoice}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Universities_Of_Choice: " />
+                                        <h:outputText value="#{studentController.studentBean.universitiesOfChoice}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Majors_Of_Choice: " />
+                                        <h:outputText value="#{studentController.studentBean.majorsOfChoice}" styleClass="outputLabel"/>
+                                        <h:outputText />
+                                        <h:outputText />
+                                    </h:panelGrid>
+                                </h:panelGrid>
+
+                                <p:commandButton value="Submit" actionListener="#{studentController.save}" update="growl" process="@this"/>
+                            </p:panel>
+                        </p:tab>
+                    </p:wizard>
+
+                </h:form>
+
+            </article>
+            <aside>Sidebar</aside>
+            <footer>
+                <h1>Footer</h1>
+            </footer>
+        </div> 
+    </h:body>
+</html>
