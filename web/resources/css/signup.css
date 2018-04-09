@@ -258,6 +258,16 @@ footer
     grid-column: auto / span 2;
 }
 
+.sidebar{
+    
+    grid-area:sidebar;
+    text-align: right;
+    border: solid;
+
+}
+
+
+
 .white-space
 {
 

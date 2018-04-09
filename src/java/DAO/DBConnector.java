@@ -68,5 +68,9 @@ public class DBConnector {
         }
         
         return retVal;
-    }
+   }
+//sql for users->profile->posts
+   
+   
+
 }
