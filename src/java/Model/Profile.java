@@ -11,64 +11,80 @@ import java.io.File;
  *
  * @author ericz
  */
-public class Profile {
-    private Post [] posts;
+public class Profile
+{
+
+    private Post[] posts;
     private File profilePic;
-    private File [] pictures;
-    private File [] videos;
-    Profile(){
-        
+    private File[] pictures;
+    private File[] videos;
+
+    Profile()
+    {
+
     }
 
-    public Post[] getPosts() {
+    public Post[] getPosts()
+    {
         return posts;
     }
 
-    public void setPosts(Post[] posts) {
+    public void setPosts(Post[] posts)
+    {
         this.posts = posts;
-        
+
     }
 
-    public File getProfilePic() {
+    public File getProfilePic()
+    {
         return profilePic;
     }
 
-    public void setProfilePic(File profilePic) {
+    public void setProfilePic(File profilePic)
+    {
         this.profilePic = profilePic;
     }
 
-    public File[] getPictures() {
+    public File[] getPictures()
+    {
         return pictures;
     }
 
-    public void setPictures(File[] pictures) {
+    public void setPictures(File[] pictures)
+    {
         this.pictures = pictures;
     }
 
-    public File[] getVideos() {
+    public File[] getVideos()
+    {
         return videos;
     }
 
-    public void setVideos(File[] videos) {
+    public void setVideos(File[] videos)
+    {
         this.videos = videos;
     }
-    
-    public void addPicture(File pic){
-        int i= this.pictures.length;
-        this.pictures[i]= pic;
+
+    public void addPicture(File pic)
+    {
+        int i = this.pictures.length;
+        this.pictures[i] = pic;
     }
-    
-    public void addVideo(File vid){
-        int i= this.videos.length;
-        this.videos[i]= vid;
+
+    public void addVideo(File vid)
+    {
+        int i = this.videos.length;
+        this.videos[i] = vid;
     }
-    
-    public File getPic (int i){
+
+    public File getPic(int i)
+    {
         return this.pictures[i];
     }
-    
-    public File getVid (int i){
+
+    public File getVid(int i)
+    {
         return this.videos[i];
     }
-    
+
 }

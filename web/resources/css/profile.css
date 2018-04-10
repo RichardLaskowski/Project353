@@ -10,46 +10,61 @@ and open the template in the editor.
 
 *
 {
+    margin: 0px;
     box-sizing: border-box;
+    background-color: #aaaaa;
 }
 
 .grid
 {
     display: grid;
     grid-gap: 20px;
-    grid-template-columns: minmax(200px, 20%) 4fr 10%;
+    grid-template-columns:  5% minmax(200px, 20%) minmax(300px, 50%) 20% 5%;
+    grid-auto-rows: minmax(50px, auto);
     grid-template-areas:
-    "head       head    head"
-    "sidebar    feed    sidebar2"
-    "foot       foot    foot";
+    "head       head       head     head        head"
+    "....       sidebar    feed     sidebar2    ...."
+    "foot       foot       foot     foot        foot";
 }
 
 header
 { 
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    text-align: center;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    height: 40px;
+    z-index: 1;
     grid-area: head;
-    background-color: lightgray;
+    background-color: darkgray;
 }
 
 feed
 {
     grid-area: feed;
-    background-color: darkgray;
 }
 
 aside
 {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    text-align: center;
     grid-area: sidebar;
     background-color: lightgray;
 }
 
 aside2
 {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    text-align: center;
     grid-area: sidebar2;
     background-color: lightgray;
 }
 
 footer
 {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    text-align: center;
     grid-area: foot;
     background-color: lightgray;
 }
@@ -60,7 +75,7 @@ footer
 {
     padding: 5px;
     display: grid;
-    grid-gap: 50px;
+    grid-row-gap: 20px;
     grid-template-columns: 1fr;
 }
 
@@ -69,11 +84,11 @@ footer
 .status
 {
     background-color: lightgray;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     display: grid;
     padding: 5px;
     grid-gap: 10px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    
+    grid-template-columns: 1fr 1fr 1fr 1fr;   
 }
 
 .title
@@ -92,6 +107,11 @@ footer
 .content
 {
     grid-column: 1 / -1;
+}
+
+.content > input
+{
+    padding: 7px;
 }
 
 .post-button
@@ -118,6 +138,7 @@ footer
 {
     padding: 5px;
     background-color: lightgray;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     display: grid;
     grid-gap: 10px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
