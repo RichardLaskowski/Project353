@@ -54,15 +54,6 @@ footer
     background-color: lightgray;
 }
 
-@media(min-width: 640px)
-{
-    grid-template-columns: 2fr 4fr;
-    grid-template-areas:
-    "head       head"
-    "sidebar    feed"
-    "foot       foot";
-}
-
 /*--------------------------------------------------------------------*/
 
 .feed-grid
@@ -111,11 +102,6 @@ footer
 .button
 {
     grid-column: 1 / 2;
-}
-
-.button input[type=submit]
-{
-    width: 100%;
 }
 
 /*------------------------------------------------------------*/
