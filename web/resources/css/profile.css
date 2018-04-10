@@ -1,0 +1,121 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 9, 2018, 8:21:48 PM
+    Author     : Richard
+*/
+
+*
+{
+    box-sizing: border-box;
+}
+
+.grid
+{
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 20% 4fr 10%;
+    grid-template-areas:
+    "head       head    head"
+    "sidebar    feed    sidebar2"
+    "foot       foot    foot";
+}
+
+header
+{
+    grid-area: head;
+    background-color: lightgray;
+}
+
+feed
+{
+    grid-area: feed;
+    background-color: darkgray;
+}
+
+aside
+{
+    grid-area: sidebar;
+    background-color: lightgray;
+}
+
+aside2
+{
+    grid-area: sidebar2;
+    background-color: lightgray;
+}
+
+footer
+{
+    grid-area: foot;
+    background-color: lightgray;
+}
+
+@media(min-width: 640px)
+{
+    grid-template-columns: 2fr 4fr;
+    grid-template-areas:
+    "head       head"
+    "sidebar    feed"
+    "foot       foot";
+}
+
+/*--------------------------------------------------------------------*/
+
+.feed-grid
+{
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1fr;
+}
+
+.feed-grid-item
+{
+    backgroun-color: lightgray;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: 1fr;
+}
+
+/*----------------------------------------------------------------------*/
+
+.status
+{
+    background-color: lightgray;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    
+}
+
+.title
+{
+    grid-column: 1 / -1;
+}
+
+.content
+{
+    
+    grid-column: 1 / -1;
+}
+
+.content > input
+{
+    width: 100%;
+    font-size: 18px;
+}
+
+.button
+{
+    grid-column: 1 / 2;
+}
+
+.button input[type=submit]
+{
+    width: 100%;
+}
+
+/*------------------------------------------------------------*/
