@@ -17,7 +17,7 @@ and open the template in the editor.
 {
     display: grid;
     grid-gap: 20px;
-    grid-template-columns: 20% 4fr 10%;
+    grid-template-columns: minmax(200px, 20%) 4fr 10%;
     grid-template-areas:
     "head       head    head"
     "sidebar    feed    sidebar2"
@@ -58,16 +58,9 @@ footer
 
 .feed-grid
 {
+    padding: 5px;
     display: grid;
-    grid-gap: 20px;
-    grid-template-columns: 1fr;
-}
-
-.feed-grid-item
-{
-    backgroun-color: lightgray;
-    display: grid;
-    grid-gap: 5px;
+    grid-gap: 50px;
     grid-template-columns: 1fr;
 }
 
@@ -77,7 +70,8 @@ footer
 {
     background-color: lightgray;
     display: grid;
-    grid-gap: 5px;
+    padding: 5px;
+    grid-gap: 10px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     
 }
@@ -87,21 +81,67 @@ footer
     grid-column: 1 / -1;
 }
 
+.title > h1
+{
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+    font-size: 22px;
+}
+
 .content
 {
     
     grid-column: 1 / -1;
 }
 
-.content > input
-{
-    width: 100%;
-    font-size: 18px;
-}
-
-.button
+.post-button
 {
     grid-column: 1 / 2;
 }
 
+.post-button > input[type=submit]
+{
+    width: 100%;
+    border: none;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.post-button > input[type=submit]:hover
+{
+    background-color: darkgray;
+}
+
 /*------------------------------------------------------------*/
+
+.post
+{
+    padding: 5px;
+    background-color: lightgray;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 100px;
+    
+}
+input[type=submit]
+{
+    width: 100%;
+    border: none;
+    padding: 5px;
+    font-size: 15px;
+}
+
+input[type=submit]:hover
+{
+    background-color: darkgray;
+}
+
+input
+{
+    width: 100%;
+    border: none;
+    padding: 5px;
+    font-size: 15px;
+}
