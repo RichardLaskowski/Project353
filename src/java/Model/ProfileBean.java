@@ -11,25 +11,25 @@ import java.io.File;
  *
  * @author ericz
  */
-public class Profile
+public class ProfileBean
 {
 
-    private Post[] posts;
+    private PostBean[] posts;
     private File profilePic;
     private File[] pictures;
     private File[] videos;
 
-    Profile()
+    ProfileBean()
     {
 
     }
 
-    public Post[] getPosts()
+    public PostBean[] getPosts()
     {
         return posts;
     }
 
-    public void setPosts(Post[] posts)
+    public void setPosts(PostBean[] posts)
     {
         this.posts = posts;
 

@@ -38,6 +38,16 @@ header
     z-index: 1;
     grid-area: head;
     background-color: darkgray;
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+}
+
+header > .searchbar
+{
+    text-align: center;
+    padding: 5px;
+    grid-column: 9 / -1;
+    box-shadow: none;
 }
 
 feed
