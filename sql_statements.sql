@@ -1,21 +1,4 @@
-<<<<<<< HEAD
-CREATE TABLE APP.USERS (
-USERID INTEGER not null GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
-USERNAME varchar(20) unique,
-PASSWORDS VARCHAR(20),
-FIRSTNAME VARCHAR (20),
-LASTNAME VARCHAR (30),
-EMAIL VARCHAR(50),
-SECQUES VARCHAR(100),
-SECANS VARCHAR(50),
-CONSTRAINT USERID_PK PRIMARY KEY (USERID)
-);
 
-select * from APP.USERS;
-
-INSERT INTO APP.USERS values(
-default, 'jax89', 'SleepyHollow', 'Jade', 'Smith', 'jax89@gmail.com', 'Favorite Color', 'blue');
-=======
 CREATE TABLE PROJECTLINKEDU.LOGININFO (
 USERNAME varchar(30) ,
 PASSWORD LONG VARCHAR,
@@ -64,9 +47,5 @@ create table ProjectLinkedU.RecruiterDetail (
   CONSTRAINT RID_PK PRIMARY KEY (ID),
   CONSTRAINT RECRUITERID_FK FOREIGN KEY (USERNAME) REFERENCES ProjectLinkedU.LOGININFO(USERNAME)
 );
-
---select * from APP.USERS;
-
---INSERT INTO APP.USERS values(
 --default, 'jax89', 'SleepyHollow', 'Jade', 'Smith', 'jax89@gmail.com', 'Favorite Color', 'blue');
->>>>>>> origin
+
