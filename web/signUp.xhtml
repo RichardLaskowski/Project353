@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -60,3 +61,92 @@
 
 
 
+=======
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    
+    <h:head>
+        <title></title>
+        <h:outputStylesheet library="css" name="signup.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>   
+        
+    </h:head>
+    
+    <h:body>
+        <div class="grid">
+            <header>
+                <h1>LinkedU</h1>
+            </header>
+            <article>
+                <div class="box-login">
+                    <div class="box-login-title">
+                        <h1>Sign Up Form</h1>
+                    </div>
+                    <div class="error-grid span-full" id="error-grid">
+                        <p class="input-error" id="input-error-firstName">Please Enter First Name</p>
+                        <p class="input-error" id="input-error-lastName">Please Enter Last Name</p>
+                        <p class="input-error" id="input-error-username">Please Enter Username</p>
+                        <p class="input-error" id="input-error-password">Please Enter Password</p>
+                        <p class="input-error" id="input-error-password-confirm">Please Confirm Password</p>
+                        <p class="input-error" id="input-error-emailAddress">Please Enter Email Address</p>
+                        <p class="input-error" id="input-error-securityQuestion">Please Enter Security Question</p>
+                        <p class="input-error" id="input-error-securityAnswer">Please Enter Security Answer</p>
+                        <p class="input-error" id="input-error-invalidUsername">Please Enter First Name 2-25 characters long</p>
+                        <p class="input-error" id="input-error-invalidPassword">Please Enter Last Name 2-25 characters long</p>
+                    </div>
+                    <div class="box-login-form">
+                        <h:form id="signUpForm"> 
+                            <h5><h:outputText value="#{profileController.signupStatus}" id="signupStatus"/></h5>
+                            <p:messages id="messages" showDetail="true" autoUpdate="true" />  <br/>  
+                            <h:inputText pt:placeholder= "Enter First Name" class="span-two signUp" value="#{profileController.theModel.firstName}" required="true">
+                                <f:validateLength minimum="2" />
+                            </h:inputText>   
+                            
+                            <h:inputText pt:placeholder="Enter Last Name" class="span-two signUp" value="#{profileController.theModel.lastName}" required="true">
+                                <f:validateLength minimum="2" />
+                            </h:inputText>
+                            
+                            <h:inputText pt:placeholder="Enter Email Address" class="span-full" value="#{profileController.theModel.email}" required="true">
+                                <f:validateRegex pattern = "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"/>
+                            </h:inputText>
+                            
+                            <h:inputText pt:placeholder="Enter Username" class="span-full" value="#{profileController.theModel.userId}" required="true"/>
+                        
+                            <p:password pt:placeholder="Enter Password" class="span-full" id="inlineFeedback" value="#{profileController.theModel.password}" 
+                                        feedback="true" inline="true" match="password2" required="true"/>
+                            
+                            <p:password pt:placeholder="Confirm Password" class="span-full Confirm" id="password2" value="#{profileController.theModel.password}" 
+                                        required="true" />
+                            
+                            <div class="span-full white-space"></div>
+                            <h:inputText pt:placeholder="Security Question" class="span-full" value="#{profileController.theModel.securityQuestion}"/>
+                            <h:inputText pt:placeholder="Security Answer" class="span-full" value="#{profileController.theModel.securityAnswer}"/> 
+                            
+                            <h:selectOneMenu class="span-full" value="#{profileController.theModel.userType}">
+                                <f:selectItem itemValue="Student" itemLabel="Student" />
+                                <f:selectItem itemValue="Recruiter" itemLabel="Recruiter" />
+                            </h:selectOneMenu>
+                            
+                            <h:commandButton class="span-full" id="createAccount" value="Create Account" action="#{profileController.createProfile()}"/>
+                        </h:form>
+                        <h:form class="button-grid span-full" id="signUpForm-buttons" >
+                            <h:commandButton class="span-two" id="login-signUp" action="login.xhtml" value="Login" ></h:commandButton>
+                        </h:form>  
+                    </div>
+                </div>
+            </article>
+            <aside>Sidebar</aside>
+            <footer>
+                <h1>Footer</h1>
+            </footer>
+        </div> 
+    </h:body>
+</html>
+
+
+
+>>>>>>> origin
