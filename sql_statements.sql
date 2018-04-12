@@ -1,3 +1,4 @@
+
 CREATE TABLE PROJECTLINKEDU.LOGININFO (
 USERNAME varchar(30) ,
 PASSWORD LONG VARCHAR,
@@ -46,8 +47,5 @@ create table ProjectLinkedU.RecruiterDetail (
   CONSTRAINT RID_PK PRIMARY KEY (ID),
   CONSTRAINT RECRUITERID_FK FOREIGN KEY (USERNAME) REFERENCES ProjectLinkedU.LOGININFO(USERNAME)
 );
-
---select * from APP.USERS;
-
---INSERT INTO APP.USERS values(
 --default, 'jax89', 'SleepyHollow', 'Jade', 'Smith', 'jax89@gmail.com', 'Favorite Color', 'blue');
+

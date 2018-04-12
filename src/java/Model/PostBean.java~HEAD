@@ -11,22 +11,23 @@ import java.io.File;
  *
  * @author ericz
  */
-public class Post {
+public class PostBean {
     private File picture;
     private File video;
     private String story;
+    private String firstName;
     
     
-    public Post(File pic){
+    public PostBean(File pic){
         this.setPicture(pic);
     }
     
-    public Post(File vid, String st){
+    public PostBean(File vid, String st){
         this.setVideo(vid);
         this.setStory(st);
     }
     
-    public Post(String st){
+    public PostBean(String st){
         this.setStory(st);
     }
     
@@ -52,6 +53,22 @@ public class Post {
 
     public void setStory(String story) {
         this.story = story;
+    }
+
+    /**
+     * @return the firstName
+     */
+    public String getFirstName()
+    {
+        return firstName;
+    }
+
+    /**
+     * @param firstName the firstName to set
+     */
+    public void setFirstName(String firstName)
+    {
+        this.firstName = firstName;
     }
     
     
