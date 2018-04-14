@@ -1,3 +1,4 @@
+
 --Student detail table
 create table Project353.StudentDetail (
   --ID INTEGER not null GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
@@ -120,6 +121,8 @@ CREATE TABLE Project353.PICBRIDGE (
     CONSTRAINT PIC_ID_FK FOREIGN KEY (PIC_ID)
         REFERENCES Project353.PICTURES (PICTURES_ID)
 );
+--default, 'jax89', 'SleepyHollow', 'Jade', 'Smith', 'jax89@gmail.com', 'Favorite Color', 'blue');
+
 
 CREATE TABLE Project353.VIDBRIDGE (
     POST_ID INTEGER,
