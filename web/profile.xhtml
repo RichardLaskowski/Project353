@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-      >
+
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Profile</title>
         <h:outputStylesheet library="css" name="profile.css"/>
@@ -12,7 +13,12 @@
         <div class ="grid">
             <header> Header 
                 <div class="searchbar">
-                    <h:inputText a:placeholder="Search"></h:inputText>
+                    <span>
+                        <h:form id="SearchForm" >
+                            <p:inputText class="searchInput" value="#{searchController.search}" a:placeholder="Search" ></p:inputText>
+                            <p:commandButton id="searchButton" value="Search" action="#{searchController.searchByName()}"/>
+                        </h:form>
+                    </span>
                 </div>
             </header>
             <feed class ="feed-grid">

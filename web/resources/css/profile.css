@@ -46,8 +46,14 @@ header > .searchbar
 {
     text-align: center;
     padding: 5px;
-    grid-column: 9 / -1;
+    grid-column: 8 / -1;
     box-shadow: none;
+    
+}
+
+.searchInput
+{
+    width: 300px;
 }
 
 feed
