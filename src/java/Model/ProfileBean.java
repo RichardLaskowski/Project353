@@ -149,6 +149,11 @@ private String userType;
     public void setUserType(String userType) {
         this.userType = userType;
     }
+
+    @Override
+    public String toString() {
+        return "ProfileBean{" + "firstName=" + firstName + ", lastName=" + lastName + ", userId=" + userId + ", email=" + email + ", userType=" + userType + '}';
+    }
     
     
 }
