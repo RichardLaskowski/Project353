@@ -11,8 +11,10 @@
         <div>
             <p:graphicImage value="resources/images/default-profile.png" height="100" width="100" class="col-1 profileImage"/>
             <h:form id="search">
+                
                 <p:inputText value="#{searchController.search}" class="col-3 searchBar" ></p:inputText>
                 <p:commandButton value="Search by Name" action="#{searchController.searchByName()}" class="searchButton" />
+                
             <!--    <p:dataList value="#{searchController.results}" var="Profile"  >
                     #{Profile.toString()}
                 </p:dataList> -->
