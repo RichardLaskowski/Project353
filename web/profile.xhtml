@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Profile</title>
+        <h:outputStylesheet library="css" name="profile.css"/>
+    </h:head>
+    <h:body>
+        <div class ="grid">
+            <header> Header 
+                <div class="searchbar">
+                    <span>
+                        <h:form id="SearchForm" >
+                            <p:inputText class="searchInput" value="#{searchController.search}" a:placeholder="Search" ></p:inputText>
+                            <p:commandButton id="searchButton" value="Search" action="#{searchController.searchByName()}"/>
+                        </h:form>
+                    </span>
+                </div>
+            </header>
+            <feed class ="feed-grid">
+                <h:form class="status">
+                    <div class="title">
+                        <h1>Status Update</h1>
+                    </div>
+                    <div class="content"> 
+                        <h:inputText a:placeholder="Status: What are you thinking?"></h:inputText>
+                    </div>
+                    <div class="post-button"> 
+                        <h:commandButton value="Post"></h:commandButton>
+                    </div>
+                </h:form>
+                <h:form class="post">
+                    <div class="user">
+                        <div class ="profilepic">
+                            <p>Profile Pic</p>
+                        </div>
+                        <p>Username</p>
+                    </div>
+                    <div class="timestamp">
+                        Time
+                    </div>
+                    <div class="content">
+                        Content
+                    </div>
+                    <div class="like-button">
+                        <h:commandButton value="Like"></h:commandButton>
+                    </div>
+                    <div class="comment-button">
+                        <h:commandButton value="Comment"></h:commandButton>
+                    </div>
+                </h:form>
+            </feed>
+            <aside>Aside</aside>
+            <aside2>Aside2</aside2>
+            <footer>Footer</footer>
+        </div>
+    </h:body>
+</html>
+
+
