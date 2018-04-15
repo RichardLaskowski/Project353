@@ -51,6 +51,24 @@ public class ProfileController {
             }
     }
 
+    
+    public String forgotPassword(String UserID) {
+        ProfileDAO aProfileDAO = new ProfileDAOImpl();    // Creating a new object each time.
+            int status = aProfileDAO.createProfile(theModel); // Doing anything with the object after this?
+            if (status == 1 ){
+                if(theModel.getUserType().equalsIgnoreCase("Student")) {
+                return "details.xhtml"; // navigate to "details.xhtml"
+                }
+                else{
+                    return "recruiterDetails.xhtml";
+                }
+            }
+                else {
+                signupStatus = "UserId already exist!";
+                return "";
+            }
+    }
+
     /**
      * @return the signupStatus
      */
