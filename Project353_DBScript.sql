@@ -4,29 +4,26 @@
 
 ---------------------------------------------------------------------------------------------------
 
-ALTER TABLE users
-    DROP CONSTRAINT users_profileId_fk;
+ALTER TABLE student 
+    DROP CONSTRAINT student_username_fk;
 
-ALTER TABLE profiles 
-    DROP CONSTRAINT profiles_userName_fk;
+ALTER TABLE recruiter 
+    DROP CONSTRAINT recruiter_university_fk;
 
-ALTER TABLE hobbiesList
-    DROP CONSTRAINT hobbiesList_hobbyId_fk;
+ALTER TABLE recruiter 
+    DROP CONSTRAINT recruiter_username_fk;
 
-ALTER TABLE hobbiesList
-    DROP CONSTRAINT hobbieList_profileId_fk;
+ALTER TABLE universityBridge
+    DROP CONSTRAINT universityBridge_profileId_fk;
 
-ALTER TABLE universityList
-    DROP CONSTRAINT universityList_universityId_fk;
+ALTER TABLE universityBridge
+    DROP CONSTRAINT universityBridge_username_fk;
 
-ALTER TABLE universityList
-    DROP CONSTRAINT universityList_profileId_fk;
+ALTER TABLE majorBridge
+    DROP CONSTRAINT majorList_major_fk;
 
-ALTER TABLE majorList
-    DROP CONSTRAINT majorList_majorId_fk;
-
-ALTER TABLE majorList
-    DROP CONSTRAINT majorList_profileId_fk;
+ALTER TABLE majorBridge
+    DROP CONSTRAINT majorList_username_fk;
 
 ALTER TABLE posts
     DROP CONSTRAINT posts_imageId_fk;
@@ -35,7 +32,7 @@ ALTER TABLE posts
     DROP CONSTRAINT posts_videoId_fk;
 
 ALTER TABLE posts
-    DROP CONSTRAINT posts_profileId_fk;
+    DROP CONSTRAINT posts_username_fk;
 
 ALTER TABLE commentList
     DROP CONSTRAINT commentList_commentId_fk;
@@ -51,8 +48,6 @@ ALTER TABLE commentList
 
 DROP TABLE users;
 DROP TABLE profiles;
-DROP TABLE hobbies;
-DROP TABLE hobbiesList;
 DROP TABLE university;
 DROP TABLE universityList;
 DROP TABLE major;
@@ -78,11 +73,10 @@ CREATE TABLE users(
     securityQuestion VARCHAR(100),
     securityAnswer VARCHAR(100),
     userType VARCHAR(15) NOT NULL,
-    profileId INTEGER,
     CONSTRAINT users_userName_pk PRIMARY KEY (userName));
 
-CREATE TABLE profiles(
-    profileId INTEGER,
+CREATE TABLE student(
+    profileId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1),
     dateOfBirth VARCHAR(20),
     height INTEGER,
     weight INTEGER,
@@ -98,96 +92,128 @@ CREATE TABLE profiles(
     certification VARCHAR(500),
     essay VARCHAR(1200),
     userName VARCHAR(20),
-    CONSTRAINT profiles_profileId_pk PRIMARY KEY (profileId),
-    CONSTRAINT profiles_userName_fk  FOREIGN KEY (userName)
+    hobbies VARCHAR(500),
+    CONSTRAINT student_profileId_pk PRIMARY KEY (profileId),
+    CONSTRAINT student_username_fk  FOREIGN KEY (userName)
         REFERENCES users(userName));
 
-ALTER TABLE users
-    ADD CONSTRAINT users_profileId_fk FOREIGN KEY (profileId)
-        REFERENCES profiles(profileId);
-
-CREATE TABLE hobbies (
-    hobbyId INTEGER,
-    hobbieName VARCHAR(20),
-    hobbieDesc VARCHAR(20),
-    CONSTRAINT hobbies_hobbieId_pk PRIMARY KEY (hobbyId));
-
-CREATE TABLE hobbiesList (
-    listId INTEGER,
-    hobbyId INTEGER,
-    profileId INTEGER,
-    CONSTRAINT hobbiesList_listId_pk PRIMARY KEY (listId),
-    CONSTRAINT hobbiesList_hobbyId_fk FOREIGN KEY (hobbyId)
-        REFERENCES hobbies(hobbyId) ON DELETE CASCADE,
-    CONSTRAINT hobbieList_profileId_fk FOREIGN KEY (profileId)
-        REFERENCES profiles(profileId) ON DELETE CASCADE);
-
 CREATE TABLE university(
-    universityId INTEGER,
-    universityName VARCHAR(20),
-    CONSTRAINT university_universityId_pk PRIMARY KEY (universityId));
+    profileId VARCHAR(50),
+    universityEmail VARCHAR(50),
+    username VARCHAR(20),
+    CONSTRAINT university_profileId_pk PRIMARY KEY (profileId),
+    CONSTRAINT university_username_fk FOREIGN KEY (username)
+        REFERENCES users(username));
 
-CREATE TABLE universityList(
-    listId INTEGER,
-    universityId INTEGER,
-    profileId INTEGER,
-    CONSTRAINT universityList_listId_pk PRIMARY KEY (listId),
-    CONSTRAINT universityList_universityId_fk FOREIGN KEY (universityId)
-        REFERENCES university(universityId) ON DELETE CASCADE,
-    CONSTRAINT universityList_profileId_fk FOREIGN KEY (profileId)
-        REFERENCES profiles(profileId) ON DELETE CASCADE);
+CREATE TABLE universityBridge(
+    bridgeId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    profileId VARCHAR(50),
+    username VARCHAR(20),
+    CONSTRAINT universityBridge_bridgeId_pk PRIMARY KEY (bridgeId),
+    CONSTRAINT universityBridge_profileId_fk FOREIGN KEY (profileId)
+        REFERENCES university(profileId),
+    CONSTRAINT universityBridge_username_fk FOREIGN KEY (username)
+        REFERENCES users(username));
+
+CREATE TABLE recruiter(
+    profileId VARCHAR(20),
+    university VARCHAR(50),
+    username VARCHAR(20),
+    department VARCHAR(20),
+    phone VARCHAR(13),
+    CONSTRAINT recruiter_profileId_pk PRIMARY KEY (profileId),
+    CONSTRAINT recruiter_username_fk FOREIGN KEY (username)
+        REFERENCES users(username),
+    CONSTRAINT recruiter_university_fk FOREIGN KEY (university)
+        REFERENCES university(profileId));
+
+-- CREATE TABLE hobbies (
+--     hobbyId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+--     hobbieName VARCHAR(20),
+--     hobbieDesc VARCHAR(20),
+--     CONSTRAINT hobbies_hobbieId_pk PRIMARY KEY (hobbyId));
+
+-- CREATE TABLE hobbiesList (
+--     listId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+--     hobbyId INTEGER,
+--     profileId INTEGER,
+--     CONSTRAINT hobbiesList_listId_pk PRIMARY KEY (listId),
+--     CONSTRAINT hobbiesList_hobbyId_fk FOREIGN KEY (hobbyId)
+--         REFERENCES hobbies(hobbyId) ON DELETE CASCADE,
+--     CONSTRAINT hobbieList_profileId_fk FOREIGN KEY (profileId)
+--         REFERENCES profiles(profileId) ON DELETE CASCADE);
+
 
 CREATE TABLE major(
-    majorId INTEGER,
-    majorName VARCHAR(20),
+    major VARCHAR(20),
     majorDesc VARCHAR(100),
-    CONSTRAINT major_majorId_pk PRIMARY KEY (majorId));
+    CONSTRAINT major_major_pk PRIMARY KEY (major));
 
-CREATE TABLE majorList(
-    listId INTEGER,
-    majorId INTEGER,
-    profileId INTEGER,
-    CONSTRAINT majorList_listId_pk PRIMARY KEY (listId),
-    CONSTRAINT majorList_majorId_fk FOREIGN KEY (majorId)
-        REFERENCES major(majorId) ON DELETE CASCADE,
-    CONSTRAINT majorList_profileId_fk FOREIGN KEY (profileId)
-        REFERENCES profiles(profileId) ON DELETE CASCADE);
+CREATE TABLE majorBridge(
+    bridgeId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    major VARCHAR(20),
+    username VARCHAR(20),
+    CONSTRAINT majorList_bridgeId_pk PRIMARY KEY (bridgeId),
+    CONSTRAINT majorList_major_fk FOREIGN KEY (major)
+        REFERENCES major(major),
+    CONSTRAINT majorList_username_fk FOREIGN KEY (username)
+        REFERENCES users(username));
 
 CREATE TABLE images(
-    imageId INTEGER,
+    imageId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
     source VARCHAR(50),
-    CONSTRAINT images_imageId_pk PRIMARY KEY (imageId));
+    CONSTRAINT images_imageId_pk PRIMARY KEY (imageId)); 
  
 CREATE TABLE videos(
-    videoId INTEGER,
+    videoId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
     postId INTEGER,
     source VARCHAR(50),
     CONSTRAINT videos_videoId_pk PRIMARY KEY (videoId));
 
 CREATE TABLE posts(
-    postId INTEGER,
-    profileId INTEGER,
+    postId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    username VARCHAR(20),
     imageId INTEGER,
     videoId INTEGER,
     CONSTRAINT posts_postId_pk PRIMARY KEY (postId),
-    CONSTRAINT posts_profileId_fk FOREIGN KEY (profileId)
-        REFERENCES profiles(profileId) ON DELETE CASCADE,
+    CONSTRAINT posts_username_fk FOREIGN KEY (username)
+        REFERENCES users(username),
     CONSTRAINT posts_imageId_fk FOREIGN KEY (imageId)
-        REFERENCES images(imageId) ON DELETE CASCADE,
+        REFERENCES images(imageId),
     CONSTRAINT posts_videoId_fk FOREIGN KEY (videoId)
-        REFERENCES videos(videoId) ON DELETE CASCADE);
+        REFERENCES videos(videoId));
 
 CREATE TABLE comments(
-    commentId INTEGER,
+    commentId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
     content VARCHAR(250),
     CONSTRAINT comments_commentId_pk PRIMARY KEY (commentId));
 
 CREATE TABLE commentList(
-    listId INTEGER,
+    listId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
     commentId INTEGER,
     postId INTEGER,
     CONSTRAINT commentList_listId_pk PRIMARY KEY (listId),
     CONSTRAINT commentList_commentId_fk FOREIGN KEY (commentId)
-        REFERENCES comments(commentId) ON DELETE CASCADE,
+        REFERENCES comments(commentId),
     CONSTRAINT commentList_postId_fk FOREIGN KEY (postId)
-        REFERENCES posts(postId) ON DELETE CASCADE);
+        REFERENCES posts(postId));
+
+CREATE TABLE imageBridge(
+     bridgeId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+     postId INTEGER,
+     imageId INTEGER,
+     CONSTRAINT imageBridge_bridgeId_pk PRIMARY KEY (bridgeId),
+     CONSTRAINT imageBridge_postId_fk  FOREIGN KEY (postId)
+        REFERENCES posts(postId),
+    CONSTRAINT imageBridge_imageId_fk FOREIGN KEY (imageId)
+        REFERENCES images(imageId));
+
+CREATE TABLE videoBridge(
+    bridgeId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+     postId INTEGER,
+     videoId INTEGER,
+     CONSTRAINT videoBridge_bridgeId_pk PRIMARY KEY (bridgeId),
+     CONSTRAINT videoBridge_postId_fk  FOREIGN KEY (postId)
+        REFERENCES posts(postId),
+    CONSTRAINT videoBridge_videoId_fk FOREIGN KEY (videoId)
+        REFERENCES videos(videoId));
