@@ -8,6 +8,20 @@ public class RecruiterBean
     private String department;
     private String phone;
 
+    public RecruiterBean(int profileId, String department, String phone, String university, String username)
+    {
+        this.profileId = profileId;
+        this.department = department;
+        this.phone = phone;
+        this.university = university;
+        this.username = username;
+    }
+
+    public RecruiterBean()
+    {
+
+    }
+
     /**
      * @return the profileId
      */
@@ -86,6 +100,5 @@ public class RecruiterBean
     public void setPhone(String phone)
     {
         this.phone = phone;
-    }
-    
+    }  
 }
