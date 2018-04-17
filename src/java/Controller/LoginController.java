@@ -1,71 +1,192 @@
-
 package Controller;
-
-import DAO.ProfileDAO;
-import DAO.ProfileDAOImpl;
+import Model.RecruiterBean;
+import Model.StudentBean;
+import Model.UserBean;
 import javax.faces.bean.ManagedBean;
-import Model.ProfileBean;
 import javax.faces.bean.SessionScoped;
 
-/**
- *
- * @author IT353S843
- */
+
 @ManagedBean
 @SessionScoped
-public class LoginController {
+public class LoginController
+{
+    private RecruiterBean recruiterModel;
+    private StudentBean studentModel;
+    private UserBean userModel;
+    private UserBean targetUser;
+    private RecruiterController recruiterController; 
+    private StudentController studentController;
+    private UserController userController; 
     
-    private ProfileBean theModel;
     private String loginStatus;
-    private int loginAttempt = 0;
+    private int loginAttempt;
     
+    /*method for login authentication*/
+    public String loginAuthentication()
+    {
+        String returnString = "";
+        if (loginAttempt < 3)
+        {
+            userController.setUserModel(userModel);
+            targetUser = userController.selectUserByUsername(); 
+            if(userModel.getPassword().equals(targetUser.getPassword()))
+            {
+                returnString = "profile.xhtml";
+            }
+            else
+            {
+                setLoginStatus("Invalid Credentials");
+                returnString = "logIn.xhtml";
+            }
+        } 
+        else
+        {
+            setLoginStatus("Exceed max number of trials! Try after some time");
+            
+        }
+        
+        return returnString;
+    }
+
     /**
      * Creates a new instance of LoginController
      */
-    
-    public LoginController() {
-        theModel = new ProfileBean();
+    public LoginController()
+    {
+       recruiterController = new RecruiterController();
+       studentController = new StudentController();
+       userController = new UserController();
+       userModel = new UserBean();
+       targetUser = null;
+       loginAttempt = 0;
     }
 
-    public ProfileBean getTheModel() {
-        return theModel;
-    }
-
-    public void setTheModel(ProfileBean theModel) {
-        this.theModel = theModel;
-    }
-        /**
+    /**
      * @return the loginStatus
      */
-    public String getLoginStatus() {
+    public String getLoginStatus()
+    {
         return loginStatus;
     }
 
     /**
      * @param loginStatus the loginStatus to set
      */
-    public void setLoginStatus(String loginStatus) {
+    public void setLoginStatus(String loginStatus)
+    {
         this.loginStatus = loginStatus;
     }
-  
-    /*method for login authentication*/
-    
-    public String loginAuthentication() {
-        if(loginAttempt<3){
-        ProfileDAO aProfileDAO = new ProfileDAOImpl();    // Creating a new object each time.
-        int status = aProfileDAO.checkCredentials(theModel); // Doing anything with the object after this?
-        if (status == 1){
-                return "LoginGood.xhtml";
-        }
-        else{
-            loginAttempt+=1;
-            setLoginStatus("Invalid Credentials");
-            return "";
-        }
-        }
-        else{
-            setLoginStatus("Exceed max number of trials! Try after some time");
-            return "";
-        }
-    }    
+
+
+    /**
+     * @return the loginAttempt
+     */
+    public int getLoginAttempt()
+    {
+        return loginAttempt;
+    }
+
+    /**
+     * @param loginAttempt the loginAttempt to set
+     */
+    public void setLoginAttempt(int loginAttempt)
+    {
+        this.loginAttempt = loginAttempt;
+    }
+
+    /**
+     * @return the recruiterController
+     */
+    public RecruiterController getRecruiterController()
+    {
+        return recruiterController;
+    }
+
+    /**
+     * @param recruiterController the recruiterController to set
+     */
+    public void setRecruiterController(RecruiterController recruiterController)
+    {
+        this.recruiterController = recruiterController;
+    }
+
+    /**
+     * @return the studentController
+     */
+    public StudentController getStudentController()
+    {
+        return studentController;
+    }
+
+    /**
+     * @param studentController the studentController to set
+     */
+    public void setStudentController(StudentController studentController)
+    {
+        this.studentController = studentController;
+    }
+
+    /**
+     * @return the userController
+     */
+    public UserController getUserController()
+    {
+        return userController;
+    }
+
+    /**
+     * @param userController the userController to set
+     */
+    public void setUserController(UserController userController)
+    {
+        this.userController = userController;
+    }
+
+    /**
+     * @return the userModel
+     */
+    public UserBean getUserModel()
+    {
+        return userModel;
+    }
+
+    /**
+     * @param userModel the userModel to set
+     */
+    public void setUserModel(UserBean userModel)
+    {
+        this.userModel = userModel;
+    }
+
+    /**
+     * @return the recruiterModel
+     */
+    public RecruiterBean getRecruiterModel()
+    {
+        return recruiterModel;
+    }
+
+    /**
+     * @param recruiterModel the recruiterModel to set
+     */
+    public void setRecruiterModel(RecruiterBean recruiterModel)
+    {
+        this.recruiterModel = recruiterModel;
+    }
+
+    /**
+     * @return the studentModel
+     */
+    public StudentBean getStudentModel()
+    {
+        return studentModel;
+    }
+
+    /**
+     * @param studentModel the studentModel to set
+     */
+    public void setStudentModel(StudentBean studentModel)
+    {
+        this.studentModel = studentModel;
+    }
 }

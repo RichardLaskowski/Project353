@@ -5,7 +5,6 @@
  */
 package DAO;
 
-import Model.ProfileBean;
 import java.util.List;
 
 /**

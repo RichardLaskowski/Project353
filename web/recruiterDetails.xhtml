@@ -26,13 +26,13 @@
                         <h:form id="signUpForm">
                             <p:messages id="messages" showDetail="true" autoUpdate="true" />  <br/>  
                             
-                            <h:inputText pt:placeholder="Enter University Name" class="span-full" value="#{recruiterController.recruiterBean.university}" required="true"/>
+                            <h:inputText pt:placeholder="Enter University Name" class="span-full"  required="true"/>
                               
-                            <h:inputText pt:placeholder="Enter Department Name" class="span-full" value="#{recruiterController.recruiterBean.department}" required="true"/>
+                            <h:inputText pt:placeholder="Enter Department Name" class="span-full"  required="true"/>
                             
-                            <h:inputText pt:placeholder="PhoneNo" class="span-full" value="#{recruiterController.recruiterBean.phoneNo}" required="true"/> 
+                            <h:inputText pt:placeholder="PhoneNo" class="span-full"  required="true"/> 
                            
-                            <h:commandButton class="span-full" id="createAccount" value="SUBMIT" action="#{recruiterController.insertInfo(profileController.theModel.userId)}"/>
+                            <h:commandButton class="span-full" id="createAccount" value="SUBMIT"/>
                         </h:form>
                     </div>
                 </div>
