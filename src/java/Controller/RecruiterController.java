@@ -5,58 +5,114 @@
  */
 package Controller;
 
-import DAO.ProfileDAO;
-import DAO.ProfileDAOImpl;
+import DAO.RecruiterDAO;
+import DAO.RecruiterDAOImpl;
 import Model.RecruiterBean;
+import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author IT353S843
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class RecruiterController
 {
-
-    private RecruiterBean recruiterBean;
+    private ArrayList resultList;
+    private RecruiterBean recruiterModel;
+    private RecruiterBean targetRecruiter;
+    
+    public String createRecruiter(RecruiterBean recruiterModel)
+    {
+        RecruiterDAO recruiterDAO = new RecruiterDAOImpl();
+        int rowCount = recruiterDAO.createRecruiter(recruiterModel);
+        
+        if(rowCount == 1)
+        {
+            return "profile.xhtml";
+        } 
+        else
+        {
+            return "recruiterDetails.xhtml";
+        }
+    }
+    
+    public ArrayList selectRecruiterByUsername(String targetUsername)
+    {
+        RecruiterDAO recruiterDAO = new RecruiterDAOImpl();
+        setResultList(recruiterDAO.selectRecruiterByUsername(targetUsername));
+        
+        if(resultList.size() == 1)
+        {
+            targetRecruiter = (RecruiterBean)resultList.get(0);
+        }
+        
+        return resultList;
+    }
 
     /**
      * Creates a new instance of RecruiterController
      */
     public RecruiterController()
     {
-        recruiterBean = new RecruiterBean();
+        recruiterModel = new RecruiterBean();
     }
 
     /**
      * @return the recruiterBean
      */
-    public RecruiterBean getRecruiterBean()
+    public RecruiterBean getRecruiterModel()
     {
-        return recruiterBean;
+        return recruiterModel;
     }
 
     /**
      * @param recruiterBean the recruiterBean to set
      */
-    public void setRecruiterBean(RecruiterBean recruiterBean)
+    public void setRecruiterBean(RecruiterBean recruiterModel)
     {
-        this.recruiterBean = recruiterBean;
+        this.setRecruiterModel(recruiterModel);
     }
 
-    public String insertInfo(String UserId)
+    /**
+     * @return the resultList
+     */
+    public ArrayList getResultList()
     {
-        ProfileDAO aProfileDAO = new ProfileDAOImpl();    // Creating a new object each time.
-        int status = aProfileDAO.insertRecruiterDetails(UserId, recruiterBean); // Doing anything with the object after this?
-        if (status == 1)
-        {
-            return "LoginGood.xhtml"; // navigate to "LoginGood.xhtml"
-        } else
-        {
-            return "recruiterDetails.xhtml";
-        }
+        return resultList;
     }
 
+    /**
+     * @param resultList the resultList to set
+     */
+    public void setResultList(ArrayList resultList)
+    {
+        this.resultList = resultList;
+    }
+
+    /**
+     * @param recruiterModel the recruiterModel to set
+     */
+    public void setRecruiterModel(RecruiterBean recruiterModel)
+    {
+        this.recruiterModel = recruiterModel;
+    }
+
+    /**
+     * @return the targetRecruiter
+     */
+    public RecruiterBean getTargetRecruiter()
+    {
+        return targetRecruiter;
+    }
+
+    /**
+     * @param targetRecruiter the targetRecruiter to set
+     */
+    public void setTargetRecruiter(RecruiterBean targetRecruiter)
+    {
+        this.targetRecruiter = targetRecruiter;
+    }
 }

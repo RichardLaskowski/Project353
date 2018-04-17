@@ -7,7 +7,6 @@ package Controller;
 
 import DAO.UserDAO;
 import DAO.UserDAOImpl;
-import Model.ProfileBean;
 import Model.UserBean;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -22,7 +21,7 @@ import java.util.ArrayList;
 @SessionScoped
 public class UserController implements Serializable
 {
-    private final String USER_TYPE_STUDENT = "Student";
+    private final String USER_TYPE_STUDENT = "student";
     private final String USER_TYPE_RECRUITER = "recruiter";
     private final String USER_TYPE_UNIVERSITY = "university";
     private final String USER_TYPE_ADMIN = "admin";
@@ -31,7 +30,6 @@ public class UserController implements Serializable
     private UserBean userModel;
     //Represents query result
     private UserBean targetUser;
-    private ProfileBean targetProfile;
     
     private ArrayList resultList;
           
@@ -64,7 +62,7 @@ public class UserController implements Serializable
             System.out.println("TARGET: " + targetUser.getUsername());
         }
         
-        resultList = profileController.
+       
         if(resultList.size() == 1)
         {
             

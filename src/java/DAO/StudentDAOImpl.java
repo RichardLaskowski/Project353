@@ -1,5 +1,12 @@
 package DAO;
 
+import Model.StudentBean;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
 public class StudentDAOImpl implements StudentDAO
 {
     private int profileId;
@@ -12,7 +19,7 @@ public class StudentDAOImpl implements StudentDAO
     private String zipcode;
     private String phone;
     private String school;
-    private String endYear;
+    private int endYear;
     private int sat;
     private int act;
     private int psat;
@@ -44,8 +51,8 @@ public class StudentDAOImpl implements StudentDAO
             String insertString;
             Statement stmt = DBConn.createStatement();
             insertString = "INSERT INTO itkstu.student "
-                + "(dateOfBirth, height, weight, street, city, country, zipcode, phone, school, endYear,
-                    sat, act, psat, certification, essay, hobbies, username"
+                + "(dateOfBirth, height, weight, street, city, country, zipcode, phone, school, endYear, "
+                + "sat, act, psat, certification, essay, hobbies, username) "
                 + "', '" + studentModel.getDateOfBirth()
                 + "', '" + studentModel.getHeight()
                 + "', '" + studentModel.getWeight()
@@ -90,7 +97,7 @@ public class StudentDAOImpl implements StudentDAO
 
             while(rs.next())
             {
-                profileId = rs.getString("profileId");
+                profileId = rs.getInt("profileId");
                 dateOfBirth = rs.getString("dateOfBirth");
                 height = rs.getInt("height");
                 weight = rs.getInt("weight");
@@ -104,11 +111,23 @@ public class StudentDAOImpl implements StudentDAO
                 sat = rs.getInt("sat");
                 act = rs.getInt("act");
                 psat = rs.getInt("psat");
-                cerification = rs.getString("certification");
+                certification = rs.getString("certification");
                 essay = rs.getString("essay");
                 hobbies = rs.getString("hobbies");
                 username = rs.getString("username");
+
+                targetStudent = new StudentBean(profileId, dateOfBirth, height, weight, street, city, country, zipcode,
+                phone, school, endYear, sat, act, psat, certification, essay, hobbies, username);
+                resultList.add(targetStudent);
             }
+            DBConn.close();
         }
+        catch(Exception e)
+        {
+            System.err.println("ERROR SELECT STUDENT BY USERNAME FAILED");
+            System.err.println("TARGET: " + targetUsername);
+            e.printStackTrace();
+        }
+        return resultList;
     }
 }

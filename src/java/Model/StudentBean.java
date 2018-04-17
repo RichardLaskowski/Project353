@@ -26,7 +26,7 @@ public class StudentBean
     private String hobbies;
     private String username;
 
-    public StudentBean(String dateOfBirth, int height, int weight, String street, String city, String country,
+    public StudentBean(int profileId, String dateOfBirth, int height, int weight, String street, String city, String country,
     String zipcode, String phone, String school, int endYear, int sat, int act, int psat, String certification,
     String essay, String hobbies, String username)
     {
@@ -50,7 +50,7 @@ public class StudentBean
         this.username = username;
     }
 
-    public StudentBean(String dateOfBirth, int height, int weight, String street, String city, String country,
+    public StudentBean(int profileId, String dateOfBirth, int height, int weight, String street, String city, String country,
     String zipcode, String phone, String school, int endYear, int sat, int act, int psat, String certification,
     String essay, String hobbies)
     {
@@ -241,7 +241,7 @@ public class StudentBean
     /**
      * @return the endYear
      */
-    public String getEndYear()
+    public int getEndYear()
     {
         return endYear;
     }
@@ -249,7 +249,7 @@ public class StudentBean
     /**
      * @param endYear the endYear to set
      */
-    public void setEndYear(String endYear)
+    public void setEndYear(int endYear)
     {
         this.endYear = endYear;
     }

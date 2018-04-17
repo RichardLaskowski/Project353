@@ -98,7 +98,7 @@ public class UserDAOImpl implements UserDAO
         catch(Exception e)
         {
             System.err.println("ERROR: SELECT USER BY USERNAME FAILED.");
-            System.err.println("TARGET:" + targetUsername);
+            System.err.println("TARGET: " + targetUsername);
             e.printStackTrace();
         }
         return resultList;
