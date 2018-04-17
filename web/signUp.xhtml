@@ -36,38 +36,38 @@
                     </div>
                     <div class="box-login-form">
                         <h:form id="signUpForm"> 
-                            <h5><h:outputText value="#{profileController.signupStatus}" id="signupStatus"/></h5>
+                            <h5><h:outputText value="#{signupController.signupStatus}" id="signupStatus"/></h5>
                             <p:messages id="messages" showDetail="true" autoUpdate="true" />  <br/>  
-                            <h:inputText pt:placeholder= "Enter First Name" class="span-two signUp" value="#{profileController.theModel.firstName}" required="true">
+                            <h:inputText pt:placeholder= "Enter First Name" class="span-two signUp" value="#{signupController.userModel.firstName}" required="true">
                                 <f:validateLength minimum="2" />
                             </h:inputText>   
                             
-                            <h:inputText pt:placeholder="Enter Last Name" class="span-two signUp" value="#{profileController.theModel.lastName}" required="true">
+                            <h:inputText pt:placeholder="Enter Last Name" class="span-two signUp" value="#{signupController.userModel.lastName}" required="true">
                                 <f:validateLength minimum="2" />
                             </h:inputText>
                             
-                            <h:inputText pt:placeholder="Enter Email Address" class="span-full" value="#{profileController.theModel.email}" required="true">
+                            <h:inputText pt:placeholder="Enter Email Address" class="span-full" value="#{signupController.userModel.email}" required="true">
                                 <f:validateRegex pattern = "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"/>
                             </h:inputText>
                             
-                            <h:inputText pt:placeholder="Enter Username" class="span-full" value="#{profileController.theModel.userId}" required="true"/>
+                            <h:inputText pt:placeholder="Enter Username" class="span-full" value="#{signupController.userModel.username}" required="true"/>
                         
-                            <p:password pt:placeholder="Enter Password" class="span-full" id="inlineFeedback" value="#{profileController.theModel.password}" 
+                            <p:password pt:placeholder="Enter Password" class="span-full" id="inlineFeedback" value="#{signupController.userModel.password}" 
                                         feedback="true" inline="true" match="password2" required="true"/>
                             
-                            <p:password pt:placeholder="Confirm Password" class="span-full Confirm" id="password2" value="#{profileController.theModel.password}" 
+                            <p:password pt:placeholder="Confirm Password" class="span-full Confirm" id="password2" 
                                         required="true" />
                             
                             <div class="span-full white-space"></div>
-                            <h:inputText pt:placeholder="Security Question" class="span-full" value="#{profileController.theModel.securityQuestion}"/>
-                            <h:inputText pt:placeholder="Security Answer" class="span-full" value="#{profileController.theModel.securityAnswer}"/> 
+                            <h:inputText pt:placeholder="Security Question" class="span-full" value="#{signupController.userModel.securityQuestion}"/>
+                            <h:inputText pt:placeholder="Security Answer" class="span-full" value="#{signupController.userModel.securityAnswer}"/> 
                             
-                            <h:selectOneMenu class="span-full" value="#{profileController.theModel.userType}">
+                            <h:selectOneMenu class="span-full" value="#{signupController.userModel.userType}">
                                 <f:selectItem itemValue="Student" itemLabel="Student" />
                                 <f:selectItem itemValue="Recruiter" itemLabel="Recruiter" />
                             </h:selectOneMenu>
                             
-                            <h:commandButton class="span-full" id="createAccount" value="Create Account" action="#{profileController.createProfile()}"/>
+                            <h:commandButton class="span-full" id="createAccount" value="Create Account" action="#{signupController.createUser()}"/>
                         </h:form>
                         <h:form class="button-grid span-full" id="signUpForm-buttons" >
                             <h:commandButton class="span-two" id="login-signUp" action="login.xhtml" value="Login" ></h:commandButton>

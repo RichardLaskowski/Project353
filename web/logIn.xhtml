@@ -7,7 +7,7 @@
         <title></title>
         <h:outputStylesheet library="css" name="signup.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <h:outputScript library="script" name="signup.js"/>   
+<!--        <h:outputScript library="script" name="signup.js"/>   -->
         
     </h:head>
     <h:body>
@@ -24,8 +24,8 @@
                     <div class="box-login-form">
                         <h:form id="loginForm"> 
                             <h3><h:outputText value="#{loginController.loginStatus}" id="loginStatus"/></h3>
-                            <h:inputText pt:placeholder="Enter Username" class="span-full" value="#{loginController.theModel.userId}"/>
-                            <h:inputSecret pt:placeholder="Enter Password" class="span-full" value="#{loginController.theModel.password}"/>
+                            <h:inputText pt:placeholder="Enter Username" class="span-full" value="#{loginController.userModel.username}"/>
+                            <h:inputSecret pt:placeholder="Enter Password" class="span-full" value="#{loginController.userModel.password}"/>
                             <h:commandButton class="span-full" id="login" value="Login" action="#{loginController.loginAuthentication()}"/>
                             <h:commandButton class="span-full" id="signUp-login" action="signUp.xhtml" value="Sign-Up" ></h:commandButton>
                             <h:commandButton value="Forgot Password" class="span-full" id="forgotPassword-login" disabled="true"></h:commandButton>

@@ -51,13 +51,12 @@ public class StudentDAOImpl implements StudentDAO
             String insertString;
             Statement stmt = DBConn.createStatement();
             insertString = "INSERT INTO itkstu.student "
-                + "(dateOfBirth, height, weight, street, city, country, zipcode, phone, school, endYear, "
+                + "(dateOfBirth, height, weight, address, country, zipcode, phone, school, endYear, "
                 + "sat, act, psat, certification, essay, hobbies, username) "
-                + "', '" + studentModel.getDateOfBirth()
+                + "VALUES ('" + studentModel.getDateOfBirth()
                 + "', '" + studentModel.getHeight()
                 + "', '" + studentModel.getWeight()
-                + "', '" + studentModel.getStreet()
-                + "', '" + studentModel.getCity()
+                + "', '" + studentModel.getStreet() + " " + studentModel.getCity()
                 + "', '" + studentModel.getCountry()
                 + "', '" + studentModel.getZipcode()
                 + "', '" + studentModel.getPhone()

@@ -1,22 +1,52 @@
 package Controller;
+import Model.RecruiterBean;
+import Model.StudentBean;
 import Model.UserBean;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-/**
- *
- * @author IT353S843
- */
+
 @ManagedBean
 @SessionScoped
 public class LoginController
 {
+    private RecruiterBean recruiterModel;
+    private StudentBean studentModel;
     private UserBean userModel;
-    private String loginStatus;
-    private int loginAttempt;
+    private UserBean targetUser;
     private RecruiterController recruiterController; 
     private StudentController studentController;
     private UserController userController; 
+    
+    private String loginStatus;
+    private int loginAttempt;
+    
+    /*method for login authentication*/
+    public String loginAuthentication()
+    {
+        String returnString = "";
+        if (loginAttempt < 3)
+        {
+            userController.setUserModel(userModel);
+            targetUser = userController.selectUserByUsername(); 
+            if(userModel.getPassword().equals(targetUser.getPassword()))
+            {
+                returnString = "profile.xhtml";
+            }
+            else
+            {
+                setLoginStatus("Invalid Credentials");
+                returnString = "logIn.xhtml";
+            }
+        } 
+        else
+        {
+            setLoginStatus("Exceed max number of trials! Try after some time");
+            
+        }
+        
+        return returnString;
+    }
 
     /**
      * Creates a new instance of LoginController
@@ -26,6 +56,8 @@ public class LoginController
        recruiterController = new RecruiterController();
        studentController = new StudentController();
        userController = new UserController();
+       userModel = new UserBean();
+       targetUser = null;
        loginAttempt = 0;
     }
 
@@ -45,28 +77,6 @@ public class LoginController
         this.loginStatus = loginStatus;
     }
 
-    /*method for login authentication*/
-//    public String loginAuthentication()
-//    {
-//        if (loginAttempt < 3)
-//        {
-//            ProfileDAO aProfileDAO = new ProfileDAOImpl();    // Creating a new object each time.
-//            int status = aProfileDAO.checkCredentials(theModel); // Doing anything with the object after this?
-//            if (status == 1)
-//            {
-//                return "LoginGood.xhtml";
-//            } else
-//            {
-//                loginAttempt += 1;
-//                setLoginStatus("Invalid Credentials");
-//                return "";
-//            }
-//        } else
-//        {
-//            setLoginStatus("Exceed max number of trials! Try after some time");
-//            return "";
-//        }
-//    }
 
     /**
      * @return the loginAttempt
@@ -130,5 +140,53 @@ public class LoginController
     public void setUserController(UserController userController)
     {
         this.userController = userController;
+    }
+
+    /**
+     * @return the userModel
+     */
+    public UserBean getUserModel()
+    {
+        return userModel;
+    }
+
+    /**
+     * @param userModel the userModel to set
+     */
+    public void setUserModel(UserBean userModel)
+    {
+        this.userModel = userModel;
+    }
+
+    /**
+     * @return the recruiterModel
+     */
+    public RecruiterBean getRecruiterModel()
+    {
+        return recruiterModel;
+    }
+
+    /**
+     * @param recruiterModel the recruiterModel to set
+     */
+    public void setRecruiterModel(RecruiterBean recruiterModel)
+    {
+        this.recruiterModel = recruiterModel;
+    }
+
+    /**
+     * @return the studentModel
+     */
+    public StudentBean getStudentModel()
+    {
+        return studentModel;
+    }
+
+    /**
+     * @param studentModel the studentModel to set
+     */
+    public void setStudentModel(StudentBean studentModel)
+    {
+        this.studentModel = studentModel;
     }
 }

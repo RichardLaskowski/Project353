@@ -21,10 +21,10 @@ import java.util.ArrayList;
 @SessionScoped
 public class UserController implements Serializable
 {
-    private final String USER_TYPE_STUDENT = "student";
-    private final String USER_TYPE_RECRUITER = "recruiter";
-    private final String USER_TYPE_UNIVERSITY = "university";
-    private final String USER_TYPE_ADMIN = "admin";
+    private String USER_TYPE_STUDENT = "student";
+    private String USER_TYPE_RECRUITER = "recruiter";
+    private String USER_TYPE_UNIVERSITY = "university";
+    private String USER_TYPE_ADMIN = "admin";
     
     //Represents the View
     private UserBean userModel;
@@ -38,34 +38,31 @@ public class UserController implements Serializable
         userModel = new UserBean();
     }
     
-    public String createUser()      
+    public boolean createUser(UserBean userModel)      
     {
+        System.out.println("USERCONTROLLER: createUser()");
+        boolean userInserted = false;
         UserDAO userDAO = new UserDAOImpl();
-        int rowCount = userDAO.createUser(getUserModel());
-        String returnString = "";
+        int rowCount = userDAO.createUser(userModel);
+        
         if(rowCount == 1)
         {
-            returnString += "LoginGood.xhtml";
+            userInserted = true;
         }
         
-        return returnString;
+        return userInserted;
     }
     
     public UserBean selectUserByUsername()
     {
         UserDAO userDAO = new UserDAOImpl();
         resultList = userDAO.selectUserByUsername(userModel.getUsername());
+        
         if(resultList.size() == 1)
         {
             targetUser = (UserBean)resultList.get(0);
             System.out.println("SELECT BY USERNAME SUCCESSFULL");
             System.out.println("TARGET: " + targetUser.getUsername());
-        }
-        
-       
-        if(resultList.size() == 1)
-        {
-            
         }
         return targetUser;   
     }
@@ -97,6 +94,102 @@ public class UserController implements Serializable
     public void setUserModel(UserBean userModel)
     {
         this.userModel = userModel;
+    }
+
+    /**
+     * @return the USER_TYPE_STUDENT
+     */
+    public String getUSER_TYPE_STUDENT()
+    {
+        return USER_TYPE_STUDENT;
+    }
+
+    /**
+     * @param USER_TYPE_STUDENT the USER_TYPE_STUDENT to set
+     */
+    public void setUSER_TYPE_STUDENT(String USER_TYPE_STUDENT)
+    {
+        this.USER_TYPE_STUDENT = USER_TYPE_STUDENT;
+    }
+
+    /**
+     * @return the USER_TYPE_RECRUITER
+     */
+    public String getUSER_TYPE_RECRUITER()
+    {
+        return USER_TYPE_RECRUITER;
+    }
+
+    /**
+     * @param USER_TYPE_RECRUITER the USER_TYPE_RECRUITER to set
+     */
+    public void setUSER_TYPE_RECRUITER(String USER_TYPE_RECRUITER)
+    {
+        this.USER_TYPE_RECRUITER = USER_TYPE_RECRUITER;
+    }
+
+    /**
+     * @return the USER_TYPE_UNIVERSITY
+     */
+    public String getUSER_TYPE_UNIVERSITY()
+    {
+        return USER_TYPE_UNIVERSITY;
+    }
+
+    /**
+     * @param USER_TYPE_UNIVERSITY the USER_TYPE_UNIVERSITY to set
+     */
+    public void setUSER_TYPE_UNIVERSITY(String USER_TYPE_UNIVERSITY)
+    {
+        this.USER_TYPE_UNIVERSITY = USER_TYPE_UNIVERSITY;
+    }
+
+    /**
+     * @return the USER_TYPE_ADMIN
+     */
+    public String getUSER_TYPE_ADMIN()
+    {
+        return USER_TYPE_ADMIN;
+    }
+
+    /**
+     * @param USER_TYPE_ADMIN the USER_TYPE_ADMIN to set
+     */
+    public void setUSER_TYPE_ADMIN(String USER_TYPE_ADMIN)
+    {
+        this.USER_TYPE_ADMIN = USER_TYPE_ADMIN;
+    }
+
+    /**
+     * @return the targetUser
+     */
+    public UserBean getTargetUser()
+    {
+        return targetUser;
+    }
+
+    /**
+     * @param targetUser the targetUser to set
+     */
+    public void setTargetUser(UserBean targetUser)
+    {
+        this.targetUser = targetUser;
+    }
+
+    /**
+     * @return the resultList
+     */
+    public ArrayList getResultList()
+    {
+        return resultList;
+    }
+
+    /**
+     * @param resultList the resultList to set
+     */
+    public void setResultList(ArrayList resultList)
+    {
+        this.resultList = resultList;
     }
     
 }

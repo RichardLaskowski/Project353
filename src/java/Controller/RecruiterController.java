@@ -24,19 +24,18 @@ public class RecruiterController
     private RecruiterBean recruiterModel;
     private RecruiterBean targetRecruiter;
     
-    public String createRecruiter(RecruiterBean recruiterModel)
+    public boolean createRecruiter(RecruiterBean recruiterModel)
     {
+        boolean recruiterInserted = false;
         RecruiterDAO recruiterDAO = new RecruiterDAOImpl();
         int rowCount = recruiterDAO.createRecruiter(recruiterModel);
         
         if(rowCount == 1)
         {
-            return "profile.xhtml";
+            recruiterInserted = true;
         } 
-        else
-        {
-            return "recruiterDetails.xhtml";
-        }
+        
+        return recruiterInserted;
     }
     
     public ArrayList selectRecruiterByUsername(String targetUsername)

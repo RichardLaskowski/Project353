@@ -14,11 +14,6 @@ import java.util.ArrayList;
 import javax.faces.bean.SessionScoped;
 import org.primefaces.event.FlowEvent;
 
-
-/**
- *
- * @author IT353S843
- */
 @ManagedBean
 @SessionScoped
 public class StudentController implements Serializable
@@ -28,19 +23,19 @@ public class StudentController implements Serializable
     private StudentBean targetStudent; 
     private boolean skip;
 
-    public String createStudent(StudentBean studentModel)
+    public boolean createStudent(StudentBean studentModel)
     {
+        System.out.println("STUDENTCONTROLLER: createStudent");
+        boolean studentInserted = false;
         StudentDAO studentDAO = new StudentDAOImpl();
         int rowCount = studentDAO.createStudent(studentModel);
         
         if(rowCount == 1)
         {
-            return "profile.xhtml";
+            studentInserted = true;
         }
-        else
-        {
-            return "studentDetails.xhtml";
-        }
+        
+        return studentInserted;
     }
     
     public ArrayList selectStudentByUsername(String targetUsername)
