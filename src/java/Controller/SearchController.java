@@ -13,44 +13,44 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 
-
-
 /**
  *
  * @author ericz
  */
 @ManagedBean
 @SessionScoped
-public class SearchController {
+public class SearchController
+{
+
     private String search;
     private List<ProfileBean> results;
-    
-    
-    public String searchByName(){
-        List<ProfileBean> retVal;
-        SearchDAO dao= new SearchDAOImpl();
-        results= dao.SearchByName(search);
-        return "SearchResults.xhtml";
-    }   
 
-    public String getSearch() {
+    public String searchByName()
+    {
+        List<ProfileBean> retVal;
+        SearchDAO dao = new SearchDAOImpl();
+        results = dao.SearchByName(search);
+        return "SearchResults.xhtml";
+    }
+
+    public String getSearch()
+    {
         return search;
     }
 
-    public void setSearch(String search) {
+    public void setSearch(String search)
+    {
         this.search = search;
     }
 
-    public List<ProfileBean> getResults() {
+    public List<ProfileBean> getResults()
+    {
         return results;
     }
 
-    public void setResults(List<ProfileBean> results) {
+    public void setResults(List<ProfileBean> results)
+    {
         this.results = results;
     }
-    
-    
-    
-}
 
-    
+}

@@ -17,40 +17,46 @@ import javax.faces.bean.RequestScoped;
  */
 @ManagedBean
 @RequestScoped
-public class RecruiterController {
+public class RecruiterController
+{
 
-    
     private RecruiterBean recruiterBean;
-    
+
     /**
      * Creates a new instance of RecruiterController
      */
-    public RecruiterController() {
+    public RecruiterController()
+    {
         recruiterBean = new RecruiterBean();
     }
 
     /**
      * @return the recruiterBean
      */
-    public RecruiterBean getRecruiterBean() {
+    public RecruiterBean getRecruiterBean()
+    {
         return recruiterBean;
     }
 
     /**
      * @param recruiterBean the recruiterBean to set
      */
-    public void setRecruiterBean(RecruiterBean recruiterBean) {
+    public void setRecruiterBean(RecruiterBean recruiterBean)
+    {
         this.recruiterBean = recruiterBean;
-    }  
-    
-    public String insertInfo(String UserId) {
-            ProfileDAO aProfileDAO = new ProfileDAOImpl();    // Creating a new object each time.
-            int status = aProfileDAO.insertRecruiterDetails(UserId, recruiterBean); // Doing anything with the object after this?
-            if (status == 1) {
-                return "LoginGood.xhtml"; // navigate to "LoginGood.xhtml"
-            } else {
-                return "recruiterDetails.xhtml";
-            }
+    }
+
+    public String insertInfo(String UserId)
+    {
+        ProfileDAO aProfileDAO = new ProfileDAOImpl();    // Creating a new object each time.
+        int status = aProfileDAO.insertRecruiterDetails(UserId, recruiterBean); // Doing anything with the object after this?
+        if (status == 1)
+        {
+            return "LoginGood.xhtml"; // navigate to "LoginGood.xhtml"
+        } else
+        {
+            return "recruiterDetails.xhtml";
+        }
     }
 
 }

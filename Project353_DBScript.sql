@@ -116,7 +116,7 @@ CREATE TABLE universityBridge(
         REFERENCES users(username));
 
 CREATE TABLE recruiter(
-    profileId VARCHAR(20),
+    profileId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1),
     university VARCHAR(50),
     username VARCHAR(20),
     department VARCHAR(20),

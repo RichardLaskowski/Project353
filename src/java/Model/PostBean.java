@@ -11,47 +11,57 @@ import java.io.File;
  *
  * @author ericz
  */
-public class PostBean {
+public class PostBean
+{
+
     private File picture;
     private File video;
     private String story;
     private String firstName;
-    
-    
-    public PostBean(File pic){
+
+    public PostBean(File pic)
+    {
         this.setPicture(pic);
     }
-    
-    public PostBean(File vid, String st){
+
+    public PostBean(File vid, String st)
+    {
         this.setVideo(vid);
         this.setStory(st);
     }
-    
-    public PostBean(String st){
+
+    public PostBean(String st)
+    {
         this.setStory(st);
     }
-    
-    public File getPicture() {
+
+    public File getPicture()
+    {
         return picture;
     }
 
-    public void setPicture(File picture) {
+    public void setPicture(File picture)
+    {
         this.picture = picture;
     }
 
-    public File getVideo() {
+    public File getVideo()
+    {
         return video;
     }
 
-    public void setVideo(File video) {
+    public void setVideo(File video)
+    {
         this.video = video;
     }
 
-    public String getStory() {
+    public String getStory()
+    {
         return story;
     }
 
-    public void setStory(String story) {
+    public void setStory(String story)
+    {
         this.story = story;
     }
 
@@ -70,6 +80,5 @@ public class PostBean {
     {
         this.firstName = firstName;
     }
-    
-    
+
 }
