@@ -17,14 +17,14 @@ public class StudentBean
     private String zipcode;
     private String phone;
     private String school;
-    private String endYear;
+    private int endYear;
     private int sat;
     private int act;
     private int psat;
     private String certification;
     private String essay;
-    private String username;
     private String hobbies;
+    private String username;
 
     public StudentBean(String dateOfBirth, int height, int weight, String street, String city, String country,
     String zipcode, String phone, String school, int endYear, int sat, int act, int psat, String certification,
