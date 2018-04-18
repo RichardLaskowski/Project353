@@ -5,6 +5,10 @@
  */
 package DAO;
 
+import Controller.RecruiterController;
+import Controller.StudentController;
+import Model.RecruiterBean;
+import Model.StudentBean;
 import Model.UserBean;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -19,6 +23,8 @@ public class UserDAOImpl implements UserDAO
     private String myDB = "jdbc:derby://localhost:1527/Project353";
     private String driver = "org.apache.derby.jdbc.ClientDriver";
     private UserBean targetUser;
+    private StudentBean targetStudent;
+    private RecruiterBean targetRecruiter;
     private String username;
     private String password;
     private String firstName;
@@ -38,37 +44,52 @@ public class UserDAOImpl implements UserDAO
     public int createUser(UserBean userModel)
     {
         int rowCount = 0;
+        resultList = selectUserByUsername(userModel.getUsername());
         
-        try
+        if(resultList.isEmpty())
         {
-            connect2DB();
-            String insertString;
-            Statement stmt = DBConn.createStatement();
-            insertString = "INSERT INTO itkstu.users "
-                + "(username, password, firstname, lastname, email, securityquestion, securityanswer, usertype) "
-                + "VALUES ('" + userModel.getUsername()
-                + "', '" + userModel.getPassword()
-                + "', '" + userModel.getFirstName()
-                + "', '" + userModel.getLastName()
-                + "', '" + userModel.getEmail()
-                + "', '" + userModel.getSecurityQuestion()
-                + "', '" + userModel.getSecurityAnswer()
-                + "', '" + userModel.getUserType()
-                + "')";
+            try
+            {
+                connect2DB();
+                String insertString;
+                Statement stmt = DBConn.createStatement();
+                insertString = "INSERT INTO itkstu.users "
+                    + "(username, password, firstname, lastname, email, securityquestion, securityanswer, usertype) "
+                    + "VALUES ('" + userModel.getUsername()
+                    + "', '" + userModel.getPassword()
+                    + "', '" + userModel.getFirstName()
+                    + "', '" + userModel.getLastName()
+                    + "', '" + userModel.getEmail()
+                    + "', '" + userModel.getSecurityQuestion()
+                    + "', '" + userModel.getSecurityAnswer()
+                    + "', '" + userModel.getUserType()
+                    + "')";
 
-            rowCount = stmt.executeUpdate(insertString);
-            DBConn.close();
+                rowCount = stmt.executeUpdate(insertString);
+                DBConn.close();
+            }
+            catch(SQLException e)
+            {
+                System.err.println(e.getMessage());
+            }
         }
-        catch(SQLException e)
+        else
         {
-            System.err.println(e.getMessage());
+            //ArrayList returned a user therefore User Already Exist
+            //Returning rowCount = 0 to the controlle
+            //Handle conflict there.
+            System.err.println("USERDAOIMPL: User Already Exists");
         }
+        
         return rowCount;
     }
     
     @Override
     public ArrayList selectUserByUsername(String targetUsername)
     {   
+        StudentController studentController = new StudentController();
+        RecruiterController recruiterController = new RecruiterController();
+        
         resultList = new ArrayList();
         String selectString = "SELECT * FROM itkstu.users "
                 + "WHERE username = '" + targetUsername + "'";
@@ -91,6 +112,19 @@ public class UserDAOImpl implements UserDAO
                 userType = rs.getString("userType");
                 
                 targetUser = new UserBean(username, password, firstName, lastName, email, secQuestion, secAnswer, userType);
+                
+                if(userType.equalsIgnoreCase("student"))
+                {
+                    targetStudent = (StudentBean)studentController.selectStudentByUsername(targetUsername).get(0);
+                    targetUser.setTargetStudent(targetStudent);
+                }
+                
+                if(userType.equalsIgnoreCase("recruiter"))
+                {
+                    targetRecruiter = (RecruiterBean)recruiterController.selectRecruiterByUsername(targetUsername).get(0);
+                    targetUser.setTargetRecruiter(targetRecruiter);
+                }
+                
                 resultList.add(targetUser);
             }
             DBConn.close();
@@ -107,7 +141,6 @@ public class UserDAOImpl implements UserDAO
     @Override
     public ArrayList selectUserByUsertype(String targetUserType)
     {   
-        
         resultList = new ArrayList();
         String selectString = "SELECT * FROM itkstu.users "
                 + "WHERE usertype = '" + targetUserType + "'";

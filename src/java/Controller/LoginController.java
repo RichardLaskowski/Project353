@@ -17,9 +17,10 @@ public class LoginController
     private RecruiterController recruiterController; 
     private StudentController studentController;
     private UserController userController; 
+    private Boolean isLoggedIn = false;
     
     private String loginStatus;
-    private int loginAttempt;
+    private int loginAttempt = 0;
     
     /*method for login authentication*/
     public String loginAuthentication()
@@ -27,24 +28,34 @@ public class LoginController
         String returnString = "";
         if (loginAttempt < 3)
         {
+            loginAttempt++;
             userController.setUserModel(userModel);
             targetUser = userController.selectUserByUsername(); 
-            if(userModel.getPassword().equals(targetUser.getPassword()))
+            System.out.println(targetUser.getFirstName());
+            if(targetUser != null)
             {
-                returnString = "profile.xhtml";
+                if(userModel.getPassword().equals(targetUser.getPassword()))
+                {
+                    isLoggedIn = true;
+                    loginAttempt = 0;
+                    returnString = "profile.xhtml?faces-redirect=true";
+                }
+                else
+                {
+                    setLoginStatus("Invalid Credentials");
+                    returnString = "logIn.xhtml";
+                }     
             }
             else
             {
-                setLoginStatus("Invalid Credentials");
-                returnString = "logIn.xhtml";
+                setLoginStatus("Username Does Not Exist");
+                return("logIn.xhtml");
             }
-        } 
+        }
         else
         {
-            setLoginStatus("Exceed max number of trials! Try after some time");
-            
+            setLoginStatus("Exceed max number of trials! Try after some time");    
         }
-        
         return returnString;
     }
 
@@ -189,4 +200,37 @@ public class LoginController
     {
         this.studentModel = studentModel;
     }
+
+    /**
+     * @return the targetUser
+     */
+    public UserBean getTargetUser()
+    {
+        return targetUser;
+    }
+
+    /**
+     * @param targetUser the targetUser to set
+     */
+    public void setTargetUser(UserBean targetUser)
+    {
+        this.targetUser = targetUser;
+    }
+
+    /**
+     * @return the isLoggedIn
+     */
+    public Boolean getIsLoggedIn()
+    {
+        return isLoggedIn;
+    }
+
+    /**
+     * @param isLoggedIn the isLoggedIn to set
+     */
+    public void setIsLoggedIn(Boolean isLoggedIn)
+    {
+        this.isLoggedIn = isLoggedIn;
+    }
+    
 }
