@@ -6,7 +6,6 @@ package Model;
  */
 public class UserBean
 {
-
     // These correspond to the form elements
     private String username;
     private String password;
@@ -16,6 +15,8 @@ public class UserBean
     private String securityQuestion;
     private String securityAnswer;
     private String userType;
+    private StudentBean targetStudent;
+    private RecruiterBean targetRecruiter;
 
     public UserBean()
     {
@@ -171,6 +172,38 @@ public class UserBean
     public void setUserType(String userType)
     {
         this.userType = userType;
+    }
+    
+    /**
+     * @return the targetStudent
+     */
+    public StudentBean getTargetStudent()
+    {
+        return targetStudent;
+    }
+
+    /**
+     * @param targetStudent the targetStudent to set
+     */
+    public void setTargetStudent(StudentBean targetStudent)
+    {
+        this.targetStudent = targetStudent;
+    }
+
+    /**
+     * @return the targetRecruiter
+     */
+    public RecruiterBean getTargetRecruiter()
+    {
+        return targetRecruiter;
+    }
+
+    /**
+     * @param targetRecruiter the targetRecruiter to set
+     */
+    public void setTargetRecruiter(RecruiterBean targetRecruiter)
+    {
+        this.targetRecruiter = targetRecruiter;
     }
  
 }

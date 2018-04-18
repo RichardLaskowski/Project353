@@ -31,26 +31,34 @@ public class RecruiterDAOImpl implements RecruiterDAO
     public int createRecruiter(RecruiterBean recruiterModel)
     {
         int rowCount = 0;
-
-        try 
+        resultList = selectRecruiterByUsername(recruiterModel.getUsername());
+        
+        if(resultList.isEmpty())
         {
-            connect2DB();
-            String insertString;
-            Statement stmt = DBConn.createStatement();
-            insertString = "INSERT INTO itkstu.recruiter "
-            + "(university, username, department, phone) "
-            + "', '" + recruiterModel.getUniversity()
-            + "', '" + recruiterModel.getUsername()
-            + "', '" + recruiterModel.getDepartment()
-            + "', '" + recruiterModel.getPhone()
-            + "')";
+            try 
+            {
+                connect2DB();
+                String insertString;
+                Statement stmt = DBConn.createStatement();
+                insertString = "INSERT INTO itkstu.recruiter "
+                + "(university, username, department, phone) "
+                + "', '" + recruiterModel.getUniversity()
+                + "', '" + recruiterModel.getUsername()
+                + "', '" + recruiterModel.getDepartment()
+                + "', '" + recruiterModel.getPhone()
+                + "')";
 
-            rowCount = stmt.executeUpdate(insertString);
-            DBConn.close();
-        } 
-        catch (SQLException e) 
+                rowCount = stmt.executeUpdate(insertString);
+                DBConn.close();
+            } 
+            catch (SQLException e) 
+            {
+                System.err.println(e.getMessage());
+            }
+        }
+        else
         {
-            System.err.println(e.getMessage());
+            System.err.println("RECRUITERDAOIMPL: Recruiter Profile Already Exists");
         }
         return rowCount;
     }

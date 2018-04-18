@@ -44,39 +44,47 @@ public class StudentDAOImpl implements StudentDAO
     public int createStudent(StudentBean studentModel)
     {
         int rowCount = 0;
-
-        try 
+        resultList = selectStudentByUsername(studentModel.getUsername());
+        
+        if(resultList.isEmpty())
         {
-            connect2DB();
-            String insertString;
-            Statement stmt = DBConn.createStatement();
-            insertString = "INSERT INTO itkstu.student "
-                + "(dateOfBirth, height, weight, address, country, zipcode, phone, school, endYear, "
-                + "sat, act, psat, certification, essay, hobbies, username) "
-                + "VALUES ('" + studentModel.getDateOfBirth()
-                + "', '" + studentModel.getHeight()
-                + "', '" + studentModel.getWeight()
-                + "', '" + studentModel.getStreet() + " " + studentModel.getCity()
-                + "', '" + studentModel.getCountry()
-                + "', '" + studentModel.getZipcode()
-                + "', '" + studentModel.getPhone()
-                + "', '" + studentModel.getSchool()
-                + "', '" + studentModel.getEndYear()
-                + "', '" + studentModel.getSat()
-                + "', '" + studentModel.getAct()
-                + "', '" + studentModel.getPsat()
-                + "', '" + studentModel.getCertification()
-                + "', '" + studentModel.getEssay()
-                + "', '" + studentModel.getHobbies()
-                + "', '" + studentModel.getUsername()
-                + "')";
+            try 
+            {
+                connect2DB();
+                String insertString;
+                Statement stmt = DBConn.createStatement();
+                insertString = "INSERT INTO itkstu.student "
+                    + "(dateOfBirth, height, weight, address, country, zipcode, phone, school, endYear, "
+                    + "sat, act, psat, certification, essay, hobbies, username) "
+                    + "VALUES ('" + studentModel.getDateOfBirth()
+                    + "', '" + studentModel.getHeight()
+                    + "', '" + studentModel.getWeight()
+                    + "', '" + studentModel.getStreet() + " " + studentModel.getCity()
+                    + "', '" + studentModel.getCountry()
+                    + "', '" + studentModel.getZipcode()
+                    + "', '" + studentModel.getPhone()
+                    + "', '" + studentModel.getSchool()
+                    + "', '" + studentModel.getEndYear()
+                    + "', '" + studentModel.getSat()
+                    + "', '" + studentModel.getAct()
+                    + "', '" + studentModel.getPsat()
+                    + "', '" + studentModel.getCertification()
+                    + "', '" + studentModel.getEssay()
+                    + "', '" + studentModel.getHobbies()
+                    + "', '" + studentModel.getUsername()
+                    + "')";
 
-            rowCount = stmt.executeUpdate(insertString);
-            DBConn.close();
-        } 
-        catch (SQLException e) 
+                rowCount = stmt.executeUpdate(insertString);
+                DBConn.close();
+            } 
+            catch (SQLException e) 
+            {
+                System.err.println(e.getMessage());
+            }
+        }
+        else
         {
-            System.err.println(e.getMessage());
+            System.err.println("STUDENDAOIMPL: Student Profile Already Exists");
         }
         return rowCount;
     }
@@ -100,8 +108,8 @@ public class StudentDAOImpl implements StudentDAO
                 dateOfBirth = rs.getString("dateOfBirth");
                 height = rs.getInt("height");
                 weight = rs.getInt("weight");
-                street = rs.getString("street");
-                city = rs.getString("city");
+                street = rs.getString("address");
+                city = rs.getString("address");
                 country = rs.getString("country");
                 zipcode = rs.getString("zipcode");
                 phone = rs.getString("phone");
