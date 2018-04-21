@@ -52,12 +52,12 @@ public class StudentController implements Serializable
 
     public String insertDetails(String UserId)
     {
-        String signupStatus = "";
+            String signupStatus = "";
         ProfileDAO aProfileDAO = new ProfileDAOImpl();    // Creating a new object each time.
         int status = aProfileDAO.insertStudentDetails(UserId, studentBean); // Doing anything with the object after this?
         if (status == 1)
         {
-            return "LoginGood.xhtml"; // navigate to "LoginGood.xhtml"
+            return "logIn.xhtml"; // navigate to "LoginGood.xhtml"
         } else
         {
             signupStatus = "Issue Encounter";

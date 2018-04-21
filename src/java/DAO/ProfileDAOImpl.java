@@ -373,5 +373,80 @@ public class ProfileDAOImpl implements ProfileDAO
         // if insert is successful, rowCount will be set to 1 (1 row inserted successfully). Else, insert failed.
         return rowCount;
     }
+@Override
+    public StudentBean findByName(String userId) {
+        // if interested in matching wild cards, use: LIKE and '%" + aName + "%'";
+        String query = "SELECT * FROM ProjectLinkedU.studentdetail ";
+        query += "WHERE UserName = '" + userId + "'";
+
+        StudentBean aStudentCollection = selectDetailsFromDB(query);
+        return aStudentCollection;
+    }
+    
+    private StudentBean selectDetailsFromDB(String query) {
+        StudentBean aStudentBean = new StudentBean();
+        //ArrayList aProfileBeanCollection = new ArrayList();
+        Connection DBConn = null;
+        try {
+            DBHelper.loadDriver("org.apache.derby.jdbc.ClientDriver");
+            // if doing the above in Oracle: DBHelper.loadDriver("oracle.jdbc.driver.OracleDriver");
+            String myDB = "jdbc:derby://localhost:1527/projectLinkedU";
+            // if doing the above in Oracle:  String myDB = "jdbc:oracle:thin:@oracle.itk.ilstu.edu:1521:ora478";
+            DBConn = DBHelper.connect2DB(myDB, "itkstu", "student");
+
+            // With the connection made, create a statement to talk to the DB server.
+            // Create a SQL statement to query, retrieve the rows one by one (by going to the
+            // columns), and formulate the result string to send back to the client.
+            Statement stmt = DBConn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            String dateOfBirth = "", height1 = "", weight1 = "", street = "", city = "", country = "", postalCode = "", phoneNo = "", schoolName = "", endYear = "",
+                    SAT1 = "", PSAT1 = "", ACT1 = "", certification = "", hobbies = "", essayOfChoice = "", universitiesOfChoice = "", majorsOfChoice = "";
+            int height = 0, weight = 0, SAT = 0, PSAT = 0, ACT = 0;
+            while (rs.next()) {
+                dateOfBirth = rs.getString("DOB");
+                height1 = rs.getString("HEIGHT");
+                weight1 = rs.getString("WEIGHT");
+                street = rs.getString("ADDRESS");
+                city = rs.getString("CITY");
+                country = rs.getString("COUNTRY");
+                postalCode = rs.getString("POSTALCODE");
+                phoneNo = rs.getString("PHONENO");
+                schoolName = rs.getString("SCHOOL");
+                endYear = rs.getString("ENDYEAR");
+                SAT1 = rs.getString("SAT");
+                PSAT1 = rs.getString("PSAT");
+                ACT1 = rs.getString("ACT");
+                certification = rs.getString("CERTIFICATION");
+                hobbies = rs.getString("HOBBIES");
+                essayOfChoice = rs.getString("ESSAY");
+                universitiesOfChoice = rs.getString("UNIVERSITY");
+                majorsOfChoice = rs.getString("MAJOR");
+                }
+            if(height1!=null && weight1!=null && SAT1!=null && PSAT1!=null && ACT1!=null)
+            {
+                height = Integer.parseInt(height1);
+                weight = Integer.parseInt(weight1);
+                SAT = Integer.parseInt(SAT1);
+                PSAT = Integer.parseInt(PSAT1);
+                ACT = Integer.parseInt(ACT1);
+            }
+                aStudentBean = new StudentBean(dateOfBirth, height, weight, street, city, country, postalCode, phoneNo, schoolName, endYear,
+                    SAT, PSAT, ACT, certification, hobbies, essayOfChoice, universitiesOfChoice, majorsOfChoice);
+              
+            rs.close();
+            stmt.close();
+            
+        } catch (Exception e) {
+            System.err.println("ERROR: Problems with SQL select");
+            e.printStackTrace();
+            return aStudentBean = null;
+        }
+        try {
+            DBConn.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return aStudentBean;
+    }
 
 }

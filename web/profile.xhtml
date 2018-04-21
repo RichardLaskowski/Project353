@@ -3,7 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Profile</title>
@@ -51,6 +50,11 @@
                     </div>
                     <div class="comment-button">
                         <h:commandButton value="Comment"></h:commandButton>
+                    </div>
+                    <div class="update-button">
+                        <h:commandButton id="update" value="Update Profile" 
+                                         action = "#{updateController.retrieveProfile(loginController.theModel.userId)}"> 
+                                         </h:commandButton>
                     </div>
                 </h:form>
             </feed>

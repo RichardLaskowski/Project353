@@ -14,4 +14,5 @@ public interface ProfileDAO {
     public int insertRecruiterDetails(String UserId, RecruiterBean recruiterBean);
     public String passwordUpdate(String userId);
     public int newpasswordUpdate(String userId, String pwd);
+    public StudentBean findByName(String userId);
 }

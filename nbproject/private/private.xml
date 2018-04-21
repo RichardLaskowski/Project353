@@ -2,6 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/I:/GitHub/Project353/src/java/DAO/ProfileDAOImpl.java</file>
+            <file>file:/I:/GitHub/Project353/src/java/Controller/UpdateController.java</file>
+            <file>file:/I:/GitHub/Project353/src/java/Controller/StudentController.java</file>
+            <file>file:/I:/GitHub/Project353/web/update.xhtml</file>
+            <file>file:/I:/GitHub/Project353/web/details.xhtml</file>
+        </group>
     </open-files>
 </project-private>
