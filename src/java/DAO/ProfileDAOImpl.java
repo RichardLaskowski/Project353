@@ -291,4 +291,87 @@ public class ProfileDAOImpl implements ProfileDAO
         return rowCount;
     }
 
+    @Override
+    public String passwordUpdate(String userId)
+    {
+        String value = "No Value";
+        try
+        {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+        } 
+        catch (ClassNotFoundException e)
+        {
+            System.err.println(e.getMessage());
+            System.exit(0);
+        }
+        
+        if (checkUserIdValid(userId)==false)
+        {
+            try
+            {
+                String myDB = "jdbc:derby://localhost:1527/ProjectLinkedU";// connection string
+                Connection DBConn = DriverManager.getConnection(myDB, "itkstu", "student");
+                String selectString;
+                Statement stmt = DBConn.createStatement();
+                selectString = "SELECT EMAIL FROM ProjectLinkedU.LoginInfo WHERE USERNAME = '"
+                        + userId+ "'";
+                ResultSet rs = stmt.executeQuery(selectString);
+                if (rs.next())
+                {
+                value = rs.getString("EMAIL");
+                }   
+                System.out.println("select string =" + selectString);
+                DBConn.close();
+            } catch (SQLException e)
+            {
+                System.err.println(e.getMessage());
+            }
+        }
+        // if insert is successful, rowCount will be set to 1 (1 row inserted successfully). Else, insert failed.
+        return value;
+    }
+
+    
+    @Override
+    public int newpasswordUpdate(String userId, String pwd)
+    {
+        int rowCount = 0;
+        try
+        {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+        } 
+        catch (ClassNotFoundException e)
+        {
+            System.err.println(e.getMessage());
+            System.exit(0);
+        }
+        
+        if (checkUserIdValid(userId)==false)
+        {
+            try
+            {
+                String myDB = "jdbc:derby://localhost:1527/ProjectLinkedU";// connection string
+                Connection DBConn = DriverManager.getConnection(myDB, "itkstu", "student");
+                String updateString;
+                
+                Statement stmt = DBConn.createStatement();
+
+                String saltedPassword = SALT + pwd;
+                String hashedPassword = generateHash(saltedPassword);
+
+                updateString = "UPDATE ProjectLinkedU.LoginInfo SET PASSWORD = '" + hashedPassword 
+                        + "' WHERE USERNAME = '" + userId + "'";
+                rowCount = stmt.executeUpdate(updateString);
+                
+                System.out.println("select string =" + updateString);
+                DBConn.close();
+            } catch (SQLException e)
+            {
+                System.err.println(e.getMessage());
+            }
+        }
+        // if insert is successful, rowCount will be set to 1 (1 row inserted successfully). Else, insert failed.
+        return rowCount;
+    }
+
 }

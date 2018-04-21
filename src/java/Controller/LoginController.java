@@ -55,7 +55,7 @@ public class LoginController {
         ProfileDAO aProfileDAO = new ProfileDAOImpl();    // Creating a new object each time.
         int status = aProfileDAO.checkCredentials(theModel); // Doing anything with the object after this?
         if (status == 1){
-                return "LoginGood.xhtml";
+                return "profile.xhtml";
         }
         else{
             loginAttempt+=1;

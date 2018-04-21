@@ -16,15 +16,13 @@
             <article>
                 <div class="box-login">
                     <div class="box-login-title">
-                        <h1>Set your Password</h1>
-                    </div>
-                  
-                    <div class="box-login-form">
-                        <h:form id="loginForm"> 
-                            <h:inputText pt:placeholder="Enter Username" class="span-full" value="#{loginController.theModel.userId}"/>
-                            <h:commandButton value="Submit" class="span-full" id="forgotPassword-login" action="#{profileController.forgotPassword(loginController.theModel.userId)}"></h:commandButton>
-                        </h:form>   
-                    </div>
+                        <h:form>
+                        <h1>Thankyou! The email has been sent to your registerd email address.</h1>
+                    
+                  <h:commandButton value="Back to LogIn Page" class="span-full" id="forgotPassword-successfull" 
+                                             action="logIn.xhtml"></h:commandButton>
+                        </h:form>
+                    </div> 
                 </div>
             </article>
             <aside>Sidebar</aside>

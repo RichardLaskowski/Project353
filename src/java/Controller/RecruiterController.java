@@ -47,7 +47,7 @@ public class RecruiterController {
             ProfileDAO aProfileDAO = new ProfileDAOImpl();    // Creating a new object each time.
             int status = aProfileDAO.insertRecruiterDetails(UserId, recruiterBean); // Doing anything with the object after this?
             if (status == 1) {
-                return "LoginGood.xhtml"; // navigate to "LoginGood.xhtml"
+                return "profile.xhtml"; // navigate to "profile.xhtml"
             } else {
                 return "recruiterDetails.xhtml";
             }

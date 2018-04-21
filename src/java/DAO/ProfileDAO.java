@@ -12,4 +12,6 @@ public interface ProfileDAO {
     public int checkCredentials(ProfileBean aProfile);
     public int insertStudentDetails(String UserId, StudentBean astudent);
     public int insertRecruiterDetails(String UserId, RecruiterBean recruiterBean);
+    public String passwordUpdate(String userId);
+    public int newpasswordUpdate(String userId, String pwd);
 }
