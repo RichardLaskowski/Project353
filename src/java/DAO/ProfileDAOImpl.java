@@ -422,14 +422,21 @@ public class ProfileDAOImpl implements ProfileDAO
                 universitiesOfChoice = rs.getString("UNIVERSITY");
                 majorsOfChoice = rs.getString("MAJOR");
                 }
-            if(height1!=null && weight1!=null && SAT1!=null && PSAT1!=null && ACT1!=null)
-            {
+            if(height1!=null)
                 height = Integer.parseInt(height1);
+             
+            if(weight1!=null)
                 weight = Integer.parseInt(weight1);
+            
+            if(SAT1!=null)
                 SAT = Integer.parseInt(SAT1);
+            
+            if(PSAT1!=null)
                 PSAT = Integer.parseInt(PSAT1);
+            
+            if(ACT1!=null)
                 ACT = Integer.parseInt(ACT1);
-            }
+            
                 aStudentBean = new StudentBean(dateOfBirth, height, weight, street, city, country, postalCode, phoneNo, schoolName, endYear,
                     SAT, PSAT, ACT, certification, hobbies, essayOfChoice, universitiesOfChoice, majorsOfChoice);
               
