@@ -39,12 +39,12 @@ public class SearchDAOImpl implements SearchDAO {
             String insertString, insertString1;
             Statement stmt = DBConn.createStatement();
             
-            String query="SELECT * FROM Project353.StudentDetail WHERE "
+            String query="SELECT * FROM Project353.USERS WHERE "
                     + "FIRSTNAME= '"+name
                     +"'"+" OR LASTNAME= '"+name+"'";
-            String query2= "SELECT * FROM Project353.RecruiterDetail WHERE "
+    /*        String query2= "SELECT * FROM Project353.recruiter WHERE "
                     + "FIRSTNAME= '"+name
-                    +"'"+" OR LASTNAME= '"+name+"'";
+                    +"'"+" OR LASTNAME= '"+name+"'";  */
             ResultSet rs= stmt.executeQuery(query);
            
             while(rs.next()){

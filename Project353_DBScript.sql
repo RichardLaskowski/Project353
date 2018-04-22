@@ -84,7 +84,7 @@ CREATE TABLE student(
     country VARCHAR(20),
     zipcode VARCHAR(20),
     phone VARCHAR(13),
-    school VARCHAR(20),
+    school VARCHAR(50),
     endYear INTEGER,
     sat INTEGER,
     act INTEGER,
@@ -116,7 +116,7 @@ CREATE TABLE universityBridge(
         REFERENCES users(username));
 
 CREATE TABLE recruiter(
-    profileId VARCHAR(20),
+    profileId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
     university VARCHAR(50),
     username VARCHAR(20),
     department VARCHAR(20),
@@ -175,6 +175,7 @@ CREATE TABLE posts(
     username VARCHAR(20),
     imageId INTEGER,
     videoId INTEGER,
+    dateTime timestamp DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT posts_postId_pk PRIMARY KEY (postId),
     CONSTRAINT posts_username_fk FOREIGN KEY (username)
         REFERENCES users(username),
@@ -182,6 +183,9 @@ CREATE TABLE posts(
         REFERENCES images(imageId),
     CONSTRAINT posts_videoId_fk FOREIGN KEY (videoId)
         REFERENCES videos(videoId));
+
+--ALTER TABLE posts
+--    ADD dateTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
 
 CREATE TABLE comments(
     commentId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
@@ -217,3 +221,11 @@ CREATE TABLE videoBridge(
         REFERENCES posts(postId),
     CONSTRAINT videoBridge_videoId_fk FOREIGN KEY (videoId)
         REFERENCES videos(videoId));
+
+
+
+
+--------------------------------------------------------------------------------------------------------------
+insert into users values('dax90', 'hater99', 'Daniel', 'Devito', 'dd90@gmail.com', 'Favorite color?', 'Blue', 'student');
+
+insert into student values ( default, '7-12-90', 67, 180, '533 West Florida st', 'America', '61704', '2344443333', 'Bloomington', 2019, 1680, 28, 675, '', '', 'dax90', 'Basketball' );
