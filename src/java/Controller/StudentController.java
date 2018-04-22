@@ -5,53 +5,94 @@
  */
 package Controller;
 
-import DAO.ProfileDAO;
-import DAO.ProfileDAOImpl;
+import DAO.StudentDAO;
+import DAO.StudentDAOImpl;
 import Model.StudentBean;
 import javax.faces.bean.ManagedBean;
 import java.io.Serializable;
+import java.util.ArrayList;
 import javax.faces.bean.SessionScoped;
 import org.primefaces.event.FlowEvent;
 
-
-/**
- *
- * @author IT353S843
- */
 @ManagedBean
 @SessionScoped
 public class StudentController implements Serializable
 {
-
-    private StudentBean studentBean;
+    private ArrayList resultList;
+    private StudentBean studentModel;
+    private StudentBean targetStudent; 
     private boolean skip;
 
+    public boolean createStudent(StudentBean studentModel)
+    {
+        System.out.println("STUDENTCONTROLLER: createStudent");
+        boolean studentInserted = false;
+        StudentDAO studentDAO = new StudentDAOImpl();
+        int rowCount = studentDAO.createStudent(studentModel);
+        
+        if(rowCount == 1)
+        {
+            studentInserted = true;
+        }
+        
+        return studentInserted;
+    }
+    
+    public ArrayList selectStudentByUsername(String targetUsername)
+    {
+        StudentDAO studentDAO = new StudentDAOImpl();
+        resultList = studentDAO.selectStudentByUsername(targetUsername);
+        
+        if(resultList.size() == 1)
+        {
+            targetStudent = (StudentBean)resultList.get(0);
+        }
+        
+        return resultList;
+    }
+    
+    public String onFlowProcess(FlowEvent event)
+    {
+        if (isSkip())
+        {
+            setSkip(false);   //reset in case user goes back
+            return "confirm";
+        } else
+        {
+            return event.getNewStep();
+        }
+    }
+    
     /**
      * Creates a new instance of StudentController
      */
     public StudentController()
     {
-        studentBean = new StudentBean();
+        studentModel = new StudentBean();
     }
 
     /**
-     * @return the studentBean
+     * @return the resultList
      */
-    public StudentBean getStudentBean()
+    public ArrayList getResultList()
     {
-        return studentBean;
+        return resultList;
     }
 
     /**
-     * @param studentBean the studentBean to set
+     * @param resultList the resultList to set
      */
-    public void setStudentBean(StudentBean studentBean)
+    public void setResultList(ArrayList resultList)
     {
-        this.studentBean = studentBean;
+        this.resultList = resultList;
     }
 
-    public String insertDetails(String UserId)
+    /**
+     * @return the studentModel
+     */
+    public StudentBean getStudentModel()
     {
+<<<<<<< HEAD
             String signupStatus = "";
         ProfileDAO aProfileDAO = new ProfileDAOImpl();    // Creating a new object each time.
         int status = aProfileDAO.insertStudentDetails(UserId, studentBean); // Doing anything with the object after this?
@@ -63,28 +104,49 @@ public class StudentController implements Serializable
             signupStatus = "Issue Encounter";
             return "";
         }
+=======
+        return studentModel;
+    }
+>>>>>>> master
 
+    /**
+     * @param studentModel the studentModel to set
+     */
+    public void setStudentModel(StudentBean studentModel)
+    {
+        this.studentModel = studentModel;
     }
 
+    /**
+     * @return the targetStudent
+     */
+    public StudentBean getTargetStudent()
+    {
+        return targetStudent;
+    }
+
+    /**
+     * @param targetStudent the targetStudent to set
+     */
+    public void setTargetStudent(StudentBean targetStudent)
+    {
+        this.targetStudent = targetStudent;
+    }
+
+    /**
+     * @return the skip
+     */
     public boolean isSkip()
     {
         return skip;
     }
 
+    /**
+     * @param skip the skip to set
+     */
     public void setSkip(boolean skip)
     {
         this.skip = skip;
     }
-
-    public String onFlowProcess(FlowEvent event)
-    {
-        if (skip)
-        {
-            skip = false;   //reset in case user goes back
-            return "confirm";
-        } else
-        {
-            return event.getNewStep();
-        }
-    }
+    
 }
