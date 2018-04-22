@@ -59,10 +59,22 @@
                                         required="true" />
                             
                             <div class="span-full white-space"></div>
+<<<<<<< HEAD
+                             <h:selectOneMenu class="span-full" value="#{profileController.theModel.securityQuestion}">
+                                <f:selectItem itemValue="What is your Mother's maiden name?" itemLabel="What is your Mother's maiden name?" />
+                                <f:selectItem itemValue="In which city you were born?" itemLabel="In which city you were born?" />
+                                <f:selectItem itemValue="What is your best friend's name?" itemLabel="What is your best friend's name?" />
+                                <f:selectItem itemValue="What was the name of your elementary / primary school?" itemLabel="What was the name of your elementary / primary school?" />
+                            </h:selectOneMenu>
+                            <h:inputText pt:placeholder="Security Answer" class="span-full" value="#{profileController.theModel.securityAnswer}"/> 
+                            
+                            <h:selectOneMenu class="span-full white-space" value="#{profileController.theModel.userType}">
+=======
                             <h:inputText pt:placeholder="Security Question" class="span-full" value="#{signupController.userModel.securityQuestion}"/>
                             <h:inputText pt:placeholder="Security Answer" class="span-full" value="#{signupController.userModel.securityAnswer}"/> 
                             
                             <h:selectOneMenu class="span-full" value="#{signupController.userModel.userType}">
+>>>>>>> master
                                 <f:selectItem itemValue="Student" itemLabel="Student" />
                                 <f:selectItem itemValue="Recruiter" itemLabel="Recruiter" />
                             </h:selectOneMenu>
@@ -70,7 +82,7 @@
                             <h:commandButton class="span-full" id="createAccount" value="Create Account" action="#{signupController.createUser()}"/>
                         </h:form>
                         <h:form class="button-grid span-full" id="signUpForm-buttons" >
-                            <h:commandButton class="span-two" id="login-signUp" action="login.xhtml" value="Login" ></h:commandButton>
+                            <h:commandButton class="span-two" id="login-signUp" action="logIn.xhtml" value="Login" ></h:commandButton>
                         </h:form>  
                     </div>
                 </div>
