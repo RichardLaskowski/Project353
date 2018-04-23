@@ -4,12 +4,11 @@
  */
 package Controller;
 
-import DAO.ProfileDAOImpl;
-import DAO.ProfileDAO;
 import java.util.ArrayList;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import Model.StudentBean;
+import java.io.Serializable;
+import javax.annotation.ManagedBean;
 import org.primefaces.event.FlowEvent;
 
 /**
@@ -18,7 +17,7 @@ import org.primefaces.event.FlowEvent;
  */
 @ManagedBean
 @SessionScoped 
-public class UpdateController {
+public class UpdateController implements Serializable{
 
     // This corresponds to the response to be sent back to the client
 //    private String name;
@@ -53,17 +52,7 @@ public class UpdateController {
     public void setUpdateStatus(String updateStatus) {
         this.updateStatus = updateStatus;
     }
-
     
-    public String retrieveProfile(String userId) {
-        ProfileDAO aProfileDAO = new ProfileDAOImpl();    // Creating a new object each time.
-        StudentBean result = aProfileDAO.findByName(userId); // Doing anything with the object after this?
-        studentBean = result; // if multiple found, just pick the 1st one. If none?
-        if (studentBean != null) 
-            return "update.xhtml"; // navigate to "update.xhtml"
-        else
-            return "error.xhtml"; 
-    }
     public String onFlowProcess(FlowEvent event)
     {
         if (isSkip())
@@ -88,22 +77,6 @@ public class UpdateController {
      */
     public void setSkip(boolean skip) {
         this.skip = skip;
-    }
-    
-    public String insertDetails(String UserId)
-    {
-            String signupStatus = "";
-        ProfileDAO aProfileDAO = new ProfileDAOImpl();    // Creating a new object each time.
-        int status = aProfileDAO.insertStudentDetails(UserId, studentBean); // Doing anything with the object after this?
-        if (status == 1)
-        {
-            return "logIn.xhtml"; // navigate to "logIn.xhtml"
-        } else
-        {
-            signupStatus = "Issue Encounter";
-            return "";
-        }
-
     }
     
 }
