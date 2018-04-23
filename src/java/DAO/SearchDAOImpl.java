@@ -71,7 +71,7 @@ public class SearchDAOImpl implements SearchDAO {
     
     public static void main(String[] args){
         SearchDAOImpl x= new SearchDAOImpl();
-        List<UserBean> pb= x.SearchByName("James");
+        List<UserBean> pb= x.SearchByName("Daniel");
         pb.forEach((UserBean i) -> {
             System.out.println(i.toString());
         });

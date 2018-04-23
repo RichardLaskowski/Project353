@@ -5,29 +5,12 @@
  */
 package Model;
 
-<<<<<<< HEAD
-import java.io.Serializable;
-import java.util.Date;
-/**
- *
- * @author IT353S843
- */
-public class StudentBean implements Serializable{
-    
-    private String dateOfBirth;
-     
-    private Integer height;
-     
-    private Integer weight;
-     
-=======
-public class StudentBean
-{
+public class StudentBean {
+
     private int profileId;
     private String dateOfBirth;
     private int height;
     private int weight;
->>>>>>> master
     private String street;
     private String city;
     private String country;
@@ -43,11 +26,14 @@ public class StudentBean
     private String hobbies;
     private String username;
 
+    
+    public StudentBean() {
+    }
+    
     public StudentBean(int profileId, String dateOfBirth, int height, int weight, String street, String city, String country,
-    String zipcode, String phone, String school, int endYear, int sat, int act, int psat, String certification,
-    String essay, String hobbies, String username)
-    {
-        this. profileId = profileId;
+            String zipcode, String phone, String school, int endYear, int sat, int act, int psat, String certification,
+            String essay, String hobbies, String username) {
+        this.profileId = profileId;
         this.dateOfBirth = dateOfBirth;
         this.height = height;
         this.weight = weight;
@@ -56,8 +42,8 @@ public class StudentBean
         this.country = country;
         this.zipcode = zipcode;
         this.phone = phone;
-        this. school = school;
-        this. endYear = endYear;
+        this.school = school;
+        this.endYear = endYear;
         this.sat = sat;
         this.act = act;
         this.psat = psat;
@@ -68,10 +54,9 @@ public class StudentBean
     }
 
     public StudentBean(int profileId, String dateOfBirth, int height, int weight, String street, String city, String country,
-    String zipcode, String phone, String school, int endYear, int sat, int act, int psat, String certification,
-    String essay, String hobbies)
-    {
-        this. profileId = profileId;
+            String zipcode, String phone, String school, int endYear, int sat, int act, int psat, String certification,
+            String essay, String hobbies) {
+        this.profileId = profileId;
         this.dateOfBirth = dateOfBirth;
         this.height = height;
         this.weight = weight;
@@ -80,8 +65,8 @@ public class StudentBean
         this.country = country;
         this.zipcode = zipcode;
         this.phone = phone;
-        this. school = school;
-        this. endYear = endYear;
+        this.school = school;
+        this.endYear = endYear;
         this.sat = sat;
         this.act = act;
         this.psat = psat;
@@ -90,341 +75,256 @@ public class StudentBean
         this.hobbies = hobbies;
     }
 
-    public StudentBean()
-    {
-
-    }
-    
-<<<<<<< HEAD
-    private String essayOfChoice;
-    
-    private String universitiesOfChoice;
-    
-    private String majorsOfChoice;
-
-    public StudentBean(String dateOfBirth, Integer height, Integer weight, String street, String city, 
-            String country, String postalCode, String phoneNo, String schoolName, String endYear, Integer SAT,
-            Integer PSAT, Integer ACT, String certification, String hobbies, String essayOfChoice, 
-            String universitiesOfChoice, String majorsOfChoice) {
-        this.dateOfBirth = dateOfBirth;
-        this.height = height;
-        this.weight = weight;
-        this.street = street;
-        this.city = city;
-        this.country = country;
-        this.postalCode = postalCode;
-        this.phoneNo = phoneNo;
-        this.schoolName = schoolName;
-        this.endYear = endYear;
-        this.SAT = SAT;
-        this.PSAT = PSAT;
-        this.ACT = ACT;
-        this.certification = certification;
-        this.hobbies = hobbies;
-        this.essayOfChoice = essayOfChoice;
-        this.universitiesOfChoice = universitiesOfChoice;
-        this.majorsOfChoice = majorsOfChoice;
-        
-    }
-
-    public StudentBean() {
-    }
-    
-=======
     /**
      * @return the profileId
      */
-    public int getProfileId()
-    {
+    public int getProfileId() {
         return profileId;
     }
 
     /**
      * @param profileId the profileId to set
      */
-    public void setProfileId(int profileId)
-    {
+    public void setProfileId(int profileId) {
         this.profileId = profileId;
     }
->>>>>>> master
 
     /**
      * @return the dateOfBirth
      */
-<<<<<<< HEAD
-    public String getDateOfBirth() {
-=======
     public String getDateOfBirth()
     {
->>>>>>> master
         return dateOfBirth;
     }
 
     /**
      * @param dateOfBirth the dateOfBirth to set
      */
-<<<<<<< HEAD
     public void setDateOfBirth(String dateOfBirth) {
-=======
-    public void setDateOfBirth(String dateOfBirth)
-    {
->>>>>>> master
         this.dateOfBirth = dateOfBirth;
     }
 
     /**
      * @return the height
      */
-    public int getHeight()
-    {
+    public int getHeight() {
         return height;
     }
 
     /**
      * @param height the height to set
      */
-    public void setHeight(int height)
-    {
+    public void setHeight(int height) {
         this.height = height;
     }
 
     /**
      * @return the weight
      */
-    public int getWeight()
-    {
+    public int getWeight() {
         return weight;
     }
 
     /**
      * @param weight the weight to set
      */
-    public void setWeight(int weight)
-    {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 
     /**
      * @return the street
      */
-    public String getStreet()
-    {
+    public String getStreet() {
         return street;
     }
 
     /**
      * @param street the street to set
      */
-    public void setStreet(String street)
-    {
+    public void setStreet(String street) {
         this.street = street;
     }
 
     /**
      * @return the city
      */
-    public String getCity()
-    {
+    public String getCity() {
         return city;
     }
 
     /**
      * @param city the city to set
      */
-    public void setCity(String city)
-    {
+    public void setCity(String city) {
         this.city = city;
     }
 
     /**
      * @return the country
      */
-    public String getCountry()
-    {
+    public String getCountry() {
         return country;
     }
 
     /**
      * @param country the country to set
      */
-    public void setCountry(String country)
-    {
+    public void setCountry(String country) {
         this.country = country;
     }
 
     /**
      * @return the zipcode
      */
-    public String getZipcode()
-    {
+    public String getZipcode() {
         return zipcode;
     }
 
     /**
      * @param zipcode the zipcode to set
      */
-    public void setZipcode(String zipcode)
-    {
+    public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
     }
 
     /**
      * @return the phone
      */
-    public String getPhone()
-    {
+    public String getPhone() {
         return phone;
     }
 
     /**
      * @param phone the phone to set
      */
-    public void setPhone(String phone)
-    {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
     /**
      * @return the school
      */
-    public String getSchool()
-    {
+    public String getSchool() {
         return school;
     }
 
     /**
      * @param school the school to set
      */
-    public void setSchool(String school)
-    {
+    public void setSchool(String school) {
         this.school = school;
     }
 
     /**
      * @return the endYear
      */
-    public int getEndYear()
-    {
+    public int getEndYear() {
         return endYear;
     }
 
     /**
      * @param endYear the endYear to set
      */
-    public void setEndYear(int endYear)
-    {
+    public void setEndYear(int endYear) {
         this.endYear = endYear;
     }
 
     /**
      * @return the sat
      */
-    public int getSat()
-    {
+    public int getSat() {
         return sat;
     }
 
     /**
      * @param sat the sat to set
      */
-    public void setSat(int sat)
-    {
+    public void setSat(int sat) {
         this.sat = sat;
     }
 
     /**
      * @return the act
      */
-    public int getAct()
-    {
+    public int getAct() {
         return act;
     }
 
     /**
      * @param act the act to set
      */
-    public void setAct(int act)
-    {
+    public void setAct(int act) {
         this.act = act;
     }
 
     /**
      * @return the psat
      */
-    public int getPsat()
-    {
+    public int getPsat() {
         return psat;
     }
 
     /**
      * @param psat the psat to set
      */
-    public void setPsat(int psat)
-    {
+    public void setPsat(int psat) {
         this.psat = psat;
     }
 
     /**
      * @return the certification
      */
-    public String getCertification()
-    {
+    public String getCertification() {
         return certification;
     }
 
     /**
      * @param certification the certification to set
      */
-    public void setCertification(String certification)
-    {
+    public void setCertification(String certification) {
         this.certification = certification;
     }
 
     /**
      * @return the essay
      */
-    public String getEssay()
-    {
+    public String getEssay() {
         return essay;
     }
 
     /**
      * @param essay the essay to set
      */
-    public void setEssay(String essay)
-    {
+    public void setEssay(String essay) {
         this.essay = essay;
     }
 
     /**
      * @return the username
      */
-    public String getUsername()
-    {
+    public String getUsername() {
         return username;
     }
 
     /**
      * @param username the username to set
      */
-    public void setUsername(String username)
-    {
+    public void setUsername(String username) {
         this.username = username;
     }
 
     /**
      * @return the hobbies
      */
-    public String getHobbies()
-    {
+    public String getHobbies() {
         return hobbies;
     }
 
     /**
      * @param hobbies the hobbies to set
      */
-    public void setHobbies(String hobbies)
-    {
+    public void setHobbies(String hobbies) {
         this.hobbies = hobbies;
     }
 }
