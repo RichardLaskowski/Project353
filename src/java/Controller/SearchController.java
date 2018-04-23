@@ -5,6 +5,7 @@ import DAO.SearchDAOImpl;
 import Model.UserBean;
 import java.io.Serializable;
 import java.util.List;
+import java.io.Serializable;
 import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -17,6 +18,7 @@ import javax.inject.Named;
 @ManagedBean
 @SessionScoped
 public class SearchController implements Serializable{
+
 
     private String search;
     private List<UserBean> results;

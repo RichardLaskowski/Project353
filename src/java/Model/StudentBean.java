@@ -92,8 +92,8 @@ public class StudentBean {
     /**
      * @return the dateOfBirth
      */
-    public String getDateOfBirth() {
-
+    public String getDateOfBirth()
+    {
         return dateOfBirth;
     }
 

@@ -48,10 +48,6 @@ public class SignupController
                                 break;                        
         }
         
-        
-        
-        
-
         return returnString;
     }
     
