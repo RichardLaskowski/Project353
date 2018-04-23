@@ -27,6 +27,10 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
+<<<<<<< HEAD
+        <welcome-file>faces/logIn.xhtml</welcome-file>
+=======
         <welcome-file>logIn.xhtml</welcome-file>
+>>>>>>> master
     </welcome-file-list>
 </web-app>
