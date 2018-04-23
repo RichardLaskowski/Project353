@@ -5,29 +5,12 @@
  */
 package Model;
 
-<<<<<<< HEAD
-import java.io.Serializable;
-import java.util.Date;
-/**
- *
- * @author IT353S843
- */
-public class StudentBean implements Serializable{
-    
-    private String dateOfBirth;
-     
-    private Integer height;
-     
-    private Integer weight;
-     
-=======
 public class StudentBean
 {
     private int profileId;
     private String dateOfBirth;
     private int height;
     private int weight;
->>>>>>> master
     private String street;
     private String city;
     private String country;
