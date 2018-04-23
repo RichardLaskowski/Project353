@@ -22,7 +22,7 @@ public class SearchController
     public String searchByName()
     {
 
-        //SearchDAO dao = new SearchDAOImpl();
+        SearchDAO dao = new SearchDAOImpl();
 
         return "SearchResults.xhtml";
     }
