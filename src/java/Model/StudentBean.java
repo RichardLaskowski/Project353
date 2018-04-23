@@ -78,42 +78,6 @@ public class StudentBean
 
     }
     
-<<<<<<< HEAD
-    private String essayOfChoice;
-    
-    private String universitiesOfChoice;
-    
-    private String majorsOfChoice;
-
-    public StudentBean(String dateOfBirth, Integer height, Integer weight, String street, String city, 
-            String country, String postalCode, String phoneNo, String schoolName, String endYear, Integer SAT,
-            Integer PSAT, Integer ACT, String certification, String hobbies, String essayOfChoice, 
-            String universitiesOfChoice, String majorsOfChoice) {
-        this.dateOfBirth = dateOfBirth;
-        this.height = height;
-        this.weight = weight;
-        this.street = street;
-        this.city = city;
-        this.country = country;
-        this.postalCode = postalCode;
-        this.phoneNo = phoneNo;
-        this.schoolName = schoolName;
-        this.endYear = endYear;
-        this.SAT = SAT;
-        this.PSAT = PSAT;
-        this.ACT = ACT;
-        this.certification = certification;
-        this.hobbies = hobbies;
-        this.essayOfChoice = essayOfChoice;
-        this.universitiesOfChoice = universitiesOfChoice;
-        this.majorsOfChoice = majorsOfChoice;
-        
-    }
-
-    public StudentBean() {
-    }
-    
-=======
     /**
      * @return the profileId
      */
@@ -129,29 +93,20 @@ public class StudentBean
     {
         this.profileId = profileId;
     }
->>>>>>> master
 
     /**
      * @return the dateOfBirth
      */
-<<<<<<< HEAD
-    public String getDateOfBirth() {
-=======
     public String getDateOfBirth()
     {
->>>>>>> master
         return dateOfBirth;
     }
 
     /**
      * @param dateOfBirth the dateOfBirth to set
      */
-<<<<<<< HEAD
-    public void setDateOfBirth(String dateOfBirth) {
-=======
     public void setDateOfBirth(String dateOfBirth)
     {
->>>>>>> master
         this.dateOfBirth = dateOfBirth;
     }
 
