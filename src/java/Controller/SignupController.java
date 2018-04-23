@@ -70,7 +70,7 @@ public class SignupController
        System.out.println(userModel.getUserType());
        
        userInserted = userController.createUser(userModel);
-       
+     
        System.out.println("SIGNUPCONTROLLER: " + userInserted);
        
        switch(userModel.getUserType().toLowerCase())
@@ -78,13 +78,19 @@ public class SignupController
            case "student":
                                 if(userInserted)
                                 {
-                                    returnString = "details.xhtml";
+                                   return "details.xhtml";                                   
+                                }
+                                else {
+                                    signupStatus = "UserId already exist!";                               
                                 }
                                 break;
            case "recruiter":
                                 if(userInserted)
                                 {
                                     returnString = "recruiterDetails.xhtml";
+                                }
+                                else {
+                                    signupStatus = "UserId already exist!";                               
                                 }
                                 break;
        }
