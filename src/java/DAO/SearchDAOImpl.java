@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import Model.ProfileBean;
+import Model.UserBean;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -23,9 +23,9 @@ import java.util.function.Consumer;
 public class SearchDAOImpl implements SearchDAO {
 
     @Override
-    public List <ProfileBean> SearchByName(String name) {
-        List<ProfileBean> pb= new ArrayList<>();
-        ProfileBean user;
+    public List <UserBean> SearchByName(String name) {
+        List<UserBean> pb= new ArrayList<>();
+        UserBean user;
         
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
@@ -39,17 +39,17 @@ public class SearchDAOImpl implements SearchDAO {
             String insertString, insertString1;
             Statement stmt = DBConn.createStatement();
             
-            String query="SELECT * FROM Project353.StudentDetail WHERE "
+            String query="SELECT * FROM USERS WHERE "
                     + "FIRSTNAME= '"+name
                     +"'"+" OR LASTNAME= '"+name+"'";
-            String query2= "SELECT * FROM Project353.RecruiterDetail WHERE "
-                    + "FIRSTNAME= '"+name
-                    +"'"+" OR LASTNAME= '"+name+"'";
+//            String query2= "SELECT * FROM Project353.RecruiterDetail WHERE "
+//                    + "FIRSTNAME= '"+name
+//                    +"'"+" OR LASTNAME= '"+name+"'";
             ResultSet rs= stmt.executeQuery(query);
            
             while(rs.next()){
-                user= new ProfileBean();
-                user.setUserId(rs.getString("USERNAME"));
+                user= new UserBean();
+                user.setUsername(rs.getString("USERNAME"));
               //  user.setPassword(rs.getString("PASSWORD"));
                 user.setFirstName(rs.getString("FIRSTNAME"));
                 user.setLastName(rs.getString("LASTNAME"));
@@ -60,21 +60,7 @@ public class SearchDAOImpl implements SearchDAO {
                 
                 pb.add(user);
             }
-//            rs= stmt.executeQuery(query2);
-//            while(rs.next()){
-//                user= new ProfileBean();
-//                user.setUserId(rs.getString("USERNAME"));
-//              //  user.setPassword(rs.getString("PASSWORD"));
-//                user.setFirstName(rs.getString("FIRSTNAME"));
-//                user.setLastName(rs.getString("LASTNAME"));
-//                user.setEmail(rs.getString("EMAIL"));
-//              //  user.setSecurityQuestion(rs.getString("SECQUES"));
-//              //  user.setSecurityAnswer(rs.getString("SECANS"));
-//                user.setUserType(rs.getString("USERTYPE"));
-//                
-//                pb.add(user);
-//                
-//            }          
+       
             
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -83,13 +69,13 @@ public class SearchDAOImpl implements SearchDAO {
         return pb;
     }
     
-//    public static void main(String[] args){
-//        SearchDAOImpl x= new SearchDAOImpl();
-//        List<ProfileBean> pb= x.SearchByName("James");
-//        pb.forEach((ProfileBean i) -> {
-//            System.out.println(i.toString());
-//        });
-//        
-//    }
+    public static void main(String[] args){
+        SearchDAOImpl x= new SearchDAOImpl();
+        List<UserBean> pb= x.SearchByName("James");
+        pb.forEach((UserBean i) -> {
+            System.out.println(i.toString());
+        });
+        
+    }
 
 }

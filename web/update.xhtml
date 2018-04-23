@@ -19,24 +19,24 @@
                 <h:form style="width: auto">
                     <p:growl id="growl" sticky="true" showDetail="true"/>
 
-                    <p:wizard flowListener="#{signupController.studentController.onFlowProcess}">
+                    <p:wizard flowListener="#{updateController.onFlowProcess}">
 
                         <p:tab id="personal" title="Personal">
                             <p:panel header="Personal Details" style="width:auto; text-align: center">
                                 <p:messages />
                                 <h:panelGrid columns="2" columnClasses="label, value" class="span-full">
-
+<!--
                                     <p:outputLabel for="german" value="Date of Birth: " />
-                                    <p:calendar id="german" value="#{signupController.studentModel.dateOfBirth}" locale="de" navigator="true" pattern="yyyy-MM-dd" required="true"/>
+                                    <p:calendar id="german" value="#{updateController.studentBean.dateOfBirth}" locale="de" navigator="true" pattern="yyyy-MM-dd" required="true"/>-->
 
                                     <h:outputText value="Height(cm): " />
-                                    <p:inputText value="#{signupController.studentModel.height}" label="height"/>
+                                    <p:inputText value="#{updateController.studentBean.height}" label="height"/>
 
                                     <h:outputText value="Weight(lbs): " />
-                                    <p:inputText value="#{signupController.studentModel.weight}" />
+                                    <p:inputText value="#{updateController.studentBean.weight}" />
 
                                     <h:outputText value="Skip to last: " />
-                                    <h:selectBooleanCheckbox value="#{signupController.studentController.skip}" />
+                                    <h:selectBooleanCheckbox value="#{updateController.skip}" />
 
                                 </h:panelGrid>
                             </p:panel>
@@ -47,22 +47,22 @@
                                 <p:messages />
                                 <h:panelGrid columns="2" columnClasses="label, value">
                                     <h:outputText value="Street: " />
-                                    <p:inputText value="#{signupController.studentModel.street}" />
+                                    <p:inputText value="#{updateController.studentBean.street}" />
 
                                     <h:outputText value="City: " />
-                                    <p:inputText value="#{signupController.studentModel.city}" />
+                                    <p:inputText value="#{updateController.studentBean.city}" />
 
                                     <h:outputText value="Country: " />
-                                    <p:inputText value="#{signupController.studentModel.country}" />
+                                    <p:inputText value="#{updateController.studentBean.country}" />
 
                                     <h:outputText value="Postal Code: " />
-                                    <p:inputText value="#{signupController.studentModel.zipcode}" />
+                                    <p:inputText value="#{updateController.studentBean.postalCode}" />
 
                                     <h:outputText value="Phone #: " />
-                                    <p:inputText value="#{signupController.studentModel.phone}"/>
+                                    <p:inputText value="#{updateController.studentBean.phoneNo}"/>
 
                                     <h:outputText value="Skip to last: " />
-                                    <h:selectBooleanCheckbox value="#{signupController.studentController.skip}" />
+                                    <h:selectBooleanCheckbox value="#{updateController.skip}" />
                                 </h:panelGrid>
                             </p:panel>
                         </p:tab>
@@ -72,29 +72,34 @@
                                 <p:messages />
                                 <h:panelGrid columns="2" columnClasses="label, value" style="width:auto; text-align: center">
                                     <h:outputText value="High School *" />
-                                    <p:inputText value="#{signupController.studentModel.school}" required="true" label="HighSchool"/>
+                                    <p:inputText value="#{updateController.studentBean.schoolName}" required="true" label="HighSchool"/>
 
                                     <h:outputText value="End Year: " />
-                                    <p:inputText  value="#{signupController.studentModel.endYear}"/>
+                                    <p:inputText value="#{updateController.studentBean.endYear}"/>
 
                                     <h:outputText value="SAT Score " />
-                                    <p:inputText value="#{signupController.studentModel.sat}"/>
+                                    <p:inputText value="#{updateController.studentBean.SAT}"/>
 
                                     <h:outputText value="PSAT Score " />
-                                    <p:inputText value="#{signupController.studentModel.psat}"/>
+                                    <p:inputText value="#{updateController.studentBean.PSAT}"/>
 
                                     <h:outputText value="ACT Score " />
-                                    <p:inputText value="#{signupController.studentModel.act}"/>
+                                    <p:inputText value="#{updateController.studentBean.ACT}"/>
 
                                     <h:outputText value="Certifications " />
-                                    <p:inputText value="#{signupController.studentModel.certification}"/>
+                                    <p:inputText value="#{updateController.studentBean.certification}"/>
 
                                     <h:outputText value="Hobbies " />
-                                    <p:inputText value="#{signupController.studentModel.hobbies}"/>
+                                    <p:inputText value="#{updateController.studentBean.hobbies}"/>
 
                                     <h:outputText value="Essay of Choice " />
-                                    <p:inputText value="#{signupController.studentModel.essay}"/>
+                                    <p:inputText value="#{updateController.studentBean.essayOfChoice}"/>
 
+                                    <h:outputText value="Universities of Choice" />
+                                    <p:inputText value="#{updateController.studentBean.universitiesOfChoice}"/>
+
+                                    <h:outputText value="Majors of Choice " />
+                                    <p:inputText value="#{updateController.studentBean.majorsOfChoice}"/>
                                 </h:panelGrid>
 
                             </p:panel>
@@ -105,66 +110,66 @@
                                 <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
                                     <h:panelGrid columns="2" columnClasses="label, value">
                                         <h:outputText value="Date_Of_Birth: " />
-                                        <h:outputText value="#{signupController.studentModel.dateOfBirth}" styleClass="outputLabel"/>
+                                        <h:outputText value="#{updateController.studentBean.dateOfBirth}" styleClass="outputLabel"/>
                                               
                                         <h:outputText value="Height: " />
-                                        <h:outputText value="#{signupController.studentModel.height}" styleClass="outputLabel"/>
+                                        <h:outputText value="#{updateController.studentBean.height}" styleClass="outputLabel"/>
 
                                         <h:outputText value="Weight: " />
-                                        <h:outputText value="#{signupController.studentModel.weight}" styleClass="outputLabel"/>
+                                        <h:outputText value="#{updateController.studentBean.weight}" styleClass="outputLabel"/>
                                     </h:panelGrid>
 
                                     <h:panelGrid columns="2" columnClasses="label, value">
                                         <h:outputText value="Street: " />
-                                        <h:outputText value="#{signupController.studentModel.street}" styleClass="outputLabel"/>
+                                        <h:outputText value="#{updateController.studentBean.street}" styleClass="outputLabel"/>
                                         
                                         <h:outputText value="City: " />
-                                        <h:outputText value="#{signupController.studentModel.city}" styleClass="outputLabel"/>
+                                        <h:outputText value="#{updateController.studentBean.city}" styleClass="outputLabel"/>
                                         
                                         <h:outputText value="Country: " />
-                                        <h:outputText value="#{signupController.studentModel.country}" styleClass="outputLabel"/>
+                                        <h:outputText value="#{updateController.studentBean.country}" styleClass="outputLabel"/>
                                         
                                         <h:outputText value="Postal_Code: " />
-                                        <h:outputText value="#{signupController.studentModel.zipcode}" styleClass="outputLabel"/>
+                                        <h:outputText value="#{updateController.studentBean.postalCode}" styleClass="outputLabel"/>
 
                                         <h:outputText value="Phone_No: " />
-                                        <h:outputText value="#{signupController.studentModel.phone}" styleClass="outputLabel"/>
+                                        <h:outputText value="#{updateController.studentBean.phoneNo}" styleClass="outputLabel"/>
                                     </h:panelGrid>
 
                                     <h:panelGrid columns="2" columnClasses="label, value">
                                         <h:outputText value="School_Name: " />
-                                        <h:outputText value="#{signupController.studentModel.school}" styleClass="outputLabel"/>
+                                        <h:outputText value="#{updateController.studentBean.schoolName}" styleClass="outputLabel"/>
 
                                         <h:outputText value="End_Year: " />
-                                        <h:outputText value="#{signupController.studentModel.endYear}" styleClass="outputLabel"/>
+                                        <h:outputText value="#{updateController.studentBean.endYear}" styleClass="outputLabel"/>
 
                                         <h:outputText value="SAT_Score: " />
-                                        <h:outputText value="#{signupController.studentModel.sat}" styleClass="outputLabel"/>
+                                        <h:outputText value="#{updateController.studentBean.SAT}" styleClass="outputLabel"/>
 
                                         <h:outputText value="PSAT_Score: " />
-                                        <h:outputText value="#{signupController.studentModel.psat}" styleClass="outputLabel"/>
+                                        <h:outputText value="#{updateController.studentBean.PSAT}" styleClass="outputLabel"/>
 
                                         <h:outputText value="ACT: " />
-                                        <h:outputText value="#{signupController.studentModel.act}" styleClass="outputLabel"/>
+                                        <h:outputText value="#{updateController.studentBean.ACT}" styleClass="outputLabel"/>
 
                                         <h:outputText value="Certifications: " />
-                                        <h:outputText value="#{signupController.studentModel.certification}" styleClass="outputLabel"/>
+                                        <h:outputText value="#{updateController.studentBean.certification}" styleClass="outputLabel"/>
 
                                         <h:outputText value="Hobbies: " />
-                                        <h:outputText value="#{signupController.studentModel.hobbies}" styleClass="outputLabel"/>
+                                        <h:outputText value="#{updateController.studentBean.hobbies}" styleClass="outputLabel"/>
 
                                         <h:outputText value="Essay_Of_Choice: " />
-                                        <h:outputText value="#{signupController.studentModel.essay}" styleClass="outputLabel"/>
+                                        <h:outputText value="#{updateController.studentBean.essayOfChoice}" styleClass="outputLabel"/>
 
-                                </h:panelGrid>
+                                        <h:outputText value="Universities_Of_Choice: " />
+                                        <h:outputText value="#{updateController.studentBean.universitiesOfChoice}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Majors_Of_Choice: " />
+                                        <h:outputText value="#{updateController.studentBean.majorsOfChoice}" styleClass="outputLabel"/>
+                                    </h:panelGrid>
                                 </h:panelGrid>
 
-<<<<<<< HEAD
-                                <p:commandButton value="Submit" actionListener="#{studentController.insertDetails(profileController.theModel.userId)}" 
-                                                 update="growl" process="@this"/>
-=======
-                                <p:commandButton value="Submit" action="#{signupController.signUp()}" update="growl" process="@this"/>
->>>>>>> master
+                                <h:commandButton value="Submit" action="#{updateController.insertDetails(loginController.theModel.userId)}"/>
                             </p:panel>
                         </p:tab>
                     </p:wizard>

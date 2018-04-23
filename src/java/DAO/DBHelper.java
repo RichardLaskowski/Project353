@@ -16,31 +16,41 @@ import java.sql.SQLException;
  *
  * @author bllim
  */
-public class DBHelper {
+public class DBHelper
+{
 
     /**
      * Creates a new instance of DBHelper
      */
-    public DBHelper() {
+    public DBHelper()
+    {
     }
 
-    public static void loadDriver(String driverStr) {
-        try {
+    public static void loadDriver(String driverStr)
+    {
+        try
+        {
             Class.forName(driverStr);
-        } catch (ClassNotFoundException e) {
+        } 
+        catch (ClassNotFoundException e)
+        {
             System.err.println(e.getMessage());
         }
     }
 
-    public static Connection connect2DB(String connectStr, String userName, String password) {
+    public static Connection connect2DB(String connectStr, String userName, String password)
+    {
 
         String myDB = connectStr;
         Connection DBConn = null;
-        try {
+        try
+        {
             DBConn = DriverManager.getConnection(myDB, userName, password);
-        } catch (SQLException e) {
+        } 
+        catch (SQLException e)
+        {
             System.err.println(e.getMessage());
         }
         return DBConn;
-    }
+    }   
 }
