@@ -3,7 +3,7 @@ package Controller;
 
 import DAO.SearchDAO;
 import DAO.SearchDAOImpl;
-import java.util.List;
+import java.io.Serializable;
 import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 
@@ -14,7 +14,7 @@ import javax.enterprise.context.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class SearchController
+public class SearchController implements Serializable
 {
 
     private String search;
