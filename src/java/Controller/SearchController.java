@@ -4,8 +4,9 @@ package Controller;
 import DAO.SearchDAO;
 import DAO.SearchDAOImpl;
 import java.util.List;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.annotation.ManagedBean;
+import javax.enterprise.context.SessionScoped;
+
 
 /**
  *
