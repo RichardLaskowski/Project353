@@ -53,6 +53,8 @@ public class StudentController implements Serializable
     
     public String onFlowProcess(FlowEvent event)
     {
+        System.out.println("ONFLOWPROCESS: " + event);
+        System.out.println("ONFLOWPROCESS: " + skip);
         if (isSkip())
         {
             setSkip(false);   //reset in case user goes back

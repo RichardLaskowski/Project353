@@ -3,9 +3,10 @@ package Controller;
 
 import DAO.SearchDAO;
 import DAO.SearchDAOImpl;
-import java.util.List;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import java.io.Serializable;
+import javax.annotation.ManagedBean;
+import javax.enterprise.context.SessionScoped;
+
 
 /**
  *
@@ -13,7 +14,7 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class SearchController
+public class SearchController implements Serializable
 {
 
     private String search;
@@ -21,7 +22,7 @@ public class SearchController
     public String searchByName()
     {
 
-        //SearchDAO dao = new SearchDAOImpl();
+        SearchDAO dao = new SearchDAOImpl();
 
         return "SearchResults.xhtml";
     }

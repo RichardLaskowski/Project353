@@ -175,6 +175,7 @@ CREATE TABLE posts(
     username VARCHAR(20),
     imageId INTEGER,
     videoId INTEGER,
+    datesTime TIMESTAMP default CURRENT_TIMESTAMP,
     CONSTRAINT posts_postId_pk PRIMARY KEY (postId),
     CONSTRAINT posts_username_fk FOREIGN KEY (username)
         REFERENCES users(username),
@@ -182,11 +183,16 @@ CREATE TABLE posts(
         REFERENCES images(imageId),
     CONSTRAINT posts_videoId_fk FOREIGN KEY (videoId)
         REFERENCES videos(videoId));
+--ALTER TABLE posts
+--    ADD datesTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
 
 CREATE TABLE comments(
     commentId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
     content VARCHAR(250),
     CONSTRAINT comments_commentId_pk PRIMARY KEY (commentId));
+
+--ALTER TABLE comments
+--    ADD datesTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
 
 CREATE TABLE commentList(
     listId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
@@ -197,6 +203,7 @@ CREATE TABLE commentList(
         REFERENCES comments(commentId),
     CONSTRAINT commentList_postId_fk FOREIGN KEY (postId)
         REFERENCES posts(postId));
+
 
 CREATE TABLE imageBridge(
      bridgeId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),

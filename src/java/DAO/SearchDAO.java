@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Model.UserBean;
 import java.util.List;
 
 /**
@@ -12,6 +13,6 @@ import java.util.List;
  * @author ericz
  */
 public interface SearchDAO {
-    public List SearchByName(String name);
+    public List<UserBean> SearchByName(String name);
     
 }

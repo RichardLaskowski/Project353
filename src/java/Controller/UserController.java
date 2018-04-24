@@ -9,6 +9,7 @@ import DAO.UserDAO;
 import DAO.UserDAOImpl;
 import Model.UserBean;
 import javax.inject.Named;
+import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.faces.bean.SessionScoped;

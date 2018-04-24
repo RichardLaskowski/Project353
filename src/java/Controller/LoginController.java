@@ -1,15 +1,24 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Controller;
+
 import Model.RecruiterBean;
 import Model.StudentBean;
 import Model.UserBean;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-
+/**
+ *
+ * @author IT353S843
+ */
 @ManagedBean
 @SessionScoped
-public class LoginController
-{
+public class LoginController {
+
     private RecruiterBean recruiterModel;
     private StudentBean studentModel;
     private UserBean userModel;
@@ -22,8 +31,21 @@ public class LoginController
     private String loginStatus;
     private int loginAttempt = 0;
     
+     /**
+     * Creates a new instance of LoginController
+     */
+    public LoginController()
+    {
+       recruiterController = new RecruiterController();
+       studentController = new StudentController();
+       userController = new UserController();
+       userModel = new UserBean();
+       targetUser = null;
+       loginAttempt = 0;
+    }
+    
     /*method for login authentication*/
-    public String loginAuthentication()
+    public String login()
     {
         String returnString = "";
         if (loginAttempt < 3)
@@ -31,7 +53,6 @@ public class LoginController
             loginAttempt++;
             userController.setUserModel(userModel);
             targetUser = userController.selectUserByUsername(); 
-            System.out.println(targetUser.getFirstName());
             if(targetUser != null)
             {
                 if(userModel.getPassword().equals(targetUser.getPassword()))
@@ -57,19 +78,6 @@ public class LoginController
             setLoginStatus("Exceed max number of trials! Try after some time");    
         }
         return returnString;
-    }
-
-    /**
-     * Creates a new instance of LoginController
-     */
-    public LoginController()
-    {
-       recruiterController = new RecruiterController();
-       studentController = new StudentController();
-       userController = new UserController();
-       userModel = new UserBean();
-       targetUser = null;
-       loginAttempt = 0;
     }
 
     /**
@@ -231,5 +239,5 @@ public class LoginController
     public void setIsLoggedIn(Boolean isLoggedIn)
     {
         this.isLoggedIn = isLoggedIn;
-    }   
+    }
 }
