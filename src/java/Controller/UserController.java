@@ -27,11 +27,8 @@ public class UserController implements Serializable
     private String USER_TYPE_UNIVERSITY = "university";
     private String USER_TYPE_ADMIN = "admin";
     
-    //Represents the View
     private UserBean userModel;
-    //Represents query result
     private UserBean targetUser;
-    
     private ArrayList resultList;
           
     public UserController()
