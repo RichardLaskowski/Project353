@@ -69,48 +69,27 @@ public class StudentDAOImpl implements StudentDAO
                 connect2DB();
                 String insertString;
                 Statement stmt = DBConn.createStatement();
-//                insertString = "INSERT INTO itkstu.student "
-//                    + "(dateOfBirth, height, weight, address, country, zipcode, phone, school, endYear, "
-//                    + "sat, act, psat, certification, essay, hobbies, username) "
-//                    + "VALUES ('" + studentModel.getDateOfBirth()
-//                    + "', '" + studentModel.getHeight()
-//                    + "', '" + studentModel.getWeight()
-//                    + "', '" + studentModel.getStreet() + " " + studentModel.getCity()
-//                    + "', '" + studentModel.getCountry()
-//                    + "', '" + studentModel.getZipcode()
-//                    + "', '" + studentModel.getPhone()
-//                    + "', '" + studentModel.getSchool()
-//                    + "', '" + studentModel.getEndYear()
-//                    + "', '" + studentModel.getSat()
-//                    + "', '" + studentModel.getAct()
-//                    + "', '" + studentModel.getPsat()
-//                    + "', '" + studentModel.getCertification()
-//                    + "', '" + studentModel.getEssay()
-//                    + "', '" + studentModel.getHobbies()
-//                    + "', '" + studentModel.getUsername()
-//                    + "')";
-           
- //               rowCount = stmt.executeUpdate(insertString);
-                
-                 insertString = "UPDATE itkstu.STUDENT SET"
-                        + " DOB = '" + studentModel.getDateOfBirth() +"'" 
-                        + ", HEIGHT = " + studentModel.getHeight() 
-                        + ", WEIGHT = " + studentModel.getWeight() 
-                        + ", ADDRESS = '" + studentModel.getStreet() + "'"
-                        + ", CITY = '" + studentModel.getCity() + "'"
-                        + ", COUNTRY = '" + studentModel.getCountry() + "'"
-                        + ", ZIPCODE = '" + studentModel.getZipcode()+ "'"
-                        + ", PHONE = '" + studentModel.getPhone()+ "'"
-                        + ", SCHOOL = '" + studentModel.getSchool()+ "'"
-                        + ", ENDYEAR = '" + studentModel.getEndYear() + "'"
-                        + ", SAT = " + studentModel.getSat()
-                        + ", ACT = " + studentModel.getAct()
-                        + ", PSAT = " + studentModel.getPsat()  
-                        + ", CERTIFICATION = '" + studentModel.getCertification() + "'"
-                        + ", HOBBIES = '" + studentModel.getHobbies() + "'"
-                        + ", ESSAY = '" + studentModel.getEssay()+ "'"
-                        + " WHERE USERNAME = '" + studentModel.getUsername() + "'";
-                
+                insertString = "INSERT INTO itkstu.student "
+                    + "(dateOfBirth, height, weight, address, country, zipcode, phone, school, endYear, "
+                    + "sat, act, psat, certification, essay, hobbies, username) "
+                    + "VALUES ('" + studentModel.getDateOfBirth()
+                    + "', '" + studentModel.getHeight()
+                    + "', '" + studentModel.getWeight()
+                    + "', '" + studentModel.getStreet() + " " + studentModel.getCity()
+                    + "', '" + studentModel.getCountry()
+                    + "', '" + studentModel.getZipcode()
+                    + "', '" + studentModel.getPhone()
+                    + "', '" + studentModel.getSchool()
+                    + "', '" + studentModel.getEndYear()
+                    + "', '" + studentModel.getSat()
+                    + "', '" + studentModel.getAct()
+                    + "', '" + studentModel.getPsat()
+                    + "', '" + studentModel.getCertification()
+                    + "', '" + studentModel.getEssay()
+                    + "', '" + studentModel.getHobbies()
+                    + "', '" + studentModel.getUsername()
+                    + "')";      
+             
                 rowCount = stmt.executeUpdate(insertString);
                 
                 DBConn.close();
