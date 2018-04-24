@@ -233,7 +233,6 @@ public class LoginController
         this.isLoggedIn = isLoggedIn;
     }
     
-<<<<<<< HEAD
     public String loginAuthentication() {
         if(loginAttempt<3){
         ProfileDAO aProfileDAO = new ProfileDAOImpl();    // Creating a new object each time.
@@ -252,6 +251,5 @@ public class LoginController
             return "";
         }
     }    
-=======
->>>>>>> master
+
 }
