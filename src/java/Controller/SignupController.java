@@ -3,12 +3,13 @@ package Controller;
 import Model.RecruiterBean;
 import Model.StudentBean;
 import Model.UserBean;
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 @ManagedBean
 @SessionScoped
-public class SignupController 
+public class SignupController implements Serializable
 {
     private UserController userController;
     private StudentController studentController;

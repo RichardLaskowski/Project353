@@ -49,10 +49,10 @@ public class LoginFilter implements Filter
                 System.out.println("LOGINFILTER: requested profile.xhtml");
                 resp.sendRedirect(req.getServletContext().getContextPath() + "/logIn.xhtml");
             }
-            else if(url.indexOf("details.xhtml") >= 0 || url.indexOf("recruiterDetails.xhtml") >= 0)
-            {
-                resp.sendRedirect(req.getServletContext().getContextPath() + "/signUp.xhtml");
-            }
+//            else if(url.indexOf("details.xhtml") >= 0 || url.indexOf("recruiterDetails.xhtml") >= 0)
+//            {
+//                resp.sendRedirect(req.getServletContext().getContextPath() + "/signUp.xhtml");
+//            }
             else
             {
                 chain.doFilter(request, response);
