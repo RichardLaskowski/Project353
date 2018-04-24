@@ -5,13 +5,29 @@
  */
 package Model;
 
+<<<<<<< HEAD
+import java.io.Serializable;
+import java.util.Date;
+/**
+ *
+ * @author IT353S843
+ */
+public class StudentBean implements Serializable{
+    
+    private String dateOfBirth;
+     
+    private Integer height;
+     
+    private Integer weight;
+     
+=======
 public class StudentBean
 {
-
     private int profileId;
     private String dateOfBirth;
     private int height;
     private int weight;
+>>>>>>> master
     private String street;
     private String city;
     private String country;
@@ -27,16 +43,11 @@ public class StudentBean
     private String hobbies;
     private String username;
 
-    public StudentBean()
-    {
-        
-    }
-
     public StudentBean(int profileId, String dateOfBirth, int height, int weight, String street, String city, String country,
-            String zipcode, String phone, String school, int endYear, int sat, int act, int psat, String certification,
-            String essay, String hobbies, String username)
+    String zipcode, String phone, String school, int endYear, int sat, int act, int psat, String certification,
+    String essay, String hobbies, String username)
     {
-        this.profileId = profileId;
+        this. profileId = profileId;
         this.dateOfBirth = dateOfBirth;
         this.height = height;
         this.weight = weight;
@@ -45,8 +56,8 @@ public class StudentBean
         this.country = country;
         this.zipcode = zipcode;
         this.phone = phone;
-        this.school = school;
-        this.endYear = endYear;
+        this. school = school;
+        this. endYear = endYear;
         this.sat = sat;
         this.act = act;
         this.psat = psat;
@@ -57,10 +68,10 @@ public class StudentBean
     }
 
     public StudentBean(int profileId, String dateOfBirth, int height, int weight, String street, String city, String country,
-            String zipcode, String phone, String school, int endYear, int sat, int act, int psat, String certification,
-            String essay, String hobbies)
+    String zipcode, String phone, String school, int endYear, int sat, int act, int psat, String certification,
+    String essay, String hobbies)
     {
-        this.profileId = profileId;
+        this. profileId = profileId;
         this.dateOfBirth = dateOfBirth;
         this.height = height;
         this.weight = weight;
@@ -69,8 +80,8 @@ public class StudentBean
         this.country = country;
         this.zipcode = zipcode;
         this.phone = phone;
-        this.school = school;
-        this.endYear = endYear;
+        this. school = school;
+        this. endYear = endYear;
         this.sat = sat;
         this.act = act;
         this.psat = psat;
@@ -79,29 +90,47 @@ public class StudentBean
         this.hobbies = hobbies;
     }
 
-    public StudentBean(String dateOfBirth, int height, int weight, String street, String city, String country,
-            String zipcode, String phone, String school, int endYear, int sat, int act, int psat, String certification,
-            String essay, String hobbies)
+    public StudentBean()
     {
+
+    }
+    
+<<<<<<< HEAD
+    private String essayOfChoice;
+    
+    private String universitiesOfChoice;
+    
+    private String majorsOfChoice;
+
+    public StudentBean(String dateOfBirth, Integer height, Integer weight, String street, String city, 
+            String country, String postalCode, String phoneNo, String schoolName, String endYear, Integer SAT,
+            Integer PSAT, Integer ACT, String certification, String hobbies, String essayOfChoice, 
+            String universitiesOfChoice, String majorsOfChoice) {
         this.dateOfBirth = dateOfBirth;
         this.height = height;
         this.weight = weight;
         this.street = street;
         this.city = city;
         this.country = country;
-        this.zipcode = zipcode;
-        this.phone = phone;
-        this.school = school;
+        this.postalCode = postalCode;
+        this.phoneNo = phoneNo;
+        this.schoolName = schoolName;
         this.endYear = endYear;
-        this.sat = sat;
-        this.act = act;
-        this.psat = psat;
+        this.SAT = SAT;
+        this.PSAT = PSAT;
+        this.ACT = ACT;
         this.certification = certification;
-        this.essay = essay;
         this.hobbies = hobbies;
-
+        this.essayOfChoice = essayOfChoice;
+        this.universitiesOfChoice = universitiesOfChoice;
+        this.majorsOfChoice = majorsOfChoice;
+        
     }
 
+    public StudentBean() {
+    }
+    
+=======
     /**
      * @return the profileId
      */
@@ -117,20 +146,29 @@ public class StudentBean
     {
         this.profileId = profileId;
     }
+>>>>>>> master
 
     /**
      * @return the dateOfBirth
      */
+<<<<<<< HEAD
+    public String getDateOfBirth() {
+=======
     public String getDateOfBirth()
     {
+>>>>>>> master
         return dateOfBirth;
     }
 
     /**
      * @param dateOfBirth the dateOfBirth to set
      */
+<<<<<<< HEAD
+    public void setDateOfBirth(String dateOfBirth) {
+=======
     public void setDateOfBirth(String dateOfBirth)
     {
+>>>>>>> master
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -359,22 +397,6 @@ public class StudentBean
     }
 
     /**
-     * @return the hobbies
-     */
-    public String getHobbies()
-    {
-        return hobbies;
-    }
-
-    /**
-     * @param hobbies the hobbies to set
-     */
-    public void setHobbies(String hobbies)
-    {
-        this.hobbies = hobbies;
-    }
-
-    /**
      * @return the username
      */
     public String getUsername()
@@ -390,4 +412,19 @@ public class StudentBean
         this.username = username;
     }
 
+    /**
+     * @return the hobbies
+     */
+    public String getHobbies()
+    {
+        return hobbies;
+    }
+
+    /**
+     * @param hobbies the hobbies to set
+     */
+    public void setHobbies(String hobbies)
+    {
+        this.hobbies = hobbies;
+    }
 }

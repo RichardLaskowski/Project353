@@ -53,14 +53,11 @@ public class StudentController implements Serializable
     
     public String onFlowProcess(FlowEvent event)
     {
-        System.out.println("ONFLOWPROCESS: " + event);
-        System.out.println("ONFLOWPROCESS: " + skip);
         if (isSkip())
         {
             setSkip(false);   //reset in case user goes back
             return "confirm";
-        } 
-        else
+        } else
         {
             return event.getNewStep();
         }
@@ -95,8 +92,22 @@ public class StudentController implements Serializable
      */
     public StudentBean getStudentModel()
     {
+<<<<<<< HEAD
+            String signupStatus = "";
+        ProfileDAO aProfileDAO = new ProfileDAOImpl();    // Creating a new object each time.
+        int status = aProfileDAO.insertStudentDetails(UserId, studentBean); // Doing anything with the object after this?
+        if (status == 1)
+        {
+            return "logIn.xhtml"; // navigate to "LoginGood.xhtml"
+        } else
+        {
+            signupStatus = "Issue Encounter";
+            return "";
+        }
+=======
         return studentModel;
     }
+>>>>>>> master
 
     /**
      * @param studentModel the studentModel to set

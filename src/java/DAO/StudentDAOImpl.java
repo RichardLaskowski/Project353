@@ -45,24 +45,8 @@ public class StudentDAOImpl implements StudentDAO
     {
         int rowCount = 0;
         resultList = selectStudentByUsername(studentModel.getUsername());
-        System.out.println(studentModel.getDateOfBirth());
-        System.out.println(studentModel.getHeight());
-        System.out.println(studentModel.getWeight());
-        System.out.println(studentModel.getStreet());
-        System.out.println(studentModel.getCity());
-        System.out.println(studentModel.getCountry());
-        System.out.println(studentModel.getZipcode());
-        System.out.println(studentModel.getPhone());
-        System.out.println(studentModel.getSchool());
-        System.out.println(studentModel.getEndYear());
-        System.out.println(studentModel.getSat());
-        System.out.println(studentModel.getAct());
-        System.out.println(studentModel.getPsat());
-        System.out.println(studentModel.getEssay());
-        System.out.println(studentModel.getHobbies());
-        System.out.println(studentModel.getUsername());
         
-        if(!resultList.isEmpty())
+        if(resultList.isEmpty())
         {
             try 
             {
@@ -88,10 +72,9 @@ public class StudentDAOImpl implements StudentDAO
                     + "', '" + studentModel.getEssay()
                     + "', '" + studentModel.getHobbies()
                     + "', '" + studentModel.getUsername()
-                    + "')";      
-             
+                    + "')";
+
                 rowCount = stmt.executeUpdate(insertString);
-                
                 DBConn.close();
             } 
             catch (SQLException e) 
@@ -101,7 +84,7 @@ public class StudentDAOImpl implements StudentDAO
         }
         else
         {
-            System.err.println("STUDENDAOIMPL: Student not Exists");
+            System.err.println("STUDENDAOIMPL: Student Profile Already Exists");
         }
         return rowCount;
     }
