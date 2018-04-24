@@ -14,31 +14,35 @@ import javax.inject.Named;
  *
  * @author ericz
  */
-@Named(value= "searchController")
+@Named(value = "searchController")
 @ManagedBean
 @SessionScoped
-public class SearchController implements Serializable{
-
+public class SearchController implements Serializable
+{
 
     private String search;
     private List<UserBean> results;
 
-    public String searchByName() {
+    public String searchByName()
+    {
         System.out.println("search by name");
         SearchDAO dao = new SearchDAOImpl();
         results = dao.SearchByName(search);
         return "SearchResults.xhtml";
     }
 
-    public String getSearch() {
+    public String getSearch()
+    {
         return search;
     }
 
-    public void setSearch(String search) {
+    public void setSearch(String search)
+    {
         this.search = search;
     }
 
-    public List<UserBean> getResults() {
+    public List<UserBean> getResults()
+    {
         return results;
     }
 }
