@@ -62,7 +62,7 @@ public class StudentDAOImpl implements StudentDAO
         System.out.println(studentModel.getHobbies());
         System.out.println(studentModel.getUsername());
         
-        if(resultList.isEmpty())
+        if(!resultList.isEmpty())
         {
             try 
             {
@@ -88,9 +88,10 @@ public class StudentDAOImpl implements StudentDAO
                     + "', '" + studentModel.getEssay()
                     + "', '" + studentModel.getHobbies()
                     + "', '" + studentModel.getUsername()
-                    + "')";
-
+                    + "')";      
+             
                 rowCount = stmt.executeUpdate(insertString);
+                
                 DBConn.close();
             } 
             catch (SQLException e) 
@@ -100,7 +101,7 @@ public class StudentDAOImpl implements StudentDAO
         }
         else
         {
-            System.err.println("STUDENDAOIMPL: Student Profile Already Exists");
+            System.err.println("STUDENDAOIMPL: Student not Exists");
         }
         return rowCount;
     }

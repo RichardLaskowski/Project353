@@ -59,7 +59,8 @@ public class StudentController implements Serializable
         {
             setSkip(false);   //reset in case user goes back
             return "confirm";
-        } else
+        } 
+        else
         {
             return event.getNewStep();
         }
