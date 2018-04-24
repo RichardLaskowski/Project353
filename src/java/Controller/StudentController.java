@@ -92,7 +92,7 @@ public class StudentController implements Serializable
      */
     public StudentBean getStudentModel()
     {
-<<<<<<< HEAD
+
             String signupStatus = "";
         ProfileDAO aProfileDAO = new ProfileDAOImpl();    // Creating a new object each time.
         int status = aProfileDAO.insertStudentDetails(UserId, studentBean); // Doing anything with the object after this?
@@ -104,10 +104,8 @@ public class StudentController implements Serializable
             signupStatus = "Issue Encounter";
             return "";
         }
-=======
         return studentModel;
     }
->>>>>>> master
 
     /**
      * @param studentModel the studentModel to set
