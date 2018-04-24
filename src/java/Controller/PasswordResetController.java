@@ -51,6 +51,54 @@ public class PasswordResetController implements Serializable
        
        return returnString;
     }
+
+    /**
+     * @return the userController
+     */
+    public UserController getUserController()
+    {
+        return userController;
+    }
+
+    /**
+     * @param userController the userController to set
+     */
+    public void setUserController(UserController userController)
+    {
+        this.userController = userController;
+    }
+
+    /**
+     * @return the userModel
+     */
+    public UserBean getUserModel()
+    {
+        return userModel;
+    }
+
+    /**
+     * @param userModel the userModel to set
+     */
+    public void setUserModel(UserBean userModel)
+    {
+        this.userModel = userModel;
+    }
+
+    /**
+     * @return the targetUser
+     */
+    public UserBean getTargetUser()
+    {
+        return targetUser;
+    }
+
+    /**
+     * @param targetUser the targetUser to set
+     */
+    public void setTargetUser(UserBean targetUser)
+    {
+        this.targetUser = targetUser;
+    }
     
    
     
