@@ -70,6 +70,20 @@ public class RecruiterController
     /**
      * @param recruiterBean the recruiterBean to set
      */
+<<<<<<< HEAD
+    public void setRecruiterBean(RecruiterBean recruiterBean) {
+        this.recruiterBean = recruiterBean;
+    }  
+    
+    public String insertInfo(String UserId) {
+            ProfileDAO aProfileDAO = new ProfileDAOImpl();    // Creating a new object each time.
+            int status = aProfileDAO.insertRecruiterDetails(UserId, recruiterBean); // Doing anything with the object after this?
+            if (status == 1) {
+                return "profile.xhtml"; // navigate to "profile.xhtml"
+            } else {
+                return "recruiterDetails.xhtml";
+            }
+=======
     public void setRecruiterBean(RecruiterBean recruiterModel)
     {
         this.setRecruiterModel(recruiterModel);
@@ -105,6 +119,7 @@ public class RecruiterController
     public RecruiterBean getTargetRecruiter()
     {
         return targetRecruiter;
+>>>>>>> master
     }
 
     /**
