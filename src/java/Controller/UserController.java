@@ -9,9 +9,10 @@ import DAO.UserDAO;
 import DAO.UserDAOImpl;
 import Model.UserBean;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
@@ -26,11 +27,8 @@ public class UserController implements Serializable
     private String USER_TYPE_UNIVERSITY = "university";
     private String USER_TYPE_ADMIN = "admin";
     
-    //Represents the View
     private UserBean userModel;
-    //Represents query result
     private UserBean targetUser;
-    
     private ArrayList resultList;
           
     public UserController()

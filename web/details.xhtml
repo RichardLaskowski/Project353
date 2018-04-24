@@ -2,8 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title></title>
         <h:outputStylesheet library="css" name="signup.css"/>   
@@ -19,7 +18,7 @@
                 <h:form style="width: auto">
                     <p:growl id="growl" sticky="true" showDetail="true"/>
 
-                    <p:wizard flowListener="#{signupController.studentController.onFlowProcess}">
+                    <p:wizard flowListener="#{studentController.onFlowProcess}">
 
                         <p:tab id="personal" title="Personal">
                             <p:panel header="Personal Details" style="width:auto; text-align: center">
@@ -36,7 +35,7 @@
                                     <p:inputText value="#{signupController.studentModel.weight}" />
 
                                     <h:outputText value="Skip to last: " />
-                                    <h:selectBooleanCheckbox value="#{signupController.studentController.skip}" />
+                                    <h:selectBooleanCheckbox value="#{studentController.skip}" />
 
                                 </h:panelGrid>
                             </p:panel>
@@ -62,7 +61,7 @@
                                     <p:inputText value="#{signupController.studentModel.phone}"/>
 
                                     <h:outputText value="Skip to last: " />
-                                    <h:selectBooleanCheckbox value="#{signupController.studentController.skip}" />
+                                    <h:selectBooleanCheckbox value="#{studentController.skip}" />
                                 </h:panelGrid>
                             </p:panel>
                         </p:tab>
@@ -159,12 +158,7 @@
                                 </h:panelGrid>
                                 </h:panelGrid>
 
-
-                          /*      <p:commandButton value="Submit" actionListener="#{studentController.insertDetails(profileController.theModel.userId)}" 
-                                                 update="growl" process="@this"/> */
-
                                 <p:commandButton value="Submit" action="#{signupController.signUp()}" update="growl" process="@this"/>
-                                  
                             </p:panel>
                         </p:tab>
                     </p:wizard>

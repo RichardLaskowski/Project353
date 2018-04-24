@@ -105,7 +105,6 @@ public class RecruiterController
     public RecruiterBean getTargetRecruiter()
     {
         return targetRecruiter;
-
     }
 
     /**

@@ -3,12 +3,13 @@ package Controller;
 import Model.RecruiterBean;
 import Model.StudentBean;
 import Model.UserBean;
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 @ManagedBean
 @SessionScoped
-public class SignupController 
+public class SignupController implements Serializable
 {
     private UserController userController;
     private StudentController studentController;
@@ -48,10 +49,6 @@ public class SignupController
                                 break;                        
         }
         
-        
-        
-        
-
         return returnString;
     }
     
@@ -70,7 +67,7 @@ public class SignupController
        System.out.println(userModel.getUserType());
        
        userInserted = userController.createUser(userModel);
-       
+     
        System.out.println("SIGNUPCONTROLLER: " + userInserted);
        
        switch(userModel.getUserType().toLowerCase())
@@ -78,13 +75,19 @@ public class SignupController
            case "student":
                                 if(userInserted)
                                 {
-                                    returnString = "details.xhtml";
+                                   return "details.xhtml";                                   
+                                }
+                                else {
+                                    signupStatus = "UserId already exist!";                               
                                 }
                                 break;
            case "recruiter":
                                 if(userInserted)
                                 {
                                     returnString = "recruiterDetails.xhtml";
+                                }
+                                else {
+                                    signupStatus = "UserId already exist!";                               
                                 }
                                 break;
        }
