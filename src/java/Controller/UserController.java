@@ -9,9 +9,9 @@ import DAO.UserDAO;
 import DAO.UserDAOImpl;
 import Model.UserBean;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
+import javax.faces.bean.SessionScoped;
 
 /**
  *

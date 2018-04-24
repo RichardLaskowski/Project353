@@ -231,24 +231,5 @@ public class LoginController
     public void setIsLoggedIn(Boolean isLoggedIn)
     {
         this.isLoggedIn = isLoggedIn;
-    }
-    
-    public String loginAuthentication() {
-        if(loginAttempt<3){
-        ProfileDAO aProfileDAO = new ProfileDAOImpl();    // Creating a new object each time.
-        int status = aProfileDAO.checkCredentials(theModel); // Doing anything with the object after this?
-        if (status == 1){
-                return "profile.xhtml";
-        }
-        else{
-            loginAttempt+=1;
-            setLoginStatus("Invalid Credentials");
-            return "";
-        }
-        }
-        else{
-            setLoginStatus("Exceed max number of trials! Try after some time");
-            return "";
-        }
-    }    
+    }   
 }
