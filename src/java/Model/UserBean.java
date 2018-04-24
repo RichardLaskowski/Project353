@@ -205,5 +205,12 @@ public class UserBean
     {
         this.targetRecruiter = targetRecruiter;
     }
+
+    @Override
+    public String toString() {
+        return "UserBean{" + "username=" + username + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", userType=" + userType + '}';
+    }
+    
+    
  
 }
