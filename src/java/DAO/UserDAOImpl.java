@@ -52,7 +52,6 @@ public class UserDAOImpl implements UserDAO
             {
                 connect2DB();
                 String insertString;
-                String insertStudentTbl;
                 Statement stmt = DBConn.createStatement();
                 insertString = "INSERT INTO itkstu.users "
                     + "(username, password, firstname, lastname, email, securityquestion, securityanswer, usertype) "
@@ -65,18 +64,8 @@ public class UserDAOImpl implements UserDAO
                     + "', '" + userModel.getSecurityAnswer()
                     + "', '" + userModel.getUserType()
                     + "')";
-                
+
                 rowCount = stmt.executeUpdate(insertString);
-                
-                Statement stmt1 = DBConn.createStatement();
-                if(rowCount == 1)
-                {
-                      rowCount = 0;
-                      insertStudentTbl = "INSERT INTO itkstu.student "
-                                + "(username)"
-                                + " VALUES  ('" + userModel.getUsername() + "')";
-                     rowCount = stmt1.executeUpdate(insertStudentTbl);   
-                }
                 DBConn.close();
             }
             catch(SQLException e)

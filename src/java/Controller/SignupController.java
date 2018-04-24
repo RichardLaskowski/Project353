@@ -3,13 +3,12 @@ package Controller;
 import Model.RecruiterBean;
 import Model.StudentBean;
 import Model.UserBean;
-import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 @ManagedBean
 @SessionScoped
-public class SignupController implements Serializable
+public class SignupController 
 {
     private UserController userController;
     private StudentController studentController;
@@ -49,6 +48,10 @@ public class SignupController implements Serializable
                                 break;                        
         }
         
+        
+        
+        
+
         return returnString;
     }
     
@@ -67,7 +70,7 @@ public class SignupController implements Serializable
        System.out.println(userModel.getUserType());
        
        userInserted = userController.createUser(userModel);
-     
+       
        System.out.println("SIGNUPCONTROLLER: " + userInserted);
        
        switch(userModel.getUserType().toLowerCase())
@@ -75,19 +78,13 @@ public class SignupController implements Serializable
            case "student":
                                 if(userInserted)
                                 {
-                                   return "details.xhtml";                                   
-                                }
-                                else {
-                                    signupStatus = "UserId already exist!";                               
+                                    returnString = "details.xhtml";
                                 }
                                 break;
            case "recruiter":
                                 if(userInserted)
                                 {
                                     returnString = "recruiterDetails.xhtml";
-                                }
-                                else {
-                                    signupStatus = "UserId already exist!";                               
                                 }
                                 break;
        }
