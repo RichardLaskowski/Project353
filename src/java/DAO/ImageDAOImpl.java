@@ -1,10 +1,12 @@
+package DAO;
 
-import DAO.DBHelper;
 import Model.ImageBean;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import org.primefaces.model.UploadedFile;
 
 public class ImageDAOImpl implements ImageDAO
 {
@@ -23,29 +25,36 @@ public class ImageDAOImpl implements ImageDAO
     }
 
     @Override
-    public int createImage(ImageBean imageModel)
+    public int createImage(UploadedFile file, String username)
     {
         int rowCount = 0;
-        
+        int imgID= -1;
         try 
         {
             connect2DB();
-            String insertString;
-            Statement stmt = DBConn.createStatement();
-            insertString = "INSERT INTO itkstu.images "
-                + "(imageId, source) "
-                + "VALUES ('" + imageModel.getImageId()
-                + "', '" + imageModel.getSource()
-                + "')";
+            String insert= "INSERT INTO IMAGES VALUES (default, ?, "+username+")";
+            System.out.println(insert);
+            PreparedStatement stmt = DBConn.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            stmt.setBinaryStream(1, file.getInputstream());
+            rowCount= stmt.executeUpdate();
+            if(rowCount==1){
+                ResultSet rs= stmt.getGeneratedKeys();
+                imgID= rs.getInt("IMAGEID");
+                System.out.println(imgID);
+            }
+//            insertString = "INSERT INTO itkstu.images "
+//                + "(imageId, source) "
+//                + "VALUES ('" + imageModel.getImageId()
+//                + "', '" + imageModel.getSource()
+//                + "')";
             
-            rowCount = stmt.executeUpdate(insertString);
             DBConn.close();
         } 
         catch (Exception e) 
         {
             System.err.println(e.getMessage());
         }
-        return rowCount;
+        return imgID;
     }
 
     @Override
