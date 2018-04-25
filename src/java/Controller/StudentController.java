@@ -38,6 +38,21 @@ public class StudentController implements Serializable
         return studentInserted;
     }
     
+    public boolean updateStudent(StudentBean studentModel)
+    {
+        System.out.println("STUDENTCONTROLLER: updateStudent");
+        boolean studentUpdated = false;
+        StudentDAO studentDAO = new StudentDAOImpl();
+        int rowCount = studentDAO.updateStudent(studentModel);
+        
+        if(rowCount == 1)
+        {
+            studentUpdated = true;
+        }
+        
+        return studentUpdated;
+    }
+    
     public ArrayList selectStudentByUsername(String targetUsername)
     {
         StudentDAO studentDAO = new StudentDAOImpl();

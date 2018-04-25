@@ -106,6 +106,72 @@ public class StudentDAOImpl implements StudentDAO
         return rowCount;
     }
 
+    @Override
+    public int updateStudent(StudentBean studentModel)
+    {
+        int rowCount = 0;
+        resultList = selectStudentByUsername(studentModel.getUsername());
+        System.out.println(studentModel.getDateOfBirth());
+        System.out.println(studentModel.getHeight());
+        System.out.println(studentModel.getWeight());
+        System.out.println(studentModel.getStreet());
+        System.out.println(studentModel.getCity());
+        System.out.println(studentModel.getCountry());
+        System.out.println(studentModel.getZipcode());
+        System.out.println(studentModel.getPhone());
+        System.out.println(studentModel.getSchool());
+        System.out.println(studentModel.getEndYear());
+        System.out.println(studentModel.getSat());
+        System.out.println(studentModel.getAct());
+        System.out.println(studentModel.getPsat());
+        System.out.println(studentModel.getEssay());
+        System.out.println(studentModel.getHobbies());
+        System.out.println(studentModel.getUsername());
+        
+        if(!resultList.isEmpty())
+        {
+            try 
+            {
+                connect2DB();
+                String insertString;
+                Statement stmt = DBConn.createStatement();
+                insertString = "INSERT INTO itkstu.student "
+                    + "(dateOfBirth, height, weight, address, country, zipcode, phone, school, endYear, "
+                    + "sat, act, psat, certification, essay, hobbies, username) "
+                    + "VALUES ('" + studentModel.getDateOfBirth()
+                    + "', '" + studentModel.getHeight()
+                    + "', '" + studentModel.getWeight()
+                    + "', '" + studentModel.getStreet() + " " + studentModel.getCity()
+                    + "', '" + studentModel.getCountry()
+                    + "', '" + studentModel.getZipcode()
+                    + "', '" + studentModel.getPhone()
+                    + "', '" + studentModel.getSchool()
+                    + "', '" + studentModel.getEndYear()
+                    + "', '" + studentModel.getSat()
+                    + "', '" + studentModel.getAct()
+                    + "', '" + studentModel.getPsat()
+                    + "', '" + studentModel.getCertification()
+                    + "', '" + studentModel.getEssay()
+                    + "', '" + studentModel.getHobbies()
+                    + "', '" + studentModel.getUsername()
+                    + "')";      
+             
+                rowCount = stmt.executeUpdate(insertString);
+                
+                DBConn.close();
+            } 
+            catch (SQLException e) 
+            {
+                System.err.println(e.getMessage());
+            }
+        }
+        else
+        {
+            System.err.println("STUDENDAOIMPL: Student not Exists");
+        }
+        return rowCount;
+    }
+    
     @Override 
     public ArrayList selectStudentByUsername(String targetUsername)
     {
