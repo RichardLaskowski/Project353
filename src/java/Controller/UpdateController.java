@@ -4,54 +4,62 @@
  */
 package Controller;
 
+
 import Model.StudentBean;
 import java.io.Serializable;
 import javax.annotation.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import org.primefaces.event.FlowEvent;
-
+import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 /**
  *
  * @author IT353S843
  */
-@ManagedBean
-@SessionScoped 
-public class UpdateController implements Serializable{
-
-    // This corresponds to the response to be sent back to the client
-//    private String name;
+@Named(value = "updateController")
+@SessionScoped
+public class UpdateController implements Serializable
+{
+    private LoginController loginSession;
     private StudentBean studentBean;
     private String updateStatus;
     private boolean skip;
 
-    public UpdateController() {
-        studentBean = new StudentBean();
+    public UpdateController()
+    {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        loginSession = (LoginController)session.getAttribute("loginController");
+        studentBean = loginSession.getTargetUser().getTargetStudent();
+        System.out.println(studentBean.getUsername());
     }
-
-
 
     /**
      * @return the studentBean
      */
-    public StudentBean getStudentBean() {
+    public StudentBean getStudentBean()
+    {
         return studentBean;
     }
 
     /**
      * @param studentBean the studentBean to set
      */
-    public void setStudentBean(StudentBean studentBean) {
+    public void setStudentBean(StudentBean studentBean)
+    {
         this.studentBean = studentBean;
     }
-    
-    public String getUpdateStatus() {
+
+    public String getUpdateStatus()
+    {
         return updateStatus;
     }
 
-    public void setUpdateStatus(String updateStatus) {
+    public void setUpdateStatus(String updateStatus)
+    {
         this.updateStatus = updateStatus;
     }
-    
 
     public String onFlowProcess(FlowEvent event)
     {
@@ -68,15 +76,17 @@ public class UpdateController implements Serializable{
     /**
      * @return the skip
      */
-    public boolean isSkip() {
+    public boolean isSkip()
+    {
         return skip;
     }
 
     /**
      * @param skip the skip to set
      */
-    public void setSkip(boolean skip) {
+    public void setSkip(boolean skip)
+    {
         this.skip = skip;
     }
-    
+
 }
