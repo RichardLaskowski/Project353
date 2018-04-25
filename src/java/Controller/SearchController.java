@@ -3,11 +3,10 @@ package Controller;
 import DAO.SearchDAO;
 import DAO.SearchDAOImpl;
 import Model.UserBean;
-import java.io.Serializable;
 import java.util.List;
 import java.io.Serializable;
 import javax.annotation.ManagedBean;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Named;
 
 /**

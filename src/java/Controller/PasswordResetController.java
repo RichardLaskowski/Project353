@@ -7,8 +7,8 @@ package Controller;
 
 import Model.UserBean;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import javax.faces.bean.SessionScoped;
 
 /**
  *

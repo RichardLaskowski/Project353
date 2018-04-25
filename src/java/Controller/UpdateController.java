@@ -4,11 +4,10 @@
  */
 package Controller;
 
-import java.util.ArrayList;
-import javax.enterprise.context.SessionScoped;
 import Model.StudentBean;
 import java.io.Serializable;
 import javax.annotation.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import org.primefaces.event.FlowEvent;
 
 /**
