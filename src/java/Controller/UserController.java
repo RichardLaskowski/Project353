@@ -51,6 +51,20 @@ public class UserController implements Serializable
         return userInserted;
     }
     
+    public boolean updateUser(UserBean userModel)
+    {
+        System.out.println("USERCONTROLLER: updateUser() - username: " + userModel.getUsername());
+        boolean userUpdated = false;
+        UserDAO userDAO = new UserDAOImpl();
+        int rowCount = userDAO.updateUser(userModel);
+        
+        if(rowCount == 1)
+        {
+            userUpdated = true;
+        }
+        
+        return userUpdated;
+    }
     public UserBean selectUserByUsername()
     {
         UserDAO userDAO = new UserDAOImpl();

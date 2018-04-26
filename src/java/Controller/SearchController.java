@@ -3,7 +3,6 @@ package Controller;
 import DAO.SearchDAO;
 import DAO.SearchDAOImpl;
 import Model.UserBean;
-import java.io.Serializable;
 import java.util.List;
 import java.io.Serializable;
 import javax.annotation.ManagedBean;
