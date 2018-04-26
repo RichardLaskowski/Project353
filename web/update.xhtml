@@ -25,9 +25,9 @@
                             <p:panel header="Personal Details" style="width:auto; text-align: center">
                                 <p:messages />
                                 <h:panelGrid columns="2" columnClasses="label, value" class="span-full">
-<!--
+
                                     <p:outputLabel for="german" value="Date of Birth: " />
-                                    <p:calendar id="german" value="#{updateController.studentBean.dateOfBirth}" locale="de" navigator="true" pattern="yyyy-MM-dd" required="true"/>-->
+                                    <p:calendar id="german" value="#{updateController.studentBean.dateOfBirth}" locale="de" navigator="true" pattern="yyyy-MM-dd" required="true"/>
 
                                     <h:outputText value="Height(cm): " />
                                     <p:inputText value="#{updateController.studentBean.height}" label="height"/>
@@ -169,7 +169,7 @@
                                     </h:panelGrid>
                                 </h:panelGrid>
 
-                                <h:commandButton value="Submit" action="#{updateController.insertDetails(loginController.theModel.userId)}"/>
+                                <h:commandButton value="Submit" action="#{updateController.updateStudent()}"/>
                             </p:panel>
                         </p:tab>
                     </p:wizard>
