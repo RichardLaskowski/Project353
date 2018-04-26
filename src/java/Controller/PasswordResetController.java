@@ -77,8 +77,8 @@ public class PasswordResetController implements Serializable
         String to = email;
 
         // Sender's email ID needs to be mentioned
-        String from = "rllask1@ilstu.edu";
-        String password = "Banditcleo12";
+        String from = "ENTER USERNAME";
+        String password = "ENTER PASSWORD";
 
         // Assuming you are sending email from this host
         String host = "outlook.office365.com";

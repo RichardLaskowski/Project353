@@ -5,7 +5,6 @@ import DAO.SearchDAOImpl;
 import Model.UserBean;
 import java.util.List;
 import java.io.Serializable;
-import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
