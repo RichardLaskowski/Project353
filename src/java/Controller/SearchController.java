@@ -29,20 +29,20 @@ public class SearchController implements Serializable {
         if (results.size() == 1) {
             UserBean user = results.get(0);
             if (user.getFirstName().equalsIgnoreCase("University of Illinois Chicago")) {
-                retVal = "uic.xhtml";
+                retVal = "uic.xhtml??faces-redirect=true";
             } else if (user.getFirstName().equalsIgnoreCase("Illinois State University")) {
-                retVal = "isu.xhtml";
+                retVal = "isu.xhtml?faces-redirect=true";
             } else if (user.getFirstName().equalsIgnoreCase("University of Illinois Urbana Champaign")) {
-                retVal = "uiuc.xhtml";
+                retVal = "uiuc.xhtml?faces-redirect=true";
             } else if (user.getFirstName().equalsIgnoreCase("Harvard")) {
-                retVal = "harvard.xhtml";
+                retVal = "harvard.xhtml?faces-redirect=true";
             } else if (user.getFirstName().equalsIgnoreCase("Princeton")) {
-                retVal = "princeton.xhtml";
+                retVal = "princeton.xhtml?faces-redirect=true";
             } else {
-                retVal = "SearchResults.xhtml";
+                retVal = "SearchResults.xhtml?faces-redirect=true";
             }
         } else {
-            retVal = "SearchResults.xhtml";
+            retVal = "SearchResults.xhtml?faces-redirect=true";
         }
         return retVal;
     }

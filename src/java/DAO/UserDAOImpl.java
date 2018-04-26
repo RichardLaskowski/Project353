@@ -52,7 +52,7 @@ public class UserDAOImpl implements UserDAO
             {
                 connect2DB();
                 String insertString;
-                String insertStudentTbl;
+                //String insertStudentTbl;
                 Statement stmt = DBConn.createStatement();
                 insertString = "INSERT INTO itkstu.users "
                     + "(username, password, firstname, lastname, email, securityquestion, securityanswer, usertype) "
@@ -100,7 +100,7 @@ public class UserDAOImpl implements UserDAO
     {
         int rowCount = 0;
         resultList = selectUserByUsername(userModel.getUsername());
-        System.out.println(userModel.getUsername());
+        System.out.println("USERDAOIMPL: Update Username - " + userModel.getUsername());
         
         if(!resultList.isEmpty())
         {
@@ -148,7 +148,7 @@ public class UserDAOImpl implements UserDAO
         resultList = new ArrayList();
         String selectString = "SELECT * FROM itkstu.users "
                 + "WHERE username = '" + targetUsername + "'";
-        System.out.println("TARGET USERNAME: " + targetUsername);
+        System.out.println("USERDAOIMPL: Target Username - " + targetUsername);
         
         try
         {

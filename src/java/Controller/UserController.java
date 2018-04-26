@@ -9,7 +9,6 @@ import DAO.UserDAO;
 import DAO.UserDAOImpl;
 import Model.UserBean;
 import javax.inject.Named;
-import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.faces.bean.SessionScoped;
@@ -73,8 +72,8 @@ public class UserController implements Serializable
         if(resultList.size() == 1)
         {
             targetUser = (UserBean)resultList.get(0);
-            System.out.println("SELECT BY USERNAME SUCCESSFULL");
-            System.out.println("TARGET: " + targetUser.getUsername());
+            System.out.println("USERCONTROLLER: Select By Username Successfull");
+            System.out.println("USERCONTROLLER: Target Username - " + targetUser.getUsername());
         }
         return targetUser;   
     }

@@ -178,7 +178,7 @@ public class StudentDAOImpl implements StudentDAO
         resultList = new ArrayList();
         String selectString = "SELECT * FROM itkstu.student "
             + "WHERE username = '" + targetUsername + "'";
-
+        System.out.println("STUDENTDAOIMPL: Target Student Username - " + targetUsername);
         try
         {
             connect2DB();
