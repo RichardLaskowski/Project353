@@ -14,7 +14,6 @@ import javax.inject.Named;
  * @author ericz
  */
 @Named(value = "searchController")
-@ManagedBean
 @SessionScoped
 public class SearchController implements Serializable {
 
