@@ -4,22 +4,21 @@
  */
 package Controller;
 
-import javax.enterprise.context.SessionScoped;
+
 import Model.StudentBean;
 import java.io.Serializable;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
 import org.primefaces.event.FlowEvent;
 import javax.inject.Named;
-/**
- *
- * @author IT353S843
- */
+import javax.servlet.http.HttpSession;
+
+
 @Named(value = "updateController")
 @SessionScoped
 public class UpdateController implements Serializable
 {
-    private LoginController loginSession;
+    private StudentController studentController;
     private StudentBean studentBean;
     private String updateStatus;
     private boolean skip;
@@ -28,9 +27,21 @@ public class UpdateController implements Serializable
     {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
-        loginSession = (LoginController)session.getAttribute("loginController");
+        LoginController loginSession = (LoginController)session.getAttribute("loginController");
         studentBean = loginSession.getTargetUser().getTargetStudent();
+        studentController = new StudentController();
         System.out.println(studentBean.getUsername());
+    }
+    
+    public String updateStudent()
+    {
+        String resultString = "";
+        if(studentController.updateStudent(studentBean))
+        {
+            resultString = "profile.xhtml";
+        }       
+        
+        return resultString;
     }
 
     /**

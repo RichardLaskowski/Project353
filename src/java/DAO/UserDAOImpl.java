@@ -52,7 +52,7 @@ public class UserDAOImpl implements UserDAO
             {
                 connect2DB();
                 String insertString;
-                String insertStudentTbl;
+                //String insertStudentTbl;
                 Statement stmt = DBConn.createStatement();
                 insertString = "INSERT INTO itkstu.users "
                     + "(username, password, firstname, lastname, email, securityquestion, securityanswer, usertype) "
@@ -68,15 +68,15 @@ public class UserDAOImpl implements UserDAO
                 
                 rowCount = stmt.executeUpdate(insertString);
                 
-                Statement stmt1 = DBConn.createStatement();
-                if(rowCount == 1)
-                {
-                      rowCount = 0;
-                      insertStudentTbl = "INSERT INTO itkstu.student "
-                                + "(username)"
-                                + " VALUES  ('" + userModel.getUsername() + "')";
-                     rowCount = stmt1.executeUpdate(insertStudentTbl);   
-                }
+//                Statement stmt1 = DBConn.createStatement();
+//                if(rowCount == 1)
+//                {
+//                      rowCount = 0;
+//                      insertStudentTbl = "INSERT INTO itkstu.student "
+//                                + "(username)"
+//                                + " VALUES  ('" + userModel.getUsername() + "')";
+//                     rowCount = stmt1.executeUpdate(insertStudentTbl);   
+//                }
                 DBConn.close();
             }
             catch(SQLException e)
@@ -96,6 +96,50 @@ public class UserDAOImpl implements UserDAO
     }
     
     @Override
+    public int updateUser(UserBean userModel)
+    {
+        int rowCount = 0;
+        resultList = selectUserByUsername(userModel.getUsername());
+        System.out.println("USERDAOIMPL: Update Username - " + userModel.getUsername());
+        
+        if(!resultList.isEmpty())
+        {
+            try
+            {
+                connect2DB();
+                String insertString;
+                Statement stmt = DBConn.createStatement();
+                insertString = "UPDATE itkstu.users "
+                    + "SET username = '" + userModel.getUsername()
+                    + "', password = '" + userModel.getPassword()
+                    + "', firstname = '" + userModel.getFirstName()
+                    + "', lastname = '" + userModel.getLastName()
+                    + "', email = '" + userModel.getEmail()
+                    + "', securityquestion = '" + userModel.getSecurityQuestion()
+                    + "', securityanswer = '" + userModel.getSecurityAnswer()
+                    + "', usertype = '" + userModel.getUserType()
+                    + "' WHERE username = '" + userModel.getUsername() + "'";
+                
+                rowCount = stmt.executeUpdate(insertString);              
+                DBConn.close();
+            }
+            catch(SQLException e)
+            {
+                System.err.println(e.getMessage());
+            }
+        }
+        else
+        {
+            //ArrayList returned a user therefore User Already Exist
+            //Returning rowCount = 0 to the controlle
+            //Handle conflict there.
+            System.err.println("USERDAOIMPL: User Doesnt Exist");
+        }
+        
+        return rowCount;
+    }
+    
+    @Override
     public ArrayList selectUserByUsername(String targetUsername)
     {   
         StudentController studentController = new StudentController();
@@ -104,6 +148,7 @@ public class UserDAOImpl implements UserDAO
         resultList = new ArrayList();
         String selectString = "SELECT * FROM itkstu.users "
                 + "WHERE username = '" + targetUsername + "'";
+        System.out.println("USERDAOIMPL: Target Username - " + targetUsername);
         
         try
         {

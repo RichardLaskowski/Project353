@@ -55,7 +55,7 @@ header > .searchbar
 
 .searchInput
 {
-    width: 300px;
+    width: 65%;
 }
 
 feed
@@ -65,18 +65,18 @@ feed
 
 aside
 {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    /*box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);*/
     text-align: center;
     grid-area: sidebar;
-    background-color: lightgray;
+    background-color: #aaaaa;
 }
 
 aside2
 {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    /*box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);*/
     text-align: center;
     grid-area: sidebar2;
-    background-color: lightgray;
+    background-color: #aaaaa;
 }
 
 footer
@@ -134,7 +134,7 @@ footer
 
 .post-button
 {
-    grid-column: 1 / 2;
+    grid-column: span 2;
 }
 
 .post-button > input[type=submit]
@@ -207,8 +207,6 @@ input[type=submit]
     font-size: 15px;
 }
 
-
-
 input
 {
     width: 100%;
@@ -233,4 +231,3 @@ input
     color: #31708F;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
-

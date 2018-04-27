@@ -6,7 +6,6 @@
 package Filters;
 
 import Controller.LoginController;
-import com.sun.xml.rpc.processor.modeler.j2ee.xml.string;
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -80,7 +79,9 @@ public class LoginFilter implements Filter
             else if(url.indexOf("logOut.xhtml") >= 0)
             {
                 System.out.println("LOGINFILER: request GRANTED");
-                loginSession.invalidate();  
+                session.setIsLoggedIn(false);
+                loginSession.invalidate(); 
+                session = new LoginController();
                 resp.sendRedirect(req.getServletContext().getContextPath() + "/logIn.xhtml");
             }
             else
