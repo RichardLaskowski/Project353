@@ -7,6 +7,8 @@ package Controller;
 
 import DAO.PostDAO;
 import DAO.PostDAOImpl;
+import Model.ImageBean;
+import Model.PostBean;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -20,10 +22,12 @@ import java.util.ArrayList;
 @SessionScoped
 public class PostController implements Serializable
 {
+    private PostBean postModel;
+    
     public void createPost()
     {
         PostDAO postDAO = new PostDAOImpl();
-        postDAO.createPost();
+        postDAO.createPost(postModel);
     }
 
     public ArrayList selectAllPosts()
@@ -34,6 +38,23 @@ public class PostController implements Serializable
     
     public PostController()
     {
+        postModel = new PostBean();
+    }
+
+    /**
+     * @return the postModel
+     */
+    public PostBean getPostModel()
+    {
+        return postModel;
+    }
+
+    /**
+     * @param postModel the postModel to set
+     */
+    public void setPostModel(PostBean postModel)
+    {
+        this.postModel = postModel;
     }
     
 }

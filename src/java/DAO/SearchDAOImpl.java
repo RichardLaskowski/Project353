@@ -41,11 +41,7 @@ public class SearchDAOImpl implements SearchDAO {
             
             String query="SELECT * FROM USERS WHERE "
                     + "FIRSTNAME= '"+name
-                    +"'"+" OR LASTNAME= '"+name+"'"
-                    +" OR USERNAME= '"+name+"'";
-//            String query2= "SELECT * FROM Project353.RecruiterDetail WHERE "
-//                    + "FIRSTNAME= '"+name
-//                    +"'"+" OR LASTNAME= '"+name+"'";
+                    +"'"+" OR LASTNAME= '"+name+"'";
             ResultSet rs= stmt.executeQuery(query);
            
             while(rs.next()){
