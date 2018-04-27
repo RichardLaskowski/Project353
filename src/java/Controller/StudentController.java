@@ -61,6 +61,8 @@ public class StudentController implements Serializable
         if(resultList.size() == 1)
         {
             targetStudent = (StudentBean)resultList.get(0);
+            System.out.println("STUDENTCONTROLLER: Select By Username Successfull");
+            System.out.println("STUDENTCONTROLLER: Target Username - " + targetStudent.getUsername());
         }
         
         return resultList;

@@ -65,13 +65,13 @@ public class LoginController {
                 else
                 {
                     setLoginStatus("Invalid Credentials");
-                    returnString = "logIn.xhtml";
+                    returnString = "logIn.xhtml?faces-redirect=true";
                 }     
             }
             else
             {
                 setLoginStatus("Username Does Not Exist");
-                return("logIn.xhtml");
+                return("logIn.xhtml?faces-redirect=true");
             }
         }
         else

@@ -19,6 +19,10 @@ public class PostBean
     private String story;
     private String firstName;
 
+    public PostBean()
+    {
+        
+    }
     public PostBean(File pic)
     {
         this.setPicture(pic);

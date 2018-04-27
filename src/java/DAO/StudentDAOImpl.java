@@ -15,6 +15,7 @@ public class StudentDAOImpl implements StudentDAO
     private int weight;
     private String street;
     private String city;
+    private String address;
     private String country;
     private String zipcode;
     private String phone;
@@ -60,9 +61,10 @@ public class StudentDAOImpl implements StudentDAO
         System.out.println(studentModel.getPsat());
         System.out.println(studentModel.getEssay());
         System.out.println(studentModel.getHobbies());
+        System.out.println(studentModel.getCertification());
         System.out.println(studentModel.getUsername());
         
-        if(!resultList.isEmpty())
+        if(resultList.isEmpty())
         {
             try 
             {
@@ -126,6 +128,7 @@ public class StudentDAOImpl implements StudentDAO
         System.out.println(studentModel.getPsat());
         System.out.println(studentModel.getEssay());
         System.out.println(studentModel.getHobbies());
+        System.out.println(studentModel.getCertification());
         System.out.println(studentModel.getUsername());
         
         if(!resultList.isEmpty())
@@ -135,26 +138,23 @@ public class StudentDAOImpl implements StudentDAO
                 connect2DB();
                 String insertString;
                 Statement stmt = DBConn.createStatement();
-                insertString = "INSERT INTO itkstu.student "
-                    + "(dateOfBirth, height, weight, address, country, zipcode, phone, school, endYear, "
-                    + "sat, act, psat, certification, essay, hobbies, username) "
-                    + "VALUES ('" + studentModel.getDateOfBirth()
-                    + "', '" + studentModel.getHeight()
-                    + "', '" + studentModel.getWeight()
-                    + "', '" + studentModel.getStreet() + " " + studentModel.getCity()
-                    + "', '" + studentModel.getCountry()
-                    + "', '" + studentModel.getZipcode()
-                    + "', '" + studentModel.getPhone()
-                    + "', '" + studentModel.getSchool()
-                    + "', '" + studentModel.getEndYear()
-                    + "', '" + studentModel.getSat()
-                    + "', '" + studentModel.getAct()
-                    + "', '" + studentModel.getPsat()
-                    + "', '" + studentModel.getCertification()
-                    + "', '" + studentModel.getEssay()
-                    + "', '" + studentModel.getHobbies()
-                    + "', '" + studentModel.getUsername()
-                    + "')";      
+                insertString = "UPDATE itkstu.student "
+                        + "SET dateOfBirth = '" + studentModel.getDateOfBirth()
+                        + "', height = '" + studentModel.getHeight()
+                        + "', weight = '" + studentModel.getWeight()
+                        + "', address = '" + studentModel.getStreet() + " " + studentModel.getCity()
+                        + "', country = '" + studentModel.getCountry()
+                        + "', zipcode = '" + studentModel.getZipcode()
+                        + "', phone =  '" + studentModel.getPhone()
+                        + "', school = '" + studentModel.getSchool()
+                        + "', endYear = '" + studentModel.getEndYear()
+                        + "', sat = '" + studentModel.getSat()
+                        + "', act = '" + studentModel.getAct()
+                        + "', psat = '" + studentModel.getPsat()
+                        + "', essay = '" + studentModel.getEssay()
+                        + "', hobbies = '" + studentModel.getHobbies()
+                        + "', certification = '" + studentModel.getCertification()
+                        + "' WHERE username = '" + studentModel.getUsername() + "'";
              
                 rowCount = stmt.executeUpdate(insertString);
                 
@@ -178,7 +178,7 @@ public class StudentDAOImpl implements StudentDAO
         resultList = new ArrayList();
         String selectString = "SELECT * FROM itkstu.student "
             + "WHERE username = '" + targetUsername + "'";
-
+        System.out.println("STUDENTDAOIMPL: Target Student Username - " + targetUsername);
         try
         {
             connect2DB();
@@ -191,8 +191,7 @@ public class StudentDAOImpl implements StudentDAO
                 dateOfBirth = rs.getString("dateOfBirth");
                 height = rs.getInt("height");
                 weight = rs.getInt("weight");
-                street = rs.getString("address");
-                city = rs.getString("address");
+                address = rs.getString("address");
                 country = rs.getString("country");
                 zipcode = rs.getString("zipcode");
                 phone = rs.getString("phone");
@@ -205,6 +204,9 @@ public class StudentDAOImpl implements StudentDAO
                 essay = rs.getString("essay");
                 hobbies = rs.getString("hobbies");
                 username = rs.getString("username");
+                
+                street = address.substring(0,address.indexOf(" "));
+                city = address.substring(address.indexOf(" ") + 1);
 
                 targetStudent = new StudentBean(profileId, dateOfBirth, height, weight, street, city, country, zipcode,
                 phone, school, endYear, sat, act, psat, certification, essay, hobbies, username);
