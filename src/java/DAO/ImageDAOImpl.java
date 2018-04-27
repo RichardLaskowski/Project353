@@ -51,36 +51,15 @@ public class ImageDAOImpl implements ImageDAO
     @Override
     public long createImage(UploadedFile file, String username) {
         int rowCount = 0;
-<<<<<<< HEAD
-        int imgID = -1;
-        try
-        {
-            connect2DB();
-            String insert = "INSERT INTO IMAGES VALUES (default, ?, " + username + ")";
-=======
         long imgID = -1;
         try {
             connect2DB();
             String type = file.getFileName().substring(file.getFileName().indexOf("."));
             String insert = "INSERT INTO IMAGES VALUES (default, ?, '" + username + "')";
->>>>>>> master
             System.out.println(insert);
             PreparedStatement stmt = DBConn.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             stmt.setBinaryStream(1, file.getInputstream());
             rowCount = stmt.executeUpdate();
-<<<<<<< HEAD
-            
-            if (rowCount == 1)
-            {
-                ResultSet rs = stmt.getGeneratedKeys();
-                imgID = rs.getInt("IMAGEID");
-                System.out.println(imgID);
-            }
-            DBConn.close();
-        } 
-        catch (Exception e)
-        {
-=======
             if (rowCount == 1) {
                 ResultSet rs = stmt.getGeneratedKeys();
                 if (rs.next()) {
@@ -96,7 +75,6 @@ public class ImageDAOImpl implements ImageDAO
 
             DBConn.close();
         } catch (Exception e) {
->>>>>>> master
             System.err.println(e.getMessage());
         }
         return imgID;
@@ -113,18 +91,6 @@ public class ImageDAOImpl implements ImageDAO
             Statement stmt = DBConn.createStatement();
             ResultSet rs = stmt.executeQuery(selectString);
 
-<<<<<<< HEAD
-            while (rs.next())
-            {
-                imageId = rs.getInt("imageId");
-                source = rs.getString("source");
-                targetImage = new ImageBean(imageId, source);
-                resultList.add(targetImage);
-            }
-            DBConn.close();
-        } catch (Exception e)
-        {
-=======
             while (rs.next()) {
                 imageId = rs.getInt("imageId");
                 source = rs.getString("source");
@@ -134,7 +100,6 @@ public class ImageDAOImpl implements ImageDAO
             }
             DBConn.close();
         } catch (Exception e) {
->>>>>>> master
             System.err.println("ERROR: SELECT IMAGE BY IMAGEID FAILED.");
             System.err.println("TARGET: " + targetImageId);
             e.printStackTrace();
