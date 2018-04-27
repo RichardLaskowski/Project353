@@ -7,7 +7,9 @@ package DAO;
 
 import Model.PostBean;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -22,10 +24,10 @@ public class PostDAOImpl implements PostDAO
     private String myDB = "jdbc:derby://localhost:1527/Project353";
     private String driver = "org.apache.derby.jdbc.ClientDriver";
     private PostBean targetPost = new PostBean();
-    private File picture;
-    private File video;
-    private String story;
-    private String firstName;
+    private int imageId;
+    private int videoId;
+    private String textContent;
+    private int postId;
      
     public void connect2DB()
     {
@@ -34,18 +36,39 @@ public class PostDAOImpl implements PostDAO
     }
     
     @Override 
-    public int createPost()
+    public int createPost(PostBean postModel)
     {
+        int rowCount = 0;
         
+        try
+        {
+            connect2DB();
+            String insert = "INSERT INTO itkstu.posts (username, imageId, videoId, textcontent) "
+                    + "VALUES ('" + postModel.getUsername()
+                    + "', " + postModel.getImageId()
+                    + ", " + postModel.getVideoId()
+                    + ", ?)";
+            System.out.println(insert);
+            PreparedStatement pstmt = DBConn.prepareStatement(insert);
+            pstmt.setString(1,postModel.getTextContent());
+            rowCount = pstmt.executeUpdate();
+            DBConn.close();
+        }
+        catch(SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        return rowCount;
     }
     
     @Override
     public ArrayList selectAllPosts()
     {
         resultList = new ArrayList();
-        String story = "";
-        String selectString = "SELECT textcontent FROM itkstu.posts";
-      try
+        String selectString = "SELECT textcontent FROM itkstu.posts"
+                + " ORDER BY postId DESC";
+        
+        try
         {
             connect2DB();
             Statement stmt = DBConn.createStatement();
@@ -53,8 +76,8 @@ public class PostDAOImpl implements PostDAO
             
             while(rs.next())
             {
-                story = rs.getString("textcontent");
-                targetPost = new PostBean(story);
+                textContent = rs.getString("textcontent");
+                targetPost = new PostBean(textContent);
                 resultList.add(targetPost);
             }
             DBConn.close();

@@ -10,6 +10,7 @@ import org.primefaces.model.UploadedFile;
 
 public class ImageDAOImpl implements ImageDAO
 {
+
     private ArrayList resultList;
     private Connection DBConn = null;
     private String myDB = "jdbc:derby://localhost:1527/Project353";
@@ -21,36 +22,32 @@ public class ImageDAOImpl implements ImageDAO
     public void connect2DB()
     {
         DBHelper.loadDriver(driver);
-        DBConn = DBHelper.connect2DB(myDB, "itkstu","student");
+        DBConn = DBHelper.connect2DB(myDB, "itkstu", "student");
     }
 
     @Override
     public int createImage(UploadedFile file, String username)
     {
         int rowCount = 0;
-        int imgID= -1;
-        try 
+        int imgID = -1;
+        try
         {
             connect2DB();
-            String insert= "INSERT INTO IMAGES VALUES (default, ?, "+username+")";
+            String insert = "INSERT INTO IMAGES VALUES (default, ?, " + username + ")";
             System.out.println(insert);
             PreparedStatement stmt = DBConn.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             stmt.setBinaryStream(1, file.getInputstream());
-            rowCount= stmt.executeUpdate();
-            if(rowCount==1){
-                ResultSet rs= stmt.getGeneratedKeys();
-                imgID= rs.getInt("IMAGEID");
+            rowCount = stmt.executeUpdate();
+            
+            if (rowCount == 1)
+            {
+                ResultSet rs = stmt.getGeneratedKeys();
+                imgID = rs.getInt("IMAGEID");
                 System.out.println(imgID);
             }
-//            insertString = "INSERT INTO itkstu.images "
-//                + "(imageId, source) "
-//                + "VALUES ('" + imageModel.getImageId()
-//                + "', '" + imageModel.getSource()
-//                + "')";
-            
             DBConn.close();
         } 
-        catch (Exception e) 
+        catch (Exception e)
         {
             System.err.println(e.getMessage());
         }
@@ -62,7 +59,7 @@ public class ImageDAOImpl implements ImageDAO
     {
         resultList = new ArrayList();
         String selectString = "SELECT * FROM itkstu.images "
-            + "WHERE imageId = '" + targetImageId + "'";
+                + "WHERE imageId = '" + targetImageId + "'";
 
         try
         {
@@ -70,18 +67,15 @@ public class ImageDAOImpl implements ImageDAO
             Statement stmt = DBConn.createStatement();
             ResultSet rs = stmt.executeQuery(selectString);
 
-            while(rs.next())
+            while (rs.next())
             {
                 imageId = rs.getInt("imageId");
                 source = rs.getString("source");
-
                 targetImage = new ImageBean(imageId, source);
                 resultList.add(targetImage);
             }
             DBConn.close();
-        }
-        
-        catch(Exception e)
+        } catch (Exception e)
         {
             System.err.println("ERROR: SELECT IMAGE BY IMAGEID FAILED.");
             System.err.println("TARGET: " + targetImageId);

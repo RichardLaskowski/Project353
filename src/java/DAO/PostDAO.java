@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Model.PostBean;
 import java.util.ArrayList;
 
 /**
@@ -13,6 +14,6 @@ import java.util.ArrayList;
  */
 public interface PostDAO
 {
-    public int createPost();
+    public int createPost(PostBean PostModel);
     public ArrayList selectAllPosts();
 }
