@@ -4,13 +4,14 @@
  */
 package Controller;
 
-import javax.enterprise.context.SessionScoped;
+
 import Model.StudentBean;
 import java.io.Serializable;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
 import org.primefaces.event.FlowEvent;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 
 @Named(value = "updateController")

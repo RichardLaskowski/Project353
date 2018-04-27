@@ -7,12 +7,12 @@ package Controller;
 
 import Model.UserBean;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.Properties;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
+import javax.enterprise.context.SessionScoped;
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -77,8 +77,8 @@ public class PasswordResetController implements Serializable
         String to = email;
 
         // Sender's email ID needs to be mentioned
-        String from = "ENTER USERNAME";
-        String password = "ENTER PASSWORD";
+        String from = "EMAIL ADDRESS";
+        String password = "PASSWORD";
 
         // Assuming you are sending email from this host
         String host = "outlook.office365.com";
