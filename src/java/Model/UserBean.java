@@ -17,6 +17,7 @@ public class UserBean
     private String userType;
     private StudentBean targetStudent;
     private RecruiterBean targetRecruiter;
+    private int profileImage;
 
     public UserBean()
     {
