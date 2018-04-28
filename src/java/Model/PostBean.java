@@ -13,76 +13,117 @@ import java.io.File;
  */
 public class PostBean
 {
+    private int postId;
+    private int imageId;
+    private int videoId;
+    private String textContent;
+    private String username;
 
-    private File picture;
-    private File video;
-    private String story;
-    private String firstName;
-
+    public PostBean(int postId, int imageId, int videoId, String textContent, String username)
+    {
+        this.postId = postId;
+        this.imageId = imageId;
+        this.videoId = videoId;
+        this.textContent = textContent;
+        this.username = username;
+    }
+    
+     public PostBean(int imageId, int videoId, String textContent, String username)
+    {
+        this.imageId = imageId;
+        this.videoId = videoId;
+        this.textContent = textContent;
+        this.username = username;
+    }
+     
+    public PostBean(String textContent)
+    {
+        this.textContent = textContent;
+    }
+    
     public PostBean()
     {
         
     }
-    public PostBean(File pic)
-    {
-        this.setPicture(pic);
-    }
 
-    public PostBean(File vid, String st)
+    /**
+     * @return the pictureId
+     */
+    public int getImageId()
     {
-        this.setVideo(vid);
-        this.setStory(st);
-    }
-
-    public PostBean(String st)
-    {
-        this.setStory(st);
-    }
-
-    public File getPicture()
-    {
-        return picture;
-    }
-
-    public void setPicture(File picture)
-    {
-        this.picture = picture;
-    }
-
-    public File getVideo()
-    {
-        return video;
-    }
-
-    public void setVideo(File video)
-    {
-        this.video = video;
-    }
-
-    public String getStory()
-    {
-        return story;
-    }
-
-    public void setStory(String story)
-    {
-        this.story = story;
+        return imageId;
     }
 
     /**
-     * @return the firstName
+     * @param pictureId the pictureId to set
      */
-    public String getFirstName()
+    public void setImageId(int imageId)
     {
-        return firstName;
+        this.imageId = imageId;
     }
 
     /**
-     * @param firstName the firstName to set
+     * @return the videoId
      */
-    public void setFirstName(String firstName)
+    public int getVideoId()
     {
-        this.firstName = firstName;
+        return videoId;
     }
 
+    /**
+     * @param videoId the videoId to set
+     */
+    public void setVideoId(int videoId)
+    {
+        this.videoId = videoId;
+    }
+
+    /**
+     * @return the textContent
+     */
+    public String getTextContent()
+    {
+        return textContent;
+    }
+
+    /**
+     * @param textContent the textContent to set
+     */
+    public void setTextContent(String textContent)
+    {
+        this.textContent = textContent;
+    }
+
+    /**
+     * @return the username
+     */
+    public String getUsername()
+    {
+        return username;
+    }
+
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(String username)
+    {
+        this.username = username;
+    }
+
+    /**
+     * @return the postId
+     */
+    public int getPostId()
+    {
+        return postId;
+    }
+
+    /**
+     * @param postId the postId to set
+     */
+    public void setPostId(int postId)
+    {
+        this.postId = postId;
+    }
+    
 }

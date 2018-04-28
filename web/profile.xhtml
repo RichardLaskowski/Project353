@@ -26,10 +26,11 @@
                         <h1>Status Update</h1>
                     </div>
                     <div class="content"> 
-                        <h:inputText id="postContents" a:placeholder="Status: What are you thinking?"></h:inputText>
+                        <h:graphicImage/>
+                        <h:inputText id="postContents" value="#{profileController.postController.postModel.textContent}" a:placeholder="Status: What are you thinking?"></h:inputText>
                     </div>
                     <div class="post-button"> 
-                        <h:commandButton value="Post"></h:commandButton>
+                        <h:commandButton value="Post" action="#{profileController.createPost()}"></h:commandButton>
                     </div> 
                     <div class="post-button"> 
                         <h:commandButton value="Upload"></h:commandButton>
@@ -55,7 +56,7 @@
 
                             <div class="content">
                                 <h:graphicImage/>
-                                <h:outputText value="#{post.story}"/>
+                                <h:outputText value="#{post.textContent}"/>
                             </div>
                             <div class="like-button">
                                 <h:commandButton value="Like"></h:commandButton>

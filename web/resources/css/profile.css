@@ -101,12 +101,13 @@ footer
 
 .status
 {
-    background-color: lightgray;
+    background-color: darkgray;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     display: grid;
     padding: 5px;
     grid-gap: 10px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;   
+    grid-template-columns: 1fr 1fr 1fr 1fr;  
+    grid-template-rows: auto auto auto;
 }
 
 .title
@@ -147,23 +148,23 @@ footer
 
 .post-button > input[type=submit]:hover
 {
-    background-color: darkgray;
+    background-color: #666666;
 }
 
 .like-button > input[type=submit]:hover
 {
-    background-color: darkgray;
+    background-color: #666666;
 }
 .comment-button > input[type=submit]:hover
 {
-    background-color: darkgray;
+    background-color: #666666;
 }
 /*------------------------------------------------------------*/
 
 .post
 {
     padding: 5px;
-    background-color: lightgray;
+    background-color: darkgray;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     display: grid;
     grid-gap: 10px;
@@ -189,7 +190,9 @@ footer
 
 .post > .content
 {
-    background-color: #666666;
+    background-color: lightgray;
+    font-size: 20px;
+    padding: 5px;
 }
 
 .post > .timestamp

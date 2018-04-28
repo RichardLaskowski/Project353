@@ -11,7 +11,8 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 
-public class ImageDAOImpl implements ImageDAO {
+public class ImageDAOImpl implements ImageDAO
+{
 
     private ArrayList resultList;
     private Connection DBConn = null;
