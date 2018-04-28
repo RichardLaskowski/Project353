@@ -3,15 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ericz/OneDrive/Documents/NetBeansProjects/Project353/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/ericz/OneDrive/Documents/NetBeansProjects/Project353/src/java/Controller/UpdateController.java</file>
-            <file>file:/C:/Users/ericz/OneDrive/Documents/NetBeansProjects/Project353/web/SearchResults.xhtml</file>
-            <file>file:/C:/Users/ericz/OneDrive/Documents/NetBeansProjects/Project353/web/update.xhtml</file>
-            <file>file:/C:/Users/ericz/OneDrive/Documents/NetBeansProjects/Project353/src/java/Controller/SearchController.java</file>
-            <file>file:/C:/Users/ericz/OneDrive/Documents/NetBeansProjects/Project353/src/java/DAO/SearchDAOImpl.java</file>
-            <file>file:/C:/Users/ericz/OneDrive/Documents/NetBeansProjects/Project353/web/upload.xhtml</file>
-            <file>file:/C:/Users/ericz/OneDrive/Documents/NetBeansProjects/Project353/src/java/DAO/ImageDAOImpl.java</file>
-            <file>file:/C:/Users/ericz/OneDrive/Documents/NetBeansProjects/Project353/src/java/Controller/MediaController.java</file>
+            <file>file:/C:/Users/ericz/OneDrive/Documents/NetBeansProjects/Project353/Project353_DBScript.sql</file>
         </group>
     </open-files>
 </project-private>
