@@ -36,6 +36,12 @@ public class PostController implements Serializable
         return postDAO.selectAllPosts();
     }
     
+    public ArrayList selectPostsByUsername(String targetUsername)
+    {
+        PostDAO postDAO = new PostDAOImpl();
+        return postDAO.selectPostsByUsername(targetUsername);
+    }
+    
     public PostController()
     {
         postModel = new PostBean();

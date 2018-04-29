@@ -9,6 +9,7 @@ import Model.UserBean;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.ArrayList;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
@@ -42,6 +43,11 @@ public class ProfileController implements Serializable
         postController.getPostModel().setVideoId(videoId);
         postController.createPost();
         postController.selectAllPosts();
+    }
+    
+    public ArrayList getPosts()
+    {
+        return postController.selectPostsByUsername(userModel.getUsername());
     }
 
     /**
