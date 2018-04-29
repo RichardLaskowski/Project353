@@ -26,71 +26,79 @@ import org.primefaces.model.UploadedFile;
  *
  * @author ericz
  */
- @ManagedBean
- @Named(value="mediaController")
- @ApplicationScoped
-public class MediaController implements Serializable {
-   
+@ManagedBean
+@Named(value = "mediaController")
+@ApplicationScoped
+public class MediaController implements Serializable
+{
+
     private UploadedFile file;
     private UserBean currentUser;
     private UserBean targetUser;
- 
-    public UploadedFile getFile() {
+
+    public UploadedFile getFile()
+    {
         return file;
     }
- 
-    public void setFile(UploadedFile file) {
+
+    public void setFile(UploadedFile file)
+    {
         this.file = file;
     }
-     
-    public void upload() {
-        if(file != null) {
-            ImageDAO dao= new ImageDAOImpl();
+
+    public void upload()
+    {
+        if (file != null)
+        {
+            ImageDAO dao = new ImageDAOImpl();
             dao.createImage(file, "ejzumba");
             FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
     }
-    
-    public String profilePage(UserBean targetUser){
-        
-        
+
+    public String profilePage(UserBean targetUser)
+    {
+
         return "profile_1.xhtml";
     }
-    
-    public StreamedContent getImage() {
+
+    public StreamedContent getImage()
+    {
         FacesContext context = FacesContext.getCurrentInstance();
 
-        if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
+        if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE)
+        {
             // So, we're rendering the HTML. Return a stub StreamedContent so that it will generate right URL.
             return new DefaultStreamedContent();
-        }
-        else {
+        } else
+        {
             // So, browser is requesting the image. Return a real StreamedContent with the image bytes.
-           // String studentId = context.getExternalContext().getRequestParameterMap().get("studentId");
-           ImageDAO dao= new ImageDAOImpl();
-           
+            // String studentId = context.getExternalContext().getRequestParameterMap().get("studentId");
+            ImageDAO dao = new ImageDAOImpl();
+
             return dao.getImage();
         }
     }
-    
 
-    public UserBean getCurrentUser() {
+    public UserBean getCurrentUser()
+    {
         return currentUser;
     }
 
-    public void setCurrentUser(UserBean currentUser) {
+    public void setCurrentUser(UserBean currentUser)
+    {
         this.currentUser = currentUser;
     }
 
-    public UserBean getTargetUser() {
+    public UserBean getTargetUser()
+    {
         return targetUser;
     }
 
-    public void setTargetUser(UserBean targetUser) {
+    public void setTargetUser(UserBean targetUser)
+    {
         this.targetUser = targetUser;
     }
-    
-    
-}
 
+}
