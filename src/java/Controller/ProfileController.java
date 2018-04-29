@@ -18,25 +18,23 @@ import javax.servlet.http.HttpSession;
  */
 @Named(value = "profileController")
 @SessionScoped
-public class ProfileController implements Serializable
-{
+public class ProfileController implements Serializable {
+
     private UserBean userModel;
     private PostController postController;
     private int imageId = 1;
     private int videoId = 1;
-    
-    public ProfileController()
-    {
+
+    public ProfileController() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
-        LoginController loginSession = (LoginController)session.getAttribute("loginController");
+        LoginController loginSession = (LoginController) session.getAttribute("loginController");
         userModel = loginSession.getTargetUser();
         postController = new PostController();
-       
+
     }
-    
-    public void createPost()
-    {
+
+    public void createPost() {
         postController.getPostModel().setUsername(userModel.getUsername());
         postController.getPostModel().setImageId(imageId);
         postController.getPostModel().setVideoId(videoId);
@@ -47,65 +45,114 @@ public class ProfileController implements Serializable
     /**
      * @return the userModel
      */
-    public UserBean getUserModel()
-    {
+    public UserBean getUserModel() {
         return userModel;
     }
 
     /**
      * @param userModel the userModel to set
      */
-    public void setUserModel(UserBean userModel)
-    {
+    public void setUserModel(UserBean userModel) {
         this.userModel = userModel;
     }
 
     /**
      * @return the postController
      */
-    public PostController getPostController()
-    {
+    public PostController getPostController() {
         return postController;
     }
 
     /**
      * @param postController the postController to set
      */
-    public void setPostController(PostController postController)
-    {
+    public void setPostController(PostController postController) {
         this.postController = postController;
     }
 
     /**
      * @return the imageId
      */
-    public int getImageId()
-    {
+    public int getImageId() {
         return imageId;
     }
 
     /**
      * @param imageId the imageId to set
      */
-    public void setImageId(int imageId)
-    {
+    public void setImageId(int imageId) {
         this.imageId = imageId;
     }
 
     /**
      * @return the videoId
      */
-    public int getVideoId()
-    {
+    public int getVideoId() {
         return videoId;
     }
 
     /**
      * @param videoId the videoId to set
      */
-    public void setVideoId(int videoId)
-    {
+    public void setVideoId(int videoId) {
         this.videoId = videoId;
     }
-    
+
+    public int getHeight() {
+        return userModel.getTargetStudent().getHeight();
+
+    }
+
+    public int getWeight() {
+
+        return userModel.getTargetStudent().getWeight();
+    }
+
+    public String getCountry() {
+
+        return userModel.getTargetStudent().getCountry();
+    }
+
+    public String getDOB() {
+
+        return userModel.getTargetStudent().getDateOfBirth();
+    }
+
+    public String getSchool() {
+        return userModel.getTargetStudent().getSchool();
+
+    }
+
+    public String getUserName() {
+
+        return userModel.getTargetStudent().getUsername();
+
+    }
+
+    public int getEndYear() {
+
+        return userModel.getTargetStudent().getEndYear();
+    }
+    public int getSAT(){
+        
+        return userModel.getTargetStudent().getSat();
+    }
+    public int getACT(){
+        
+        return userModel.getTargetStudent().getAct();
+        
+    }
+    public int getPSAT(){
+        
+        return userModel.getTargetStudent().getPsat();
+    }
+    public String getCertifications(){
+        
+        return userModel.getTargetStudent().getCertification();
+        
+    }
+    public String getHobbies(){
+        return userModel.getTargetStudent().getHobbies();
+        
+    }
 }

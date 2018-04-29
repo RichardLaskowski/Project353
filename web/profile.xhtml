@@ -124,33 +124,50 @@
                 </h:form>
             </aside>
             <aside2>
-                <h3>User's Detailed Info</h3>
+                <h3> 
+                <h:outputText value="#{profileController.userName}"></h:outputText>
+                's Detailed Info</h3>
                 <br/>
                 Date of Birth:
-                <br/>
+                <h:outputText value="#{profileController.DOB}"></h:outputText>
+                <br/>    
                 Height:
+                <h:outputText value="#{profileController.height}"></h:outputText>
                 <br/>
                 Weight:
+                <h:outputText value="#{profileController.weight}"></h:outputText>
+
                 <br/>
                 Country:
+                <h:outputText value="#{profileController.country}"></h:outputText>
+
                 <br/>
                 Current School:
+                <h:outputText value="#{profileController.school}"></h:outputText>
+
                 <br/>
                 Graduation Year:
+                <h:outputText value="#{profileController.endYear}"></h:outputText>
+
                 <br/>
                 SAT:
+                <h:outputText value="#{profileController.SAT}"></h:outputText>
+
                 <br/>
                 ACT:
+                <h:outputText value="#{profileController.ACT}"></h:outputText>
+
                 <br/>
                 PSAT:
+                <h:outputText value="#{profileController.PSAT}"></h:outputText>
+
                 <br/>
                 Certifications:
+                <h:outputText value="#{profileController.certifications}"></h:outputText>
                 <br/>
                 Hobbies:
+                <h:outputText value="#{profileController.hobbies}"></h:outputText>
                 <br/>
-                Majors:
-                <br/>
-                Contact info?
                 <br/>
                 <h:commandButton class="sidebarbutton" value="Request More Details"> </h:commandButton>   
             </aside2>
