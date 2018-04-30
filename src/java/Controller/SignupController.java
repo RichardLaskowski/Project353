@@ -4,6 +4,8 @@ import Model.RecruiterBean;
 import Model.StudentBean;
 import Model.UserBean;
 import java.io.Serializable;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -11,6 +13,7 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class SignupController implements Serializable
 {
+
     private UserController userController;
     private StudentController studentController;
     private RecruiterController recruiterController;
@@ -21,79 +24,113 @@ public class SignupController implements Serializable
     boolean studentInserted = false;
     boolean recruiterInserted = false;
     private String signupStatus = "";
-    
+    private final String SALT = "Project353";
+
     public String signUp()
-    {   
+    {
         String returnString = "signUp.xhtml";
-        
-        switch(userModel.getUserType().toLowerCase())
+
+        switch (userModel.getUserType().toLowerCase())
         {
-            case "student": 
-                                studentModel.setUsername(userModel.getUsername());
-                                studentInserted = studentController.createStudent(studentModel);
-                                System.out.println("SINGUPCONTROLLER: " + studentInserted);
-                                if(studentInserted)
-                                {
-                                    returnString = "logIn.xhtml";
-                                }
-                                break;
-                 
-            case "recruiter": 
-                                recruiterModel.setUsername(userModel.getUsername());
-                                recruiterInserted = recruiterController.createRecruiter(recruiterModel);
-                                System.out.println("SINGUPCONTROLLER: " + recruiterInserted);
-                                if(recruiterInserted)
-                                {
-                                    returnString = "logIn.xhtml";
-                                }
-                                break;                        
+            case "student":
+                studentModel.setUsername(userModel.getUsername());
+                studentInserted = studentController.createStudent(studentModel);
+                System.out.println("SINGUPCONTROLLER: " + studentInserted);
+                if (studentInserted)
+                {
+                    returnString = "logIn.xhtml";
+                }
+                break;
+
+            case "recruiter":
+                recruiterModel.setUsername(userModel.getUsername());
+                recruiterInserted = recruiterController.createRecruiter(recruiterModel);
+                System.out.println("SINGUPCONTROLLER: " + recruiterInserted);
+                if (recruiterInserted)
+                {
+                    returnString = "logIn.xhtml";
+                }
+                break;
         }
-        
+
         return returnString;
     }
-    
+
     public String createUser()
     {
-       String returnString = "";
-       
-       System.out.println("SIGNUPCONTROLLER: createUser()");
-       System.out.println(userModel.getUsername());
-       System.out.println(userModel.getPassword());
-       System.out.println(userModel.getFirstName());
-       System.out.println(userModel.getLastName());
-       System.out.println(userModel.getEmail());
-       System.out.println(userModel.getSecurityAnswer());
-       System.out.println(userModel.getSecurityQuestion());
-       System.out.println(userModel.getUserType());
-       
-       userInserted = userController.createUser(userModel);
-     
-       System.out.println("SIGNUPCONTROLLER: " + userInserted);
-       
-       switch(userModel.getUserType().toLowerCase())
-       {       
-           case "student":
-                                if(userInserted)
-                                {
-                                   return "details.xhtml";                                   
-                                }
-                                else {
-                                    signupStatus = "UserId already exist!";                               
-                                }
-                                break;
-           case "recruiter":
-                                if(userInserted)
-                                {
-                                    returnString = "recruiterDetails.xhtml";
-                                }
-                                else {
-                                    signupStatus = "UserId already exist!";                               
-                                }
-                                break;
-       }
-       return returnString;
+        String returnString = "";
+        String saltedPassword = SALT + userModel.getPassword();
+        String hashedPassword = generateHash(saltedPassword);
+        
+        System.out.println("SIGNUPCONTROLLER: createUser()");
+        System.out.println(userModel.getUsername());
+        System.out.println(userModel.getPassword());
+        System.out.println(userModel.getFirstName());
+        System.out.println(userModel.getLastName());
+        System.out.println(userModel.getEmail());
+        System.out.println(userModel.getSecurityAnswer());
+        System.out.println(userModel.getSecurityQuestion());
+        System.out.println(userModel.getUserType());
+
+        userModel.setPassword(hashedPassword);
+        userInserted = userController.createUser(userModel);
+
+        System.out.println("SIGNUPCONTROLLER: " + userInserted);
+
+        switch (userModel.getUserType().toLowerCase())
+        {
+            case "student":
+                if (userInserted)
+                {
+                    return "details.xhtml";
+                } else
+                {
+                    signupStatus = "UserId already exist!";
+                }
+                break;
+            case "recruiter":
+                if (userInserted)
+                {
+                    returnString = "recruiterDetails.xhtml";
+                } else
+                {
+                    signupStatus = "UserId already exist!";
+                }
+                break;
+        }
+        return returnString;
     }
-    
+
+    public static String generateHash(String input)
+    {
+        StringBuilder hash = new StringBuilder();
+
+        try
+        {
+            MessageDigest sha = MessageDigest.getInstance("SHA-1");
+            byte[] hashedBytes = sha.digest(input.getBytes());
+            char[] digits =
+            {
+                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                'a', 'b', 'c', 'd', 'e', 'f'
+            };
+            
+            for (int idx = 0; idx < hashedBytes.length; ++idx)
+            {
+                byte b = hashedBytes[idx];
+                hash.append(digits[(b & 0xf0) >> 4]);
+                hash.append(digits[b & 0x0f]);
+            }
+            
+        } 
+        catch (NoSuchAlgorithmException e)
+        {
+            // handle error here.
+        }
+
+        return hash.toString();
+    }
+
     /**
      * Creates a new instance of SignupController
      */
