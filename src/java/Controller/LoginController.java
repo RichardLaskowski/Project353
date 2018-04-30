@@ -60,7 +60,7 @@ public class LoginController {
                 {
                     isLoggedIn = true;
                     loginAttempt = 0;
-                    if(userModel.getUserType().equalsIgnoreCase("recruiter")){
+                    if(targetUser.getUserType().equalsIgnoreCase("recruiter")){
       
                         returnString = "profileRec.xhtml?faces-redirect=true";
                     }

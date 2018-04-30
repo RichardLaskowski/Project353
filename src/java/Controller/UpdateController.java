@@ -38,7 +38,7 @@ public class UpdateController implements Serializable
         String resultString = "";
         if(studentController.updateStudent(studentBean))
         {
-            resultString = "profile.xhtml";
+            resultString = "profileStudent.xhtml";
         }       
         
         return resultString;
