@@ -20,6 +20,7 @@ import javax.servlet.http.HttpSession;
 @SessionScoped
 public class ProfileController implements Serializable
 {
+    private UserBean userToReturn;
     private UserBean userModel;
     private PostController postController;
     private int imageId = 1;
@@ -106,6 +107,12 @@ public class ProfileController implements Serializable
     public void setVideoId(int videoId)
     {
         this.videoId = videoId;
+    }
+    
+    public String profilePage(){
+        
+        
+        return "profile_1.xhtml";
     }
     
 }
