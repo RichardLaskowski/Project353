@@ -9,9 +9,10 @@ import DAO.ImageDAO;
 import DAO.ImageDAOImpl;
 import Model.UserBean;
 import java.io.Serializable;
-import javax.annotation.ManagedBean;
+import javax.enterprise.context.ApplicationScoped;
+//import javax.annotation.ManagedBean;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ApplicationScoped;
+//import javax.faces.bean.ApplicationScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseId;
 import javax.inject.Named;
@@ -24,7 +25,7 @@ import org.primefaces.model.UploadedFile;
  *
  * @author ericz
  */
- @ManagedBean
+ 
  @Named(value="mediaController")
  @ApplicationScoped
 public class MediaController implements Serializable {
@@ -54,8 +55,13 @@ public class MediaController implements Serializable {
         }
     }
     
-    public StreamedContent getImage() {
+    public StreamedContent getProfileImage() {
         FacesContext context = FacesContext.getCurrentInstance();
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        LoginController loginSession = (LoginController)session.getAttribute("loginController");
+        UserBean user = loginSession.getTargetUser();
+        System.out.println(user.getUsername());
 
         if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
             // So, we're rendering the HTML. Return a stub StreamedContent so that it will generate right URL.
@@ -66,7 +72,7 @@ public class MediaController implements Serializable {
            // String studentId = context.getExternalContext().getRequestParameterMap().get("studentId");
            ImageDAO dao= new ImageDAOImpl();
            
-            return dao.getImage();
+            return dao.getProfileImage(user);
         }
     }
     

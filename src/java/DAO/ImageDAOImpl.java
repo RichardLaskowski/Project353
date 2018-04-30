@@ -1,6 +1,7 @@
 package DAO;
 
 import Model.ImageBean;
+import Model.UserBean;
 import java.io.ByteArrayInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,7 +21,7 @@ public class ImageDAOImpl implements ImageDAO
     private String driver = "org.apache.derby.jdbc.ClientDriver";
     private ImageBean targetImage;
     private long imageId;
-    private String source;
+    //private String source;
 
     public void connect2DB() {
         DBHelper.loadDriver(driver);
@@ -28,11 +29,11 @@ public class ImageDAOImpl implements ImageDAO
     }
 
     @Override
-    public StreamedContent getImage() {
+    public StreamedContent getProfileImage(UserBean user) {
         StreamedContent image= null;
         try {
             connect2DB();
-            String insert = "SELECT IMAGE FROM IMAGES WHERE IMAGEID= 3";
+            String insert = "SELECT IMAGE FROM IMAGES WHERE IMAGEID= "+user.getProfileImage() ;
             System.out.println(insert);
             PreparedStatement stmt = DBConn.prepareStatement(insert);
 //            stmt.setBinaryStream(1, file.getInputstream());
@@ -93,7 +94,7 @@ public class ImageDAOImpl implements ImageDAO
 
             while (rs.next()) {
                 imageId = rs.getInt("imageId");
-                source = rs.getString("source");
+               
 
                 // targetImage = new ImageBean(imageId, source);
                 resultList.add(targetImage);
