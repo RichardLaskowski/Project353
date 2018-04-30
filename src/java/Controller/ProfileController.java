@@ -9,7 +9,21 @@ import Model.UserBean;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.Properties;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 import javax.faces.context.FacesContext;
+import javax.mail.BodyPart;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -170,5 +184,91 @@ public class ProfileController implements Serializable {
         
         return userModel.getTargetRecruiter().getPhone();
         
-    } 
+    }
+    public String sendInfoEmail()
+    {   
+        String email = userModel.getEmail(); 
+        String to = email;
+
+        // Sender's email ID needs to be mentioned
+        String from = "EMAIL ADDRESS";
+        String password = "PASSWORD";
+
+        // Assuming you are sending email from this host
+        String host = "outlook.office365.com";
+
+        // Get system properties
+        Properties properties = System.getProperties();
+
+        // Setup mail server
+        properties.setProperty("mail.smtp.host", host);
+        properties.setProperty("mail.smtp.starttls.enable", "true");
+        properties.setProperty("mail.smtp.auth", "true");
+        properties.setProperty("mail.smtp.port", "587");
+
+        // Get the default Session object.
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator()
+        {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication()
+            {
+                return new PasswordAuthentication(from, password);
+            }
+        });
+
+        try
+        {
+            session.setDebug(true);
+            Transport transport = session.getTransport();
+            // Create a default MimeMessage object.
+            MimeMessage message = new MimeMessage(session);
+            message.setSubject("Request For More Info");
+            // Set From: header field of the header.
+            message.setFrom(new InternetAddress(from));
+
+            // Set To: header field of the header.
+            message.addRecipient(Message.RecipientType.TO,
+                    new InternetAddress(to));
+
+            // This HTML mail have to 2 part, the BODY and the embedded image
+            //
+            MimeMultipart multipart = new MimeMultipart("related");
+
+            // first part  (the html)
+            BodyPart messageBodyPart = new MimeBodyPart();
+            String htmlText = "<center><H1>A recruiter from LinkedU has requested more info from you,"
+                    + "<br/> please log on to LinkedU to contact the recruiter</H1></center>";
+            messageBodyPart.setContent(htmlText, "text/html");
+
+            // add it
+            multipart.addBodyPart(messageBodyPart);
+
+            // second part (the image)
+            messageBodyPart = new MimeBodyPart();
+            DataSource fds = new FileDataSource("C:\\Users\\Richa\\Documents\\NetBeansProjects\\Project353\\web\\resources\\images\\book.jpg");
+            messageBodyPart.setDataHandler(new DataHandler(fds));
+            messageBodyPart.setHeader("Content-ID", "<image>");
+
+            // add it
+            multipart.addBodyPart(messageBodyPart);
+
+            // put everything together
+            message.setContent(multipart);
+
+            transport.connect();
+            transport.sendMessage(message,
+                    message.getRecipients(Message.RecipientType.TO));
+            transport.close();
+
+            System.out.println("Sent message successfully....");
+        } 
+        
+        catch (MessagingException mex)
+        {
+            mex.printStackTrace();
+        }
+        
+        return "linkEmailed.xhtml"; // navigate to "echo.xhtml"
+    }
+
 }
