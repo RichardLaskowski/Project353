@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/I:/GitHub/Project353/src/java/Controller/AdminController.java</file>
-            <file>file:/I:/GitHub/Project353/src/java/DAO/ShowcaseUniversityDAOImpl.java</file>
-            <file>file:/I:/GitHub/Project353/ShowcaseUniversity.sql</file>
-            <file>file:/I:/GitHub/Project353/web/profile.xhtml</file>
-            <file>file:/I:/GitHub/Project353/web/Admin.xhtml</file>
+            <file>file:/I:/GitHub/Project353/web/linkEmailed.xhtml</file>
+            <file>file:/I:/GitHub/Project353/web/resetPassword.xhtml</file>
+            <file>file:/I:/GitHub/Project353/web/recruiterDetails.xhtml</file>
+            <file>file:/I:/GitHub/Project353/web/forgotPassword.xhtml</file>
         </group>
     </open-files>
 </project-private>
