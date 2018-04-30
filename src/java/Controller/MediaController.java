@@ -18,6 +18,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseId;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
@@ -33,8 +34,6 @@ public class MediaController implements Serializable {
    
     private UploadedFile file;
     private UserBean currentUser;
-    private UserBean targetUser;
- 
     public UploadedFile getFile() {
         return file;
     }
@@ -44,18 +43,18 @@ public class MediaController implements Serializable {
     }
      
     public void upload() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        LoginController loginSession = (LoginController)session.getAttribute("loginController");
+        UserBean user = loginSession.getTargetUser();
+        System.out.println(user.getUsername());
         if(file != null) {
             ImageDAO dao= new ImageDAOImpl();
-            dao.createImage(file, "ejzumba");
+            System.out.println(user.getUsername());
+            dao.createImage(file, user.getUsername() );
             FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
-    }
-    
-    public String profilePage(UserBean targetUser){
-        
-        
-        return "profile_1.xhtml";
     }
     
     public StreamedContent getImage() {
@@ -81,14 +80,6 @@ public class MediaController implements Serializable {
 
     public void setCurrentUser(UserBean currentUser) {
         this.currentUser = currentUser;
-    }
-
-    public UserBean getTargetUser() {
-        return targetUser;
-    }
-
-    public void setTargetUser(UserBean targetUser) {
-        this.targetUser = targetUser;
     }
     
     
