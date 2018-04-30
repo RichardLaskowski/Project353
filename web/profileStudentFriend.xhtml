@@ -129,48 +129,41 @@
                 <h:outputText value="#{profileController.userName}"></h:outputText>
                 's Detailed Info</h3>
                 <br/>
-                Date of Birth:
+                <b>Date of Birth:</b>
                 <h:outputText value="#{profileController.DOB}"></h:outputText>
                 <br/>    
-                Height:
+                <b>Height:</b>
                 <h:outputText value="#{profileController.height}"></h:outputText>
                 <br/>
-                Weight:
+                <b>Weight:</b>
                 <h:outputText value="#{profileController.weight}"></h:outputText>
-
                 <br/>
-                Country:
+                <b>Country:</b>
                 <h:outputText value="#{profileController.country}"></h:outputText>
-
                 <br/>
-                Current School:
+                <b>Current School:</b>
                 <h:outputText value="#{profileController.school}"></h:outputText>
-
                 <br/>
-                Graduation Year:
+                <b>Graduation Year:</b>
                 <h:outputText value="#{profileController.endYear}"></h:outputText>
-
                 <br/>
-                SAT:
+                <b>SAT:</b>
                 <h:outputText value="#{profileController.SAT}"></h:outputText>
-
                 <br/>
-                ACT:
+                <b>ACT:</b>
                 <h:outputText value="#{profileController.ACT}"></h:outputText>
-
                 <br/>
-                PSAT:
+                <b>PSAT:</b>
                 <h:outputText value="#{profileController.PSAT}"></h:outputText>
-
                 <br/>
-                Certifications:
+                <b>Certifications:</b>
                 <h:outputText value="#{profileController.certifications}"></h:outputText>
                 <br/>
-                Hobbies:
+                <b>Hobbies:</b>
                 <h:outputText value="#{profileController.hobbies}"></h:outputText>
                 <br/>
                 <br/>
-                <h:commandButton id="emailButton" class="sidebarbutton" action="#{profileController.sendInfoEmail()}" value="Request More Details" onclick="document.getElementById(infoSidebar:emailButton).disabled.true"></h:commandButton>
+                <h:commandButton id="emailButton" class="sidebarbutton" action="#{profileController.sendInfoEmail()}" value="Request More Details" onclick="document.getElementById(infoSidebar:emailButton).disabled=true"></h:commandButton>
                 </h:form>
             </aside2>
             <footer>LINKEDU LLC. Created By Eric, Akankshaw, Dryden and Ricky</footer>

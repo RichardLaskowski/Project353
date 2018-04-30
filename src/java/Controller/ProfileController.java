@@ -131,7 +131,8 @@ public class ProfileController implements Serializable {
 
     public String getDOB() {
 
-        return userModel.getTargetStudent().getDateOfBirth();
+        int length=userModel.getTargetStudent().getDateOfBirth().length();
+        return userModel.getTargetStudent().getDateOfBirth().substring(0, length-17);
     }
 
     public String getSchool() {
