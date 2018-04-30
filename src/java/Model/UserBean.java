@@ -209,7 +209,7 @@ public class UserBean
 
     @Override
     public String toString() {
-        return "UserBean{" + "username=" + username + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", userType=" + userType + '}';
+        return "UserBean{" + "username=" + username + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", userType=" + userType + "}";
     }
     
     
