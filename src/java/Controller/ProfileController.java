@@ -268,7 +268,7 @@ public class ProfileController implements Serializable {
             mex.printStackTrace();
         }
         
-        return "linkEmailed.xhtml"; // navigate to "echo.xhtml"
+        return "profileStudentFriend.xhtml"; // navigate to "echo.xhtml"
     }
 
 }
