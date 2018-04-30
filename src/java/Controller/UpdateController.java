@@ -7,7 +7,7 @@ package Controller;
 
 import Model.StudentBean;
 import java.io.Serializable;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.FlowEvent;
 import javax.inject.Named;

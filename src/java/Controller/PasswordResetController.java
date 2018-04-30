@@ -12,7 +12,8 @@ import java.util.Properties;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -28,7 +29,7 @@ import javax.mail.internet.MimeMultipart;
  *
  * @author Richa
  */
-@Named(value = "passwordResetController")
+@ManagedBean (name = "passwordResetController")
 @SessionScoped
 public class PasswordResetController implements Serializable
 {

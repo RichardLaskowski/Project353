@@ -68,36 +68,9 @@
                         <br/><br/>
                     </h:column>           
                 </h:dataTable>
-<!--                <h:form class="post">
-                <div class="user">
-                    <div class ="profilepic">
-                        <center>
-                            <h:graphicImage value="resources/images/default-profile.png" height="80px" width="80px" />
-                        </center>
-                    </div>
-                    <center>
-                        <br/>
-                        <br/>
-
-                        <h:outputText >
-                        </h:outputText>
-
-                        <p><b> Post from (DATE and TIME)</b> </p>
-                    </center>
-                </div>
-
-                <div class="content">
-                    Content
-                </div>
-                <div class="like-button">
-                    <h:commandButton value="Like"></h:commandButton>
-                </div>
-                <div class="comment-button">
-                    <h:commandButton value="Comment"></h:commandButton>
-                </div>
-            </h:form>-->
+                
             </feed>
-        <aside>
+            <aside>
                 <h:form id="sidebar">
                     <h:commandButton  id="home" class="sidebarbutton" action="signUp?faces-redirect=true" value="Home" ></h:commandButton>
                     <br/>
@@ -118,9 +91,10 @@
                             <br/>
                             Illinois State University
                         </i></b>
-                    <h:outputLink value="https://illinoisstate.edu/">
-                        <h:graphicImage value="resources/images/illinois-state-showcase.jpg" height="auto" width="100%" />
-                    </h:outputLink>
+                    <p:galleria value="#{showcaseUniversityController.images}" var="image" panelWidth="250" panelHeight="180">
+                        <p:graphicImage value="resources/images/#{image}" title="#{image}"/>
+                    </p:galleria>
+                  
                 </h:form>
             </aside>
             <aside2>
