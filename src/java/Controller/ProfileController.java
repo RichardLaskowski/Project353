@@ -99,6 +99,8 @@ public class ProfileController implements Serializable {
     }
 
     public int getHeight() {
+        
+        //if(userModel.getUserType().)
         return userModel.getTargetStudent().getHeight();
 
     }
@@ -155,4 +157,18 @@ public class ProfileController implements Serializable {
         return userModel.getTargetStudent().getHobbies();
         
     }
+    public String getDepartment(){
+  
+        return userModel.getTargetRecruiter().getDepartment();
+    } 
+    public String getUniversity(){
+        
+        
+        return userModel.getTargetRecruiter().getUniversity();
+    }  
+    public String getPhone(){
+        
+        return userModel.getTargetRecruiter().getPhone();
+        
+    } 
 }

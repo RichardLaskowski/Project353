@@ -100,5 +100,5 @@ public class RecruiterBean
     public void setPhone(String phone)
     {
         this.phone = phone;
-    }  
+    }
 }
