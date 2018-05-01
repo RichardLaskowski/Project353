@@ -7,12 +7,11 @@ package Controller;
 
 import DAO.PostDAO;
 import DAO.PostDAOImpl;
-import Model.ImageBean;
 import Model.PostBean;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
@@ -34,6 +33,12 @@ public class PostController implements Serializable
     {
         PostDAO postDAO = new PostDAOImpl();
         return postDAO.selectAllPosts();
+    }
+    
+    public ArrayList selectPostsByUsername(String targetUsername)
+    {
+        PostDAO postDAO = new PostDAOImpl();
+        return postDAO.selectPostsByUsername(targetUsername);
     }
     
     public PostController()

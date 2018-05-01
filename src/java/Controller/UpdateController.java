@@ -7,7 +7,7 @@ package Controller;
 
 import Model.StudentBean;
 import java.io.Serializable;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.FlowEvent;
 import javax.inject.Named;
@@ -38,7 +38,7 @@ public class UpdateController implements Serializable
         String resultString = "";
         if(studentController.updateStudent(studentBean))
         {
-            resultString = "profile.xhtml";
+            resultString = "profileStudent.xhtml";
         }       
         
         return resultString;

@@ -9,10 +9,12 @@ import Model.UserBean;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.Properties;
+import java.util.UUID;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -28,7 +30,7 @@ import javax.mail.internet.MimeMultipart;
  *
  * @author Richa
  */
-@Named(value = "passwordResetController")
+@ManagedBean (name = "passwordResetController")
 @SessionScoped
 public class PasswordResetController implements Serializable
 {
@@ -36,6 +38,8 @@ public class PasswordResetController implements Serializable
     private UserController userController;
     private UserBean userModel;
     private UserBean targetUser;
+    private final String SALT = "Project353";
+    private UUID uuid;
 
     public PasswordResetController()
     {
@@ -75,6 +79,8 @@ public class PasswordResetController implements Serializable
     {   
         String email = targetUser.getEmail(); 
         String to = email;
+        uuid = UUID.randomUUID();
+        String emailId = uuid.toString();
 
         // Sender's email ID needs to be mentioned
         String from = "EMAIL ADDRESS";
@@ -204,5 +210,5 @@ public class PasswordResetController implements Serializable
     {
         this.targetUser = targetUser;
     }
-
+    
 }

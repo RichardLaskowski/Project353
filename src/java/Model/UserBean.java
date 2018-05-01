@@ -17,7 +17,7 @@ public class UserBean
     private String userType;
     private StudentBean targetStudent;
     private RecruiterBean targetRecruiter;
-    private int profileImage;
+    private int profilePictureID;
 
     public UserBean()
     {
@@ -45,6 +45,19 @@ public class UserBean
         this.email = email;
         this.securityQuestion = secQuestion;
         this.securityAnswer = secAnswer;
+    }
+    
+    public UserBean(String username, String password, String firstName, String lastName, String email, String secQuestion, String secAnswer, String userType, int profilePictureID)
+    {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.securityQuestion = secQuestion;
+        this.securityAnswer = secAnswer;
+        this.userType = userType;
+        this.profilePictureID= profilePictureID;
     }
 
     /**
@@ -205,6 +218,14 @@ public class UserBean
     public void setTargetRecruiter(RecruiterBean targetRecruiter)
     {
         this.targetRecruiter = targetRecruiter;
+    }
+
+    public int getProfileImage() {
+        return this.profilePictureID;
+    }
+
+    public void setProfileImage(int profileImage) {
+        this.profilePictureID = profileImage;
     }
 
     @Override

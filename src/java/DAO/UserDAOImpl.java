@@ -33,6 +33,7 @@ public class UserDAOImpl implements UserDAO
     private String secQuestion;
     private String secAnswer;
     private String userType;
+    private int profilepictureid;
     
     public void connect2DB()
     {
@@ -55,7 +56,7 @@ public class UserDAOImpl implements UserDAO
                 //String insertStudentTbl;
                 Statement stmt = DBConn.createStatement();
                 insertString = "INSERT INTO itkstu.users "
-                    + "(username, password, firstname, lastname, email, securityquestion, securityanswer, usertype) "
+                    + "(username, password, firstname, lastname, email, securityquestion, securityanswer, usertype, profilepictureid) "
                     + "VALUES ('" + userModel.getUsername()
                     + "', '" + userModel.getPassword()
                     + "', '" + userModel.getFirstName()
@@ -64,6 +65,7 @@ public class UserDAOImpl implements UserDAO
                     + "', '" + userModel.getSecurityQuestion()
                     + "', '" + userModel.getSecurityAnswer()
                     + "', '" + userModel.getUserType()
+                    + "', '" + userModel.getProfileImage()
                     + "')";
                 
                 rowCount = stmt.executeUpdate(insertString);
@@ -118,6 +120,7 @@ public class UserDAOImpl implements UserDAO
                     + "', securityquestion = '" + userModel.getSecurityQuestion()
                     + "', securityanswer = '" + userModel.getSecurityAnswer()
                     + "', usertype = '" + userModel.getUserType()
+                    + "', profilepictureid = '" + userModel.getProfileImage()
                     + "' WHERE username = '" + userModel.getUsername() + "'";
                 
                 rowCount = stmt.executeUpdate(insertString);              
@@ -166,8 +169,9 @@ public class UserDAOImpl implements UserDAO
                 secQuestion = rs.getString("securityquestion");
                 secAnswer = rs.getString("securityanswer");
                 userType = rs.getString("userType");
+                profilepictureid= rs.getInt("profilepictureid");
                 
-                targetUser = new UserBean(username, password, firstName, lastName, email, secQuestion, secAnswer, userType);
+                targetUser = new UserBean(username, password, firstName, lastName, email, secQuestion, secAnswer, userType, profilepictureid);
                 
                 if(userType.equalsIgnoreCase("student"))
                 {
