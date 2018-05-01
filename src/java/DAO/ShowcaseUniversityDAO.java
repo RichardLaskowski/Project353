@@ -17,4 +17,5 @@ public interface ShowcaseUniversityDAO {
     public ArrayList<String> GetShowCaseUniversities();
     public int updateUniversityUnShowcase(String universityName);
     public int updateUniversityShowcase(String universityName);
+    public int adminEmail(String text);
 }

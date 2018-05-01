@@ -81,5 +81,18 @@ public class AdminController {
     public String getResponse() {
         return response;
     }
+     public String emailSubscription(){
+        int result = 0;
+        ShowcaseUniversityDAO auniversityDAO = new ShowcaseUniversityDAOImpl();    // Creating a new object each time.
+            result = auniversityDAO.adminEmail(universityBean.getAdminMessage());
+               
+           if(result > 0)
+           {
+               response = "University Unshowcased.";
+           }
+           else
+               response = "Please Select atleast one checkbox.";
+         return response;    
+    }
 
 }

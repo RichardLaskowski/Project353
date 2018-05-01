@@ -12,6 +12,7 @@ package Model;
 public class UniversityNameBean {
     
     public String[] universityName;
+    public String adminMessage;
     
     public UniversityNameBean()
     {      
@@ -29,6 +30,20 @@ public class UniversityNameBean {
      */
     public void setUniversityName(String[] universityName) {
         this.universityName = universityName;
+    }
+
+    /**
+     * @return the adminMessage
+     */
+    public String getAdminMessage() {
+        return adminMessage;
+    }
+
+    /**
+     * @param adminMessage the adminMessage to set
+     */
+    public void setAdminMessage(String adminMessage) {
+        this.adminMessage = adminMessage;
     }
 
 

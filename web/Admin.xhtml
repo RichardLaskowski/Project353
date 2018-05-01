@@ -57,10 +57,18 @@
                     </div>
                     <br/> <br/>
                     <h:outputText id="result" style="color: blue;" value="#{adminController.response}"/>
-                </div>
-
+               
+                <h:form>
+                    <table>
+                        <tr>
+                            <td valign="top">Address :</td>
+                            <td><h:inputTextarea value="#{adminController.universityBean.adminMessage}" cols="30" rows="10" /></td>
+                        </tr> 
+                    </table>
+                    <h:commandButton value="Submit" action="#{adminController.emailSubscription}" />
+                </h:form>
             </div>
-
+        </div>
 
         </h:form>
     </h:body>

@@ -136,8 +136,13 @@ public class StudentDAOImpl implements StudentDAO
             try 
             {
                 connect2DB();
-                String insertString;
+                String insertString, insertString1;
                 Statement stmt = DBConn.createStatement();
+                char subs = '1';
+                if(studentModel.isSubscription())
+                    subs = '0';
+                insertString1 = "UPDATE ITKSTU.USERS SET EMAILSUBSCRIPTION = '"
+                        + subs + "'";
                 insertString = "UPDATE itkstu.student "
                         + "SET dateOfBirth = '" + studentModel.getDateOfBirth()
                         + "', height = '" + studentModel.getHeight()
@@ -157,6 +162,7 @@ public class StudentDAOImpl implements StudentDAO
                         + "' WHERE username = '" + studentModel.getUsername() + "'";
              
                 rowCount = stmt.executeUpdate(insertString);
+                rowCount = stmt.executeUpdate(insertString1);
                 
                 DBConn.close();
             } 

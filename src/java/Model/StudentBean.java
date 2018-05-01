@@ -26,6 +26,7 @@ public class StudentBean
     private String essay;
     private String hobbies;
     private String username;
+    private boolean subscription;
 
     public StudentBean()
     {
@@ -388,6 +389,20 @@ public class StudentBean
     public void setUsername(String username)
     {
         this.username = username;
+    }
+
+    /**
+     * @return the subscription
+     */
+    public boolean isSubscription() {
+        return subscription;
+    }
+
+    /**
+     * @param subscription the subscription to set
+     */
+    public void setSubscription(boolean subscription) {
+        this.subscription = subscription;
     }
 
 }
