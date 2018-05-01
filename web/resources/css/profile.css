@@ -1,20 +1,10 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : Apr 9, 2018, 8:21:48 PM
-    Author     : Richard
-*/
-
-*
-{
-    margin: 0px;
-    box-sizing: border-box;
-    background-color: #aaaaa;
+body{
+    background-color: #e9ebee;
 }
 
+h1{
+    margin-top: 0px;
+}
 .grid
 {
     display: grid;
@@ -34,10 +24,10 @@ header
     top: 0;
     position: fixed;
     width: 100%;
-    height: 40px;
+    height: 45px;
     z-index: 1;
     grid-area: head;
-    background-color: lightgray;
+    background-color: #d9edf7;
     display: grid;
     grid-template-columns: repeat(11, 1fr);
     color:#31708F;
@@ -84,7 +74,7 @@ footer
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     text-align: center;
     grid-area: foot;
-    background-color: lightgray;
+    background-color: #d9edf7;
 }
 
 /*--------------------------------------------------------------------*/
@@ -101,7 +91,7 @@ footer
 
 .status
 {
-    background-color: darkgray;
+    background-color:  #a0cade;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     display: grid;
     padding: 5px;
@@ -140,7 +130,7 @@ footer
 
 .post-button > input[type=submit]
 {
-    width: 100%;
+    width: 70%;
     border: none;
     padding: 5px;
     font-size: 15px;
@@ -148,23 +138,23 @@ footer
 
 .post-button > input[type=submit]:hover
 {
-    background-color: #666666;
+    background-color: #31708F;
 }
 
 .like-button > input[type=submit]:hover
 {
-    background-color: #666666;
+    background-color: #31708F;
 }
 .comment-button > input[type=submit]:hover
 {
-    background-color: #666666;
+    background-color: #31708F;
 }
 /*------------------------------------------------------------*/
 
 .post
 {
     padding: 5px;
-    background-color: darkgray;
+    background-color: #a0cade;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     display: grid;
     grid-gap: 10px;
@@ -212,7 +202,7 @@ input[type=submit]
 
 input
 {
-    width: 100%;
+    width: 95%;
     border: none;
     padding: 5px;
     font-size: 15px;
