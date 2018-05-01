@@ -25,21 +25,23 @@ import org.primefaces.model.UploadedFile;
  *
  * @author ericz
  */
- 
+
  @Named(value="mediaController")
  @ApplicationScoped
 public class MediaController implements Serializable {
-   
+
     private UploadedFile file;
     private UserBean currentUser;
+    private UserBean targetUser;
     public UploadedFile getFile() {
         return file;
     }
- 
-    public void setFile(UploadedFile file) {
+
+    public void setFile(UploadedFile file)
+    {
         this.file = file;
     }
-     
+
     public void upload() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
@@ -54,7 +56,7 @@ public class MediaController implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
     }
-    
+
     public StreamedContent getProfileImage() {
         FacesContext context = FacesContext.getCurrentInstance();
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -63,28 +65,38 @@ public class MediaController implements Serializable {
         UserBean user = loginSession.getTargetUser();
         System.out.println(user.getUsername());
 
-        if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
+        if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE)
+        {
             // So, we're rendering the HTML. Return a stub StreamedContent so that it will generate right URL.
             return new DefaultStreamedContent();
-        }
-        else {
+        } else
+        {
             // So, browser is requesting the image. Return a real StreamedContent with the image bytes.
            // String studentId = context.getExternalContext().getRequestParameterMap().get("studentId");
            ImageDAO dao= new ImageDAOImpl();
-           
+
             return dao.getProfileImage(user);
         }
     }
-    
 
-    public UserBean getCurrentUser() {
+    public UserBean getCurrentUser()
+    {
         return currentUser;
     }
 
-    public void setCurrentUser(UserBean currentUser) {
+    public void setCurrentUser(UserBean currentUser)
+    {
         this.currentUser = currentUser;
     }
-    
-    
-}
 
+    public UserBean getTargetUser()
+    {
+        return targetUser;
+    }
+
+    public void setTargetUser(UserBean targetUser)
+    {
+        this.targetUser = targetUser;
+    }
+
+}

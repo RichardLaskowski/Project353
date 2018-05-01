@@ -9,6 +9,7 @@ import Model.UserBean;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.Properties;
+import java.util.UUID;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
@@ -37,6 +38,8 @@ public class PasswordResetController implements Serializable
     private UserController userController;
     private UserBean userModel;
     private UserBean targetUser;
+    private final String SALT = "Project353";
+    private UUID uuid;
 
     public PasswordResetController()
     {
@@ -76,6 +79,8 @@ public class PasswordResetController implements Serializable
     {   
         String email = targetUser.getEmail(); 
         String to = email;
+        uuid = UUID.randomUUID();
+        String emailId = uuid.toString();
 
         // Sender's email ID needs to be mentioned
         String from = "EMAIL ADDRESS";

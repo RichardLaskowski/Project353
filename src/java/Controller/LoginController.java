@@ -10,78 +10,70 @@ import Model.StudentBean;
 import Model.UserBean;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 
-/**
- *
- * @author IT353S843
- */
 @ManagedBean
 @SessionScoped
-public class LoginController {
+public class LoginController
+{
 
     private RecruiterBean recruiterModel;
     private StudentBean studentModel;
     private UserBean userModel;
     private UserBean targetUser;
-    private RecruiterController recruiterController; 
+    private RecruiterController recruiterController;
     private StudentController studentController;
-    private UserController userController; 
+    private UserController userController;
     private Boolean isLoggedIn = false;
-    
+
     private String loginStatus;
+    private final String SALT = "Project353";
     private int loginAttempt = 0;
-    
-     /**
+
+    /**
      * Creates a new instance of LoginController
      */
     public LoginController()
     {
-       recruiterController = new RecruiterController();
-       studentController = new StudentController();
-       userController = new UserController();
-       userModel = new UserBean();
-       targetUser = null;
-       loginAttempt = 0;
+        recruiterController = new RecruiterController();
+        studentController = new StudentController();
+        userController = new UserController();
+        userModel = new UserBean();
+        targetUser = null;
+        loginAttempt = 0;
     }
-    
+
     /*method for login authentication*/
     public String login()
     {
         String returnString = "";
+        String saltedPassword = SALT + userModel.getPassword();
+        String hashedPassword = SignupController.generateHash(saltedPassword);
+
         if (loginAttempt < 3)
         {
             loginAttempt++;
             userController.setUserModel(userModel);
-            targetUser = userController.selectUserByUsername(); 
-            if(targetUser != null)
+            targetUser = userController.selectUserByUsername();
+            if (targetUser != null)
             {
-                if(userModel.getPassword().equals(targetUser.getPassword()))
+                if (hashedPassword.equals(targetUser.getPassword()))
                 {
                     isLoggedIn = true;
                     loginAttempt = 0;
-                    if(targetUser.getUserType().equalsIgnoreCase("recruiter")){
-      
-                        returnString = "profileRec.xhtml?faces-redirect=true";
-                    }
-                    else{
-                    returnString = "profileStudent.xhtml?faces-redirect=true";}
-                }
-                else
+                    returnString = "profile.xhtml?faces-redirect=true";
+                } else
                 {
                     setLoginStatus("Invalid Credentials");
                     returnString = "logIn.xhtml?faces-redirect=true";
-                }     
-            }
-            else
+                }
+            } else
             {
                 setLoginStatus("Username Does Not Exist");
-                return("logIn.xhtml?faces-redirect=true");
+                return ("logIn.xhtml?faces-redirect=true");
             }
-        }
-        else
+        } else
         {
-            setLoginStatus("Exceed max number of trials! Try after some time");    
+            setLoginStatus("Exceed max number of trials! Try after some time");
         }
         return returnString;
     }
@@ -101,7 +93,6 @@ public class LoginController {
     {
         this.loginStatus = loginStatus;
     }
-
 
     /**
      * @return the loginAttempt

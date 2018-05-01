@@ -52,6 +52,11 @@ public class ProfileController implements Serializable {
         postController.selectAllPosts();
     }
 
+    public ArrayList getPosts()
+    {
+        return postController.selectPostsByUsername(userModel.getUsername());
+    }
+
     /**
      * @return the userModel
      */
@@ -110,7 +115,7 @@ public class ProfileController implements Serializable {
 
 
     public String profilePage(){
-        
+
 
         return "profile_1.xhtml";
     }
