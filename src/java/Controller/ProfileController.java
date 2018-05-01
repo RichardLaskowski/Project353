@@ -271,5 +271,11 @@ public class ProfileController implements Serializable {
         
         return "profileStudentFriend.xhtml"; // navigate to "echo.xhtml"
     }
+    public String profilePage(){
+
+
+        return "profileStudentFriend.xhtml";
+    }
+    
 
 }

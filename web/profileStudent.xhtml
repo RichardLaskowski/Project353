@@ -99,7 +99,7 @@
             </feed>
         <aside>
                 <h:form id="sidebar">
-                    <h:commandButton  id="home" class="sidebarbutton" action="signUp?faces-redirect=true" value="Home" ></h:commandButton>
+                    <h:commandButton  id="home" class="sidebarbutton" action="profileStudent?faces-redirect=true" value="Home" ></h:commandButton>
                     <br/>
                     <br/>
                     <h:commandButton  id="search" class="sidebarbutton" action="searchResults?faces-redirect=true" value="Search" ></h:commandButton>
@@ -127,40 +127,38 @@
                 <h3> 
                 <h:outputText value="#{profileController.userName}"></h:outputText>
                 's Detailed Info</h3>
-                <br/>
-                <b>Date of Birth:</b>
+                <u><b>Date of Birth: </b></u>
                 <h:outputText value="#{profileController.DOB}"></h:outputText>
                 <br/>    
-                <b>Height:</b>
+                <u><b>Height: </b></u>
                 <h:outputText value="#{profileController.height}"></h:outputText>
                 <br/>
-                <b>Weight:</b>
+                <u><b>Weight: </b></u>
                 <h:outputText value="#{profileController.weight}"></h:outputText>
                 <br/>
-                <b>Country:</b>
+                <u><b>Country: </b></u>
                 <h:outputText value="#{profileController.country}"></h:outputText>
                 <br/>
-                <b>Current School:</b>
+                <u><b>Current School: </b></u>
                 <h:outputText value="#{profileController.school}"></h:outputText>
-
                 <br/>
-                <b>Graduation Year:</b>
+                <u><b>Graduation Year: </b></u>
                 <h:outputText value="#{profileController.endYear}"></h:outputText>
                 <br/>
-                <b>SAT:</b>
+                <u><b>SAT: </b></u>
                 <h:outputText value="#{profileController.SAT}"></h:outputText>
                 <br/>
-                <b>ACT:</b>
+                <u><b>ACT: </b></u>
                 <h:outputText value="#{profileController.ACT}"></h:outputText>
                 <br/>
-                <b>PSAT:</b>
+                <u><b>PSAT: </b></u>
                 <h:outputText value="#{profileController.PSAT}"></h:outputText>
 
                 <br/>
-                <b>Certifications:</b>
+                <u><b>Certifications: </b></u>
                 <h:outputText value="#{profileController.certifications}"></h:outputText>
                 <br/>
-                <b>Hobbies:</b>
+                <u><b>Hobbies: </b></u>
                 <h:outputText value="#{profileController.hobbies}"></h:outputText>
                 <br/>
                 <br/>
