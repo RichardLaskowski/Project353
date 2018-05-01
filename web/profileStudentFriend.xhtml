@@ -126,41 +126,41 @@
             <aside2>
                 <h:form id="infoSidebar">
                     <h3> 
-                <h:outputText value="#{profileController.userName}"></h:outputText>
+                <h:outputText value="#{searchController.userName}"></h:outputText>
                 's Detailed Info</h3>
                 <br/>
                 <b>Date of Birth:</b>
-                <h:outputText value="#{profileController.DOB}"></h:outputText>
+                <h:outputText value="#{searchController.DOB}"></h:outputText>
                 <br/>    
                 <b>Height:</b>
-                <h:outputText value="#{profileController.height}"></h:outputText>
+                <h:outputText value="#{searchController.height}"></h:outputText>
                 <br/>
                 <b>Weight:</b>
-                <h:outputText value="#{profileController.weight}"></h:outputText>
+                <h:outputText value="#{searchController.weight}"></h:outputText>
                 <br/>
                 <b>Country:</b>
-                <h:outputText value="#{profileController.country}"></h:outputText>
+                <h:outputText value="#{searchController.country}"></h:outputText>
                 <br/>
                 <b>Current School:</b>
-                <h:outputText value="#{profileController.school}"></h:outputText>
+                <h:outputText value="#{searchController.school}"></h:outputText>
                 <br/>
                 <b>Graduation Year:</b>
-                <h:outputText value="#{profileController.endYear}"></h:outputText>
+                <h:outputText value="#{searchController.endYear}"></h:outputText>
                 <br/>
                 <b>SAT:</b>
-                <h:outputText value="#{profileController.SAT}"></h:outputText>
+                <h:outputText value="#{searchController.SAT}"></h:outputText>
                 <br/>
                 <b>ACT:</b>
-                <h:outputText value="#{profileController.ACT}"></h:outputText>
+                <h:outputText value="#{searchController.ACT}"></h:outputText>
                 <br/>
                 <b>PSAT:</b>
-                <h:outputText value="#{profileController.PSAT}"></h:outputText>
+                <h:outputText value="#{searchController.PSAT}"></h:outputText>
                 <br/>
                 <b>Certifications:</b>
-                <h:outputText value="#{profileController.certifications}"></h:outputText>
+                <h:outputText value="#{searchController.certifications}"></h:outputText>
                 <br/>
                 <b>Hobbies:</b>
-                <h:outputText value="#{profileController.hobbies}"></h:outputText>
+                <h:outputText value="#{searchController.hobbies}"></h:outputText>
                 <br/>
                 <br/>
                 <h:commandButton id="emailButton" class="sidebarbutton" action="#{profileController.sendInfoEmail()}" value="Request More Details" onclick="document.getElementById(infoSidebar:emailButton).disabled=true"></h:commandButton>
