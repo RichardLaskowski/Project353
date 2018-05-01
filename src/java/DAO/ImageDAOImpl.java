@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
@@ -82,30 +83,48 @@ public class ImageDAOImpl implements ImageDAO
     }
 
     @Override
-    public ArrayList selectImageByImageId(int targetImageId) {
-        resultList = new ArrayList();
-        String selectString = "SELECT * FROM itkstu.images "
+    public StreamedContent selectImageByImageId(int targetImageId) {
+        StreamedContent image= null;
+        String selectString = "SELECT IMAGE FROM itkstu.images "
                 + "WHERE imageId = '" + targetImageId + "'";
 
         try {
             connect2DB();
-            Statement stmt = DBConn.createStatement();
+            PreparedStatement stmt = DBConn.prepareStatement(selectString);
             ResultSet rs = stmt.executeQuery(selectString);
-
-            while (rs.next()) {
-                imageId = rs.getInt("imageId");
-               
-
-                // targetImage = new ImageBean(imageId, source);
-                resultList.add(targetImage);
+            if (rs.next()) {
+               image= new DefaultStreamedContent(new ByteArrayInputStream(rs.getBytes(1)));
             }
+            
             DBConn.close();
         } catch (Exception e) {
             System.err.println("ERROR: SELECT IMAGE BY IMAGEID FAILED.");
             System.err.println("TARGET: " + targetImageId);
             e.printStackTrace();
         }
-        return resultList;
+        return image;
+    }
+    
+    public List<StreamedContent> selectAllImagesByUsername(UserBean user) {
+        List<StreamedContent> images= new ArrayList<>();
+        String selectString = "SELECT IMAGE FROM itkstu.images "
+                + "WHERE USERNAME = '" + user.getUsername() + "'";
+
+        try {
+            connect2DB();
+            PreparedStatement stmt = DBConn.prepareStatement(selectString);
+            ResultSet rs = stmt.executeQuery(selectString);
+            while (rs.next()) {
+               images.add(new DefaultStreamedContent(new ByteArrayInputStream(rs.getBytes(1))));
+            }
+            
+            DBConn.close();
+        } catch (Exception e) {
+            System.err.println("ERROR: SELECT IMAGE BY IMAGEID FAILED.");
+            System.err.println("TARGET: " + user.getUsername() );
+            e.printStackTrace();
+        }
+        return images;
     }
 
 }

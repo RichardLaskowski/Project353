@@ -9,5 +9,5 @@ import org.primefaces.model.UploadedFile;
 public interface ImageDAO {
     public long createImage(UploadedFile file, String username);
     public StreamedContent getProfileImage(UserBean user);
-    public ArrayList selectImageByImageId(int targetImageId);
+    public StreamedContent selectImageByImageId(int targetImageId);
 }

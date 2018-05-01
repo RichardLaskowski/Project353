@@ -16,4 +16,5 @@ public interface PostDAO
 {
     public int createPost(PostBean PostModel);
     public ArrayList selectAllPosts();
+    public ArrayList selectPostsByUsername(String targetUsername);
 }

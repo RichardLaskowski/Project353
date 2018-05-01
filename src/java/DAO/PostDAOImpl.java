@@ -35,6 +35,37 @@ public class PostDAOImpl implements PostDAO
         DBConn = DBHelper.connect2DB(myDB, "itkstu","student");
     }
     
+    @Override
+    public ArrayList selectPostsByUsername(String targetUsername)
+    {
+        resultList = new ArrayList();
+        String selectString = "SELECT textcontent FROM itkstu.posts "
+                + "WHERE username = '" + targetUsername + "' "
+                + "ORDER BY postId DESC ";
+        
+        try
+        {
+            connect2DB();
+            Statement stmt = DBConn.createStatement();
+            ResultSet rs = stmt.executeQuery(selectString);
+            
+            while(rs.next())
+            {
+                textContent = rs.getString("textcontent");
+                targetPost = new PostBean(textContent);
+                resultList.add(targetPost);
+            }
+            DBConn.close();
+        }
+        catch(Exception e)
+        {
+            System.err.println("ERROR");
+            System.err.println("TARGET: " + targetPost);
+            e.printStackTrace();
+        }
+        return resultList;
+    }
+    
     @Override 
     public int createPost(PostBean postModel)
     {
