@@ -26,7 +26,6 @@ import org.primefaces.model.UploadedFile;
  *
  * @author ericz
  */
-@ManagedBean
 @Named(value = "mediaController")
 @ApplicationScoped
 public class MediaController implements Serializable

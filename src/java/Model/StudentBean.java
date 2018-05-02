@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.util.ArrayList;
+
 public class StudentBean
 {
 
@@ -26,6 +28,7 @@ public class StudentBean
     private String essay;
     private String hobbies;
     private String username;
+    private ArrayList post = new ArrayList();
 
     public StudentBean()
     {
@@ -390,4 +393,21 @@ public class StudentBean
         this.username = username;
     }
 
+    /**
+     * @return the post
+     */
+    public ArrayList getPost()
+    {
+        return post;
+    }
+
+    /**
+     * @param post the post to set
+     */
+    public void setPost(ArrayList post)
+    {
+        this.post = post;
+    }
+
+    
 }

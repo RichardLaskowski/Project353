@@ -5,6 +5,8 @@
  */
 package DAO;
 
+import Controller.CommentController;
+import Model.CommentBean;
 import Model.PostBean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,7 +29,9 @@ public class PostDAOImpl implements PostDAO
     private int imageId;
     private int videoId;
     private String textContent;
+    private String username;
     private int postId;
+    private ArrayList comments;
      
     public void connect2DB()
     {
@@ -38,8 +42,9 @@ public class PostDAOImpl implements PostDAO
     @Override
     public ArrayList selectPostsByUsername(String targetUsername)
     {
+        CommentController commentController = new CommentController();
         resultList = new ArrayList();
-        String selectString = "SELECT textcontent FROM itkstu.posts "
+        String selectString = "SELECT * FROM itkstu.posts "
                 + "WHERE username = '" + targetUsername + "' "
                 + "ORDER BY postId DESC ";
         
@@ -52,7 +57,17 @@ public class PostDAOImpl implements PostDAO
             while(rs.next())
             {
                 textContent = rs.getString("textcontent");
+                postId = rs.getInt("postId");
+                username = rs.getString("username");
                 targetPost = new PostBean(textContent);
+                targetPost.setPostId(postId);
+                targetPost.setUsername(username);
+                comments = commentController.selectCommentsByPostId(postId);
+                //System.out.println(comments.size());
+                //CommentBean comment = (CommentBean)comments.get(0);
+                //System.out.println(comment.getContent());
+                targetPost.setComments(comments);
+                
                 resultList.add(targetPost);
             }
             DBConn.close();

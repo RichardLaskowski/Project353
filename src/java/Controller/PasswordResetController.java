@@ -37,8 +37,11 @@ public class PasswordResetController implements Serializable
     private UserController userController;
     private UserBean userModel;
     private UserBean targetUser;
-    private final String SALT = "Project353";
+    private String SALT = "Project353";
     private UUID uuid;
+    private String emailId;
+    private String saltedEmailId;
+    private String hashedEmailId;
 
     public PasswordResetController()
     {
@@ -49,7 +52,11 @@ public class PasswordResetController implements Serializable
     
     public String updateUser()
     {
-        userController.updateUser(targetUser);    
+        hashedEmailId = SignupController.generateHash(SALT + targetUser.getEmailId());
+        targetUser.setEmailId(hashedEmailId);
+        targetUser.setPassword(SignupController.generateHash(SALT + targetUser.getPassword()));
+        userController.updateUser(targetUser); 
+        
         return "logIn.xhtml";
     }
 
@@ -79,11 +86,15 @@ public class PasswordResetController implements Serializable
         String email = targetUser.getEmail(); 
         String to = email;
         uuid = UUID.randomUUID();
-        String emailId = uuid.toString();
+        emailId = uuid.toString();
+        saltedEmailId = SALT + emailId;
+        hashedEmailId = SignupController.generateHash(saltedEmailId);
+        targetUser.setEmailId(hashedEmailId);
+        userController.setEmailId(targetUser);
 
         // Sender's email ID needs to be mentioned
-        String from = "EMAIL ADDRESS";
-        String password = "PASSWORD";
+        String from = "rllask1@ilstu.edu";
+        String password = "Banditcleo12";
 
         // Assuming you are sending email from this host
         String host = "outlook.office365.com";
@@ -128,7 +139,7 @@ public class PasswordResetController implements Serializable
             // first part  (the html)
             BodyPart messageBodyPart = new MimeBodyPart();
             String htmlText = "<center><H1>Click the link to reset your password"
-                    + "<br/> http://localhost:8080/Project353/resetPassword.xhtml</H1></center>";
+                    + "<br/> http://localhost:8080/Project353/resetPassword.xhtml?id=" + emailId + "</H1></center>";
             messageBodyPart.setContent(htmlText, "text/html");
 
             // add it
@@ -208,6 +219,54 @@ public class PasswordResetController implements Serializable
     public void setTargetUser(UserBean targetUser)
     {
         this.targetUser = targetUser;
+    }
+
+    /**
+     * @return the SALT
+     */
+    public String getSALT()
+    {
+        return SALT;
+    }
+
+    /**
+     * @param SALT the SALT to set
+     */
+    public void setSALT(String SALT)
+    {
+        this.SALT = SALT;
+    }
+
+    /**
+     * @return the uuid
+     */
+    public UUID getUuid()
+    {
+        return uuid;
+    }
+
+    /**
+     * @param uuid the uuid to set
+     */
+    public void setUuid(UUID uuid)
+    {
+        this.uuid = uuid;
+    }
+
+    /**
+     * @return the emailId
+     */
+    public String getEmailId()
+    {
+        return emailId;
+    }
+
+    /**
+     * @param emailId the emailId to set
+     */
+    public void setEmailId(String emailId)
+    {
+        this.emailId = emailId;
     }
 
 }

@@ -90,6 +90,14 @@ public class UserController implements Serializable
         }
         return resultList;
     }
+    
+    public int setEmailId(UserBean targetUser)
+    {
+        UserDAO userDAO = new UserDAOImpl();
+        int rowCount = userDAO.setEmailId(targetUser);
+        
+        return rowCount;
+    }
 
     /**
      * @return the userModel

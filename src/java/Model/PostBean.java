@@ -5,7 +5,7 @@
  */
 package Model;
 
-import java.io.File;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,6 +18,7 @@ public class PostBean
     private int videoId;
     private String textContent;
     private String username;
+    private ArrayList comments;
 
     public PostBean(int postId, int imageId, int videoId, String textContent, String username)
     {
@@ -124,6 +125,22 @@ public class PostBean
     public void setPostId(int postId)
     {
         this.postId = postId;
+    }
+
+    /**
+     * @return the comments
+     */
+    public ArrayList getComments()
+    {
+        return comments;
+    }
+
+    /**
+     * @param comments the comments to set
+     */
+    public void setComments(ArrayList comments)
+    {
+        this.comments = comments;
     }
     
 }

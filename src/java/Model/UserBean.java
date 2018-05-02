@@ -18,6 +18,7 @@ public class UserBean
     private StudentBean targetStudent;
     private RecruiterBean targetRecruiter;
     private int profileImage;
+    private String emailId;
 
     public UserBean()
     {
@@ -47,6 +48,21 @@ public class UserBean
         this.securityAnswer = secAnswer;
     }
 
+    public Object getProfile()
+    {
+        Object returnObject;
+        if(userType.equalsIgnoreCase("student"))
+        {
+            returnObject = targetStudent;
+            returnObject = (StudentBean) returnObject;
+        }
+        else
+        {
+            returnObject = targetRecruiter;
+            returnObject = (RecruiterBean) returnObject;
+        }
+        return returnObject;
+    }
     /**
      * @return the username
      */
@@ -210,6 +226,38 @@ public class UserBean
     @Override
     public String toString() {
         return "UserBean{" + "username=" + username + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", userType=" + userType + '}';
+    }
+
+    /**
+     * @return the profileImage
+     */
+    public int getProfileImage()
+    {
+        return profileImage;
+    }
+
+    /**
+     * @param profileImage the profileImage to set
+     */
+    public void setProfileImage(int profileImage)
+    {
+        this.profileImage = profileImage;
+    }
+
+    /**
+     * @return the emailId
+     */
+    public String getEmailId()
+    {
+        return emailId;
+    }
+
+    /**
+     * @param emailId the emailId to set
+     */
+    public void setEmailId(String emailId)
+    {
+        this.emailId = emailId;
     }
     
     

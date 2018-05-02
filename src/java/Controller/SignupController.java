@@ -60,7 +60,9 @@ public class SignupController implements Serializable
     {
         String returnString = "";
         String saltedPassword = SALT + userModel.getPassword();
+        System.out.println(saltedPassword);
         String hashedPassword = generateHash(saltedPassword);
+        System.out.println(hashedPassword);
         
         System.out.println("SIGNUPCONTROLLER: createUser()");
         System.out.println(userModel.getUsername());

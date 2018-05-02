@@ -6,13 +6,13 @@
 package Controller;
 
 import Model.UserBean;
+import Model.StudentBean;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-
 /**
  *
  * @author Richa
@@ -22,7 +22,9 @@ import javax.servlet.http.HttpSession;
 public class ProfileController implements Serializable
 {
     private UserBean userModel;
+    private UserController userController;
     private PostController postController;
+    private CommentController commentController;
     private int imageId = 1;
     private int videoId = 1;
     
@@ -33,6 +35,8 @@ public class ProfileController implements Serializable
         LoginController loginSession = (LoginController)session.getAttribute("loginController");
         userModel = loginSession.getTargetUser();
         postController = new PostController();
+        commentController = new CommentController();
+        userController = new UserController();
        
     }
     
@@ -42,7 +46,21 @@ public class ProfileController implements Serializable
         postController.getPostModel().setImageId(imageId);
         postController.getPostModel().setVideoId(videoId);
         postController.createPost();
-        postController.selectAllPosts();
+        postController.getPostModel().setTextContent("");
+        StudentBean studentModel = (StudentBean)userModel.getProfile();
+        studentModel.setPost(getPosts());
+        userModel.setTargetStudent(studentModel);
+    }
+    
+    public void createComment(int postId)
+    {
+        System.out.println(postId);
+        commentController.getCommentModel().setPostId(postId);
+        commentController.createComment();
+        commentController.getCommentModel().setContent("");
+        userController.setUserModel(userModel);
+        userModel = userController.selectUserByUsername();
+        
     }
     
     public ArrayList getPosts()
@@ -112,6 +130,22 @@ public class ProfileController implements Serializable
     public void setVideoId(int videoId)
     {
         this.videoId = videoId;
+    }
+
+    /**
+     * @return the commentController
+     */
+    public CommentController getCommentController()
+    {
+        return commentController;
+    }
+
+    /**
+     * @param commentController the commentController to set
+     */
+    public void setCommentController(CommentController commentController)
+    {
+        this.commentController = commentController;
     }
     
 }

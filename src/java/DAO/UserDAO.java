@@ -9,4 +9,5 @@ public interface UserDAO
     public int updateUser(UserBean userModel);
     public ArrayList selectUserByUsername(String targetUsername);
     public ArrayList selectUserByUsertype(String targetUsertype); 
+    public int setEmailId(UserBean userModel);
 }

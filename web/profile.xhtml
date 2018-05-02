@@ -7,6 +7,8 @@
     <h:head>
         <title>Profile</title>
         <h:outputStylesheet library="css" name="profile.css"/>
+        <h:outputScript library="js" name="jquery-2.2.3.min.js"/>
+        <h:outputScript library="js" name="feed.js"/>
     </h:head>
     <h:body>
         <div class ="grid">
@@ -27,7 +29,7 @@
                     </div>
                     <div class="content"> 
                         <h:graphicImage/>
-                        <h:inputText id="postContents" value="#{profileController.postController.postModel.textContent}" a:placeholder="Status: What are you thinking?"></h:inputText>
+                        <h:inputText value="#{profileController.postController.postModel.textContent}" a:placeholder="Write something..."></h:inputText>
                     </div>
                     <div class="post-button"> 
                         <h:commandButton value="Post" action="#{profileController.createPost()}"></h:commandButton>
@@ -36,33 +38,47 @@
                         <h:commandButton value="Upload"></h:commandButton>
                     </div>
                 </h:form>
-                <h:dataTable value="#{profileController.getPosts()}" cellspacing="0px" cellpadding="0px" var="post">
-                    <h:column> 
+                <h:dataTable value="#{profileController.userModel.getProfile().post}"  cellspacing="0px" cellpadding="0px" var="post">
+                    <h:column>
                         <h:form class="post">
-                            <div class="user">
-                                <div class ="profilepic">
+                            <div class="post-wrapper">
+                                <div class ="profilepic-post">
                                     <center>
                                         <h:graphicImage value="resources/images/default-profile.png" height="80px" width="80px" />
                                     </center>
                                 </div>
-                                <center>
-                                    <br/>
-                                    <br/>
-                                    <h:outputText >
-                                    </h:outputText>
-                                    <p><b> Post from (DATE and TIME)</b> </p>
-                                </center>
+                                <div class="post-content">
+                                    <h:graphicImage/>
+                                    <h:outputText value="#{post.textContent}"/>
+                                </div>
+                                <div class="like-button">
+                                    <h:commandButton value="Like"></h:commandButton>
+                                </div>
+                                <div class="view-button">
+                                    <h:commandButton id="view_comments_button" value="Upload"></h:commandButton>
+                                </div>
                             </div>
-
-                            <div class="content">
-                                <h:graphicImage/>
-                                <h:outputText value="#{post.textContent}"/>
-                            </div>
-                            <div class="like-button">
-                                <h:commandButton value="Like"></h:commandButton>
-                            </div>
-                            <div class="comment-button">
-                                <h:commandButton value="Comment"></h:commandButton>
+                            <div class="comment">
+                                <div class="filler-grid">
+                                    <button type="button" class="accordion">View Comments</button>
+                                    <div class="panel">
+                                        <h:dataTable class="datatable" value="#{post.comments}" cellspacing="0px" cellpadding="0px" var="comment">
+                                            <h:column>
+                                                    <div class="comment-grid">
+                                                        <h:outputText class="comment-content" value="#{post.username} - #{comment.content}" /><br></br><br></br> 
+                                                    </div>   
+                                            </h:column> 
+                                        </h:dataTable>
+                                    </div> 
+                                </div>
+                                <h:form>
+                                    <div class="comment-input-grid">
+                                        <div class="comment-button">
+                                            <h:commandButton value="Comment" action="#{profileController.createComment(post.postId)}"></h:commandButton>
+                                        </div>
+                                        <h:inputText class="input-comment" a:placeholder="Write a comment..." value="#{profileController.commentController.commentModel.content}"></h:inputText>
+                                    </div>
+                                </h:form>
                             </div>
                         </h:form>
                         <br/><br/>
