@@ -6,6 +6,7 @@ import java.io.ByteArrayInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +30,11 @@ public class ImageDAOImpl implements ImageDAO
         DBConn = DBHelper.connect2DB(myDB, "itkstu", "student");
     }
 
-    @Override
+    @Override // recieves user from MediaController
     public StreamedContent getProfileImage(UserBean user) {
         StreamedContent image= null;
         try {
-            connect2DB();
+            connect2DB();                                         //Gets the profile image id
             String insert = "SELECT IMAGE FROM IMAGES WHERE IMAGEID= "+user.getProfileImage() ;
             System.out.println(insert);
             PreparedStatement stmt = DBConn.prepareStatement(insert);
@@ -43,7 +44,7 @@ public class ImageDAOImpl implements ImageDAO
                image= new DefaultStreamedContent(new ByteArrayInputStream(rs.getBytes(1)));
             }
             DBConn.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
         return image;

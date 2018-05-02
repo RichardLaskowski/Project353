@@ -73,7 +73,7 @@
                 <h:form id="sidebar">
                     <div class ="profilepic">
                         <center>
-                            <p:graphicImage value="#{mediaController.image}" height="auto" width="100%" />
+                            <p:graphicImage value="#{mediaController.profileImage}" height="auto" width="100%" />
                         </center>
                     </div>
                     <h:commandButton  id="home" class="sidebarbutton" action="signUp?faces-redirect=true" value="Home" ></h:commandButton>
@@ -102,43 +102,43 @@
             </aside>
             <aside2>
                 <h3> 
-                <h:outputText value="#{profileController.userName}"></h:outputText>
+                    <h:outputText value="#{profileController.userModel.username}"></h:outputText>
                 's Detailed Info</h3>
                 <br/>
                 <b>Date of Birth:</b>
-                <h:outputText value="#{profileController.DOB}"></h:outputText>
+                <h:outputText value="#{profileController.studentModel.dateOfBirth}"></h:outputText>
                 <br/>    
                 <b>Height:</b>
-                <h:outputText value="#{profileController.height}"></h:outputText>
+                <h:outputText value="#{profileController.studentModel.height}"></h:outputText>
                 <br/>
                 <b>Weight:</b>
-                <h:outputText value="#{profileController.weight}"></h:outputText>
+                <h:outputText value="#{profileController.studentModel.weight}"></h:outputText>
                 <br/>
                 <b>Country:</b>
-                <h:outputText value="#{profileController.country}"></h:outputText>
+                <h:outputText value="#{profileController.studentModel.country}"></h:outputText>
                 <br/>
                 <b>Current School:</b>
-                <h:outputText value="#{profileController.school}"></h:outputText>
+                <h:outputText value="#{profileController.studentModel.school}"></h:outputText>
 
                 <br/>
                 <b>Graduation Year:</b>
-                <h:outputText value="#{profileController.endYear}"></h:outputText>
+                <h:outputText value="#{profileController.studentModel.endYear}"></h:outputText>
                 <br/>
                 <b>SAT:</b>
-                <h:outputText value="#{profileController.SAT}"></h:outputText>
+                <h:outputText value="#{profileController.studentModel.sat}"></h:outputText>
                 <br/>
                 <b>ACT:</b>
-                <h:outputText value="#{profileController.ACT}"></h:outputText>
+                <h:outputText value="#{profileController.studentModel.act}"></h:outputText>
                 <br/>
                 <b>PSAT:</b>
-                <h:outputText value="#{profileController.PSAT}"></h:outputText>
+                <h:outputText value="#{profileController.studentModel.psat}"></h:outputText>
 
                 <br/>
                 <b>Certifications:</b>
-                <h:outputText value="#{profileController.certifications}"></h:outputText>
+                <h:outputText value="#{profileController.studentModel.certification}"></h:outputText>
                 <br/>
                 <b>Hobbies:</b>
-                <h:outputText value="#{profileController.hobbies}"></h:outputText>
+                <h:outputText value="#{profileController.studentModel.hobbies}"></h:outputText>
                 <br/>
                 <br/>
             </aside2>

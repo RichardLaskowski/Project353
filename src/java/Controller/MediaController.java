@@ -72,7 +72,7 @@ public class MediaController implements Serializable {
         } else
         {
             // So, browser is requesting the image. Return a real StreamedContent with the image bytes.
-           // String studentId = context.getExternalContext().getRequestParameterMap().get("studentId");
+           
            ImageDAO dao= new ImageDAOImpl();
 
             return dao.getProfileImage(user);

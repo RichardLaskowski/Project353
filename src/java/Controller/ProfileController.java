@@ -5,10 +5,13 @@
  */
 package Controller;
 
+import Model.StudentBean;
 import Model.UserBean;
 import javax.inject.Named;
 import java.io.Serializable;
-import javax.faces.bean.SessionScoped;
+import java.util.ArrayList;
+import javax.enterprise.context.SessionScoped;
+//import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.mail.BodyPart;
 import javax.mail.Message;
@@ -31,6 +34,7 @@ import javax.servlet.http.HttpSession;
 public class ProfileController implements Serializable {
 
     private UserBean userModel;
+    private StudentBean studentModel;
     private PostController postController;
     private int imageId = 1;
     private int videoId = 1;
@@ -40,6 +44,7 @@ public class ProfileController implements Serializable {
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
         LoginController loginSession = (LoginController) session.getAttribute("loginController");
         userModel = loginSession.getTargetUser();
+        studentModel= loginSession.getTargetUser().getTargetStudent();
         postController = new PostController();
 
     }
@@ -120,5 +125,14 @@ public class ProfileController implements Serializable {
         return "profile_1.xhtml";
     }
 
+    public StudentBean getStudentModel() {
+        return studentModel;
+    }
+
+    public void setStudentModel(StudentBean studentModel) {
+        this.studentModel = studentModel;
+    }
+    
+    
 
 }

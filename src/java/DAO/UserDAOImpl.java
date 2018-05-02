@@ -65,8 +65,8 @@ public class UserDAOImpl implements UserDAO
                     + "', '" + userModel.getSecurityQuestion()
                     + "', '" + userModel.getSecurityAnswer()
                     + "', '" + userModel.getUserType()
-                    + "', '" + userModel.getProfileImage()
-                    + "')";
+                    + "', null"
+                    + ")";
                 
                 rowCount = stmt.executeUpdate(insertString);
                 
