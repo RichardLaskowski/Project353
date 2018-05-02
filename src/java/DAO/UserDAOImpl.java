@@ -55,7 +55,7 @@ public class UserDAOImpl implements UserDAO
                 //String insertStudentTbl;
                 Statement stmt = DBConn.createStatement();
                 insertString = "INSERT INTO itkstu.users "
-                    + "(username, password, firstname, lastname, email, securityquestion, securityanswer, usertype) "
+                    + "(username, password, firstname, lastname, email, securityquestion, securityanswer, usertype, emailsubscription) "
                     + "VALUES ('" + userModel.getUsername()
                     + "', '" + userModel.getPassword()
                     + "', '" + userModel.getFirstName()
@@ -64,7 +64,7 @@ public class UserDAOImpl implements UserDAO
                     + "', '" + userModel.getSecurityQuestion()
                     + "', '" + userModel.getSecurityAnswer()
                     + "', '" + userModel.getUserType()
-                    + "')";
+                    + "', '1')";
                 
                 rowCount = stmt.executeUpdate(insertString);
                 
@@ -95,6 +95,26 @@ public class UserDAOImpl implements UserDAO
         return rowCount;
     }
     
+    @Override
+    public int updateEmailDB(StudentBean studentBean)
+    {
+        int rowCount = 0;
+     try {
+                connect2DB();
+                String insertString;
+                Statement stmt = DBConn.createStatement();
+                insertString = "UPDATE ITKSTU.USERS SET EMAILSUBSCRIPTION = '0'"
+                        + " WHERE username = '" + studentBean.getUsername() + "'";
+                rowCount = stmt.executeUpdate(insertString);
+                DBConn.close();
+            } 
+            catch (SQLException e) 
+            {
+                System.err.println(e.getMessage());
+            }
+            return rowCount;
+        }
+         
     @Override
     public int updateUser(UserBean userModel)
     {

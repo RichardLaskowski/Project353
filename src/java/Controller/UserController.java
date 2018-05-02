@@ -90,6 +90,8 @@ public class UserController implements Serializable
         }
         return resultList;
     }
+    
+
 
     /**
      * @return the userModel

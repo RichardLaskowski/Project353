@@ -5,8 +5,11 @@
 package Controller;
 
 
+import DAO.UserDAO;
+import DAO.UserDAOImpl;
 import Model.StudentBean;
 import java.io.Serializable;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.FlowEvent;
@@ -15,6 +18,7 @@ import javax.servlet.http.HttpSession;
 
 
 @Named(value = "updateController")
+@ManagedBean
 @SessionScoped
 public class UpdateController implements Serializable
 {
@@ -43,7 +47,17 @@ public class UpdateController implements Serializable
         
         return resultString;
     }
-
+    public String updateUsers(){
+        String status = "successfull";
+        UserDAO userDAO = new UserDAOImpl();
+        int result = userDAO.updateEmailDB(studentBean);
+        if(result==1)
+        return status;
+        else
+            return status = "Unsuccessfull";
+    }
+    
+   
     /**
      * @return the studentBean
      */

@@ -115,8 +115,8 @@ public class ShowcaseUniversityDAOImpl implements ShowcaseUniversityDAO {
                 String to = rs.getString("EMAIL");
 
                 // Sender's email ID needs to be mentioned
-                String from = "email address";
-                String password = "password";
+                String from = "atapadi@ilstu.edu";
+                String password = "Akki_ayu+3363-";
 
                 // Assuming you are sending email from this host
                 String host = "outlook.office365.com";
