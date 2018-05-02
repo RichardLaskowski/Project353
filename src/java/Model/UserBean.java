@@ -17,8 +17,12 @@ public class UserBean
     private String userType;
     private StudentBean targetStudent;
     private RecruiterBean targetRecruiter;
+<<<<<<< HEAD
     private int profileImage;
     private String emailId;
+=======
+    private int profilePictureID;
+>>>>>>> master
 
     public UserBean()
     {
@@ -46,6 +50,19 @@ public class UserBean
         this.email = email;
         this.securityQuestion = secQuestion;
         this.securityAnswer = secAnswer;
+    }
+    
+    public UserBean(String username, String password, String firstName, String lastName, String email, String secQuestion, String secAnswer, String userType, int profilePictureID)
+    {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.securityQuestion = secQuestion;
+        this.securityAnswer = secAnswer;
+        this.userType = userType;
+        this.profilePictureID= profilePictureID;
     }
 
     public Object getProfile()
@@ -223,9 +240,17 @@ public class UserBean
         this.targetRecruiter = targetRecruiter;
     }
 
+    public int getProfileImage() {
+        return this.profilePictureID;
+    }
+
+    public void setProfileImage(int profileImage) {
+        this.profilePictureID = profileImage;
+    }
+
     @Override
     public String toString() {
-        return "UserBean{" + "username=" + username + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", userType=" + userType + '}';
+        return "UserBean{" + "username=" + username + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", userType=" + userType + "}";
     }
 
     /**

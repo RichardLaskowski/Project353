@@ -48,7 +48,7 @@ public class LoginController
         String returnString = "";
         String saltedPassword = SALT + userModel.getPassword();
         String hashedPassword = SignupController.generateHash(saltedPassword);
-        
+
         if (loginAttempt < 3)
         {
             loginAttempt++;

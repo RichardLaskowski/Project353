@@ -8,14 +8,13 @@
         <title>search results</title>
     </h:head>
     <h:body>
-        <p:dataList value="#{searchController.results}" var="user" >
-            <p:link outcome="profile" value="#{user.toString}">
-                <f:param name="aUser" value="#{user}" />
-            </p:link>
-            <p:commandLink value="Submit" action="#{mediaController.}">
-                <f:setPropertyActionListener target="#{mediaController.setTargetUser(user)}" value="#{user}" />
-            </p:commandLink>
-        </p:dataList>
+        <h:form>
+            <p:dataList value="#{searchController.results}" var="user" >
+                <p:commandLink action="#{profileController.profilePage()}" ajax="false">
+                    <h:outputText value="#{user.toString()}" />
+                </p:commandLink>
+            </p:dataList>
+        </h:form>
     </h:body>
 </html>
 

@@ -1,12 +1,14 @@
 package DAO;
 
 import Model.ImageBean;
+import Model.UserBean;
 import java.io.ByteArrayInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
@@ -20,7 +22,7 @@ public class ImageDAOImpl implements ImageDAO
     private String driver = "org.apache.derby.jdbc.ClientDriver";
     private ImageBean targetImage;
     private long imageId;
-    private String source;
+    //private String source;
 
     public void connect2DB()
     {
@@ -29,13 +31,11 @@ public class ImageDAOImpl implements ImageDAO
     }
 
     @Override
-    public StreamedContent getImage()
-    {
-        StreamedContent image = null;
-        try
-        {
+    public StreamedContent getProfileImage(UserBean user) {
+        StreamedContent image= null;
+        try {
             connect2DB();
-            String insert = "SELECT IMAGE FROM IMAGES WHERE IMAGEID= 3";
+            String insert = "SELECT IMAGE FROM IMAGES WHERE IMAGEID= "+user.getProfileImage() ;
             System.out.println(insert);
             PreparedStatement stmt = DBConn.prepareStatement(insert);
 //            stmt.setBinaryStream(1, file.getInputstream());
@@ -87,35 +87,51 @@ public class ImageDAOImpl implements ImageDAO
     }
 
     @Override
-    public ArrayList selectImageByImageId(int targetImageId)
-    {
-        resultList = new ArrayList();
-        String selectString = "SELECT * FROM itkstu.images "
+    public StreamedContent selectImageByImageId(int targetImageId) {
+        StreamedContent image= null;
+        String selectString = "SELECT IMAGE FROM itkstu.images "
                 + "WHERE imageId = '" + targetImageId + "'";
 
         try
         {
             connect2DB();
-            Statement stmt = DBConn.createStatement();
+            PreparedStatement stmt = DBConn.prepareStatement(selectString);
             ResultSet rs = stmt.executeQuery(selectString);
-
-            while (rs.next())
-            {
-                imageId = rs.getInt("imageId");
-                source = rs.getString("source");
-
-                // targetImage = new ImageBean(imageId, source);
-                resultList.add(targetImage);
+            if (rs.next()) {
+               image= new DefaultStreamedContent(new ByteArrayInputStream(rs.getBytes(1)));
             }
+            
+            DBConn.close();
+        } catch (Exception e) {
+            System.err.println("ERROR: SELECT IMAGE BY IMAGEID FAILED.");
+            System.err.println("TARGET: " + targetImageId);
+            e.printStackTrace();
+        }
+        return image;
+    }
+    
+    public List<StreamedContent> selectAllImagesByUsername(UserBean user) {
+        List<StreamedContent> images= new ArrayList<>();
+        String selectString = "SELECT IMAGE FROM itkstu.images "
+                + "WHERE USERNAME = '" + user.getUsername() + "'";
+
+        try {
+            connect2DB();
+            PreparedStatement stmt = DBConn.prepareStatement(selectString);
+            ResultSet rs = stmt.executeQuery(selectString);
+            while (rs.next()) {
+               images.add(new DefaultStreamedContent(new ByteArrayInputStream(rs.getBytes(1))));
+            }
+            
             DBConn.close();
         } 
         catch (Exception e)
         {
             System.err.println("ERROR: SELECT IMAGE BY IMAGEID FAILED.");
-            System.err.println("TARGET: " + targetImageId);
+            System.err.println("TARGET: " + user.getUsername() );
             e.printStackTrace();
         }
-        return resultList;
+        return images;
     }
 
 }
