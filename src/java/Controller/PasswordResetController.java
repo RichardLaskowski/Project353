@@ -54,7 +54,8 @@ public class PasswordResetController implements Serializable
     {
         hashedEmailId = SignupController.generateHash(SALT + targetUser.getEmailId());
         targetUser.setEmailId(hashedEmailId);
-        targetUser.setPassword(SignupController.generateHash(SALT + targetUser.getPassword()));
+        //targetUser.setPassword(SignupController.generateHash(SALT + targetUser.getPassword()));
+        System.out.println(targetUser.getPassword());
         userController.updateUser(targetUser); 
         
         return "logIn.xhtml";
@@ -93,8 +94,8 @@ public class PasswordResetController implements Serializable
         userController.setEmailId(targetUser);
 
         // Sender's email ID needs to be mentioned
-        String from = "rllask1@ilstu.edu";
-        String password = "PASSWORD";
+        String from = "Email";
+        String password = "Password";
 
         // Assuming you are sending email from this host
         String host = "outlook.office365.com";

@@ -29,6 +29,7 @@ public class StudentBean
     private String hobbies;
     private String username;
     private ArrayList post = new ArrayList();
+    private boolean subscription;
 
     public StudentBean()
     {
@@ -410,4 +411,16 @@ public class StudentBean
     }
 
     
+     
+    public boolean isSubscription() {
+        return subscription;
+    }
+
+    /**
+     * @param subscription the subscription to set
+     */
+    public void setSubscription(boolean subscription) {
+        this.subscription = subscription;
+    }
+
 }

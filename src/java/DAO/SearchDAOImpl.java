@@ -34,7 +34,7 @@ public class SearchDAOImpl implements SearchDAO {
             System.exit(0);
         }
         try {
-            String myDB = "jdbc:derby://localhost:1527/Project353";// connection string
+            String myDB = "jdbc:derby://localhost:1527/Project353";
             Connection DBConn = DriverManager.getConnection(myDB, "itkstu", "student");
             String insertString, insertString1;
             Statement stmt = DBConn.createStatement();

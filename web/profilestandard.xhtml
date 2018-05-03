@@ -101,9 +101,9 @@
                         <br/>
                         Illinois State University
                     </i></b>
-                    <h:outputLink value="https://illinoisstate.edu/">
-                        <h:graphicImage value="resources/images/illinois-state-showcase.jpg" height="auto" width="100%" />
-                    </h:outputLink>
+                    <p:galleria value="#{showcaseUniversityController.images}" var="image" panelWidth="300" panelHeight="200">
+                        <p:graphicImage value="resources/images/#{image}" title="#{image}"/>
+                    </p:galleria>
                 </div>
             </h:form>
             </aside>

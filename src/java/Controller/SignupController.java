@@ -59,10 +59,10 @@ public class SignupController implements Serializable
     public String createUser()
     {
         String returnString = "";
-        String saltedPassword = SALT + userModel.getPassword();
-        System.out.println(saltedPassword);
-        String hashedPassword = generateHash(saltedPassword);
-        System.out.println(hashedPassword);
+        //String saltedPassword = SALT + userModel.getPassword();
+        //System.out.println(saltedPassword);
+        //String hashedPassword = generateHash(saltedPassword);
+        //System.out.println(hashedPassword);
         
         System.out.println("SIGNUPCONTROLLER: createUser()");
         System.out.println(userModel.getUsername());
@@ -74,7 +74,7 @@ public class SignupController implements Serializable
         System.out.println(userModel.getSecurityQuestion());
         System.out.println(userModel.getUserType());
 
-        userModel.setPassword(hashedPassword);
+        //userModel.setPassword(hashedPassword);
         userInserted = userController.createUser(userModel);
 
         System.out.println("SIGNUPCONTROLLER: " + userInserted);

@@ -8,13 +8,20 @@ and open the template in the editor.
     Author     : Richard
 */
 
-*
+/**
 {
     margin: 0px;
     box-sizing: border-box;
-    background-color: #aaaaa;
+    background-color: #e9ebee;
+}*/
+
+body{
+    background-color: #e9ebee;
 }
 
+h1{
+    margin-top: 0px;
+}
 .grid
 {
     display: grid;
@@ -34,10 +41,10 @@ header
     top: 0;
     position: fixed;
     width: 100%;
-    height: 40px;
+    height: 45px;
     z-index: 1;
     grid-area: head;
-    background-color: lightgray;
+    background-color: #d9edf7;
     display: grid;
     grid-template-columns: repeat(11, 1fr);
     color:#31708F;
@@ -96,7 +103,7 @@ footer
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     text-align: center;
     grid-area: foot;
-    background-color: lightgray;
+    background-color: #d9edf7;
 }
 
 /*--------------------------------------------------------------------*/
@@ -113,7 +120,7 @@ footer
 
 .status
 {
-    background-color: darkgray;
+    background-color:  #a0cade;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     display: grid;
     padding: 5px;
@@ -143,6 +150,7 @@ footer
 
 .content > input
 {
+    width: 98.5%;
     padding: 5px;
     border-radius: 5px;
 }
@@ -164,16 +172,24 @@ footer
 
 .post-button > input[type=submit]:hover
 {
-    background-color: #666666;
+    background-color: #31708F;
 }
 
+.like-button > input[type=submit]:hover
+{
+    background-color: #31708F;
+}
+.comment-button > input[type=submit]:hover
+{
+    background-color: #31708F;
+}
 /*------------------------------------------------------------*/
 
 .post
 {
 /*    align-self: start;*/
     padding: 5px;
-    background-color: darkgray;
+    background-color: #a0cade;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     display: grid;
     grid-gap: 10px;
@@ -183,10 +199,11 @@ footer
 
 .post-wrapper
 {
+    opacity: .8;
     grid-column: 1 / -1;
     margin: 0px;
     padding: 5px;
-    background-color: lightgray;
+    background-color: #31708F;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 10px;
@@ -204,7 +221,8 @@ footer
 .post-content
 {
     grid-column: span 3;
-    background-color: lightgray;
+    background-color: #31708F;
+    opacity: .5;
     font-size: 20px;
     padding: 5px;
     display: grid;
@@ -237,7 +255,7 @@ footer
 
 .like-button > input[type=submit]:hover
 {
-    background-color: #666666;
+    background-color: #31708F;
 }
 
 .view-button
@@ -258,7 +276,7 @@ footer
 
 .view-button > input[type=submit]:hover
 {
-    background-color: #666666;
+    background-color: #31708F;
 }
 /*-----------------------------------------------------------------*/
  
@@ -348,7 +366,7 @@ footer
 .input-comment
 {
     grid-column: span 5;
-    width: 100%;
+    width: 96%;
     border-radius: 15px;
     padding: 5px 10px 5px 10px;
     margin-bottom: 2px;
@@ -366,7 +384,7 @@ footer
 
 .comment-button > input[type=submit]:hover
 {
-    background-color: #666666;
+    background-color: #31708F;
 }
 /*-----------------------------------------------------------------*/
 input[type=submit]

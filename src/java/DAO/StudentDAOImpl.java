@@ -159,7 +159,6 @@ public class StudentDAOImpl implements StudentDAO
                         + "' WHERE username = '" + studentModel.getUsername() + "'";
              
                 rowCount = stmt.executeUpdate(insertString);
-                
                 DBConn.close();
             } 
             catch (SQLException e) 
