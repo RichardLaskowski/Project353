@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.util.ArrayList;
+
 public class StudentBean
 {
 
@@ -26,6 +28,8 @@ public class StudentBean
     private String essay;
     private String hobbies;
     private String username;
+    private ArrayList post = new ArrayList();
+    private boolean subscription;
 
     public StudentBean()
     {
@@ -388,6 +392,35 @@ public class StudentBean
     public void setUsername(String username)
     {
         this.username = username;
+    }
+
+    /**
+     * @return the post
+     */
+    public ArrayList getPost()
+    {
+        return post;
+    }
+
+    /**
+     * @param post the post to set
+     */
+    public void setPost(ArrayList post)
+    {
+        this.post = post;
+    }
+
+    
+     
+    public boolean isSubscription() {
+        return subscription;
+    }
+
+    /**
+     * @param subscription the subscription to set
+     */
+    public void setSubscription(boolean subscription) {
+        this.subscription = subscription;
     }
 
 }

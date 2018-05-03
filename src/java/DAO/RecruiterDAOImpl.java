@@ -62,6 +62,45 @@ public class RecruiterDAOImpl implements RecruiterDAO
         }
         return rowCount;
     }
+    
+    @Override
+    public int updateRecruiter(RecruiterBean recruiterModel)
+    {
+        int rowCount = 0;
+        resultList = selectRecruiterByUsername(recruiterModel.getUsername());
+        System.out.println("RECRUITERDAOIMPL: profileId - " + recruiterModel.getProfileId());
+        System.out.println("RECRUITERDAOIMPL: university - " + recruiterModel.getUniversity());
+        System.out.println("RECRUITERDAOIMPL: username - " + recruiterModel.getDepartment());
+        System.out.println("RECRUITERDAOIMPL: phone - " + recruiterModel.getPhone());
+        
+        if(!resultList.isEmpty())
+        {
+            try 
+            {
+                connect2DB();
+                String insertString;
+                Statement stmt = DBConn.createStatement();
+                insertString = "UPDATE itkstu.recruiter "
+                        + "SET university = '" + recruiterModel.getUniversity()
+                        + "', phone = '" + recruiterModel.getPhone()
+                        + "', department = '" + recruiterModel.getDepartment()
+                        +"' WHERE username = '" + recruiterModel.getUsername() + "'";
+             
+                rowCount = stmt.executeUpdate(insertString);
+                
+                DBConn.close();
+            } 
+            catch (SQLException e) 
+            {
+                System.err.println(e.getMessage());
+            }
+        }
+        else
+        {
+            System.err.println("STUDENDAOIMPL: Recruiter does not Exist");
+        }
+        return rowCount;
+    }
 
     @Override
     public ArrayList selectRecruiterByUsername(String targetUsername)

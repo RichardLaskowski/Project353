@@ -56,7 +56,7 @@ public class UserDAOImpl implements UserDAO
                 //String insertStudentTbl;
                 Statement stmt = DBConn.createStatement();
                 insertString = "INSERT INTO itkstu.users "
-                    + "(username, password, firstname, lastname, email, securityquestion, securityanswer, usertype, profilepictureid) "
+                    + "(username, password, firstname, lastname, email, securityquestion, securityanswer, usertype, profilepictureid, emailsubscription) "
                     + "VALUES ('" + userModel.getUsername()
                     + "', '" + userModel.getPassword()
                     + "', '" + userModel.getFirstName()
@@ -65,20 +65,10 @@ public class UserDAOImpl implements UserDAO
                     + "', '" + userModel.getSecurityQuestion()
                     + "', '" + userModel.getSecurityAnswer()
                     + "', '" + userModel.getUserType()
-                    + "', '" + userModel.getProfileImage()
-                    + "')";
+                    + "', " + userModel.getProfilePictureID()
+                    + ", '1')";
                 
-                rowCount = stmt.executeUpdate(insertString);
-                
-//                Statement stmt1 = DBConn.createStatement();
-//                if(rowCount == 1)
-//                {
-//                      rowCount = 0;
-//                      insertStudentTbl = "INSERT INTO itkstu.student "
-//                                + "(username)"
-//                                + " VALUES  ('" + userModel.getUsername() + "')";
-//                     rowCount = stmt1.executeUpdate(insertStudentTbl);   
-//                }
+                rowCount = stmt.executeUpdate(insertString); 
                 DBConn.close();
             }
             catch(SQLException e)
@@ -97,6 +87,26 @@ public class UserDAOImpl implements UserDAO
         return rowCount;
     }
     
+    @Override
+    public int updateEmailDB(StudentBean studentBean)
+    {
+        int rowCount = 0;
+     try {
+                connect2DB();
+                String insertString;
+                Statement stmt = DBConn.createStatement();
+                insertString = "UPDATE ITKSTU.USERS SET EMAILSUBSCRIPTION = '0'"
+                        + " WHERE username = '" + studentBean.getUsername() + "'";
+                rowCount = stmt.executeUpdate(insertString);
+                DBConn.close();
+            } 
+            catch (SQLException e) 
+            {
+                System.err.println(e.getMessage());
+            }
+            return rowCount;
+        }
+         
     @Override
     public int updateUser(UserBean userModel)
     {
@@ -120,7 +130,66 @@ public class UserDAOImpl implements UserDAO
                     + "', securityquestion = '" + userModel.getSecurityQuestion()
                     + "', securityanswer = '" + userModel.getSecurityAnswer()
                     + "', usertype = '" + userModel.getUserType()
-                    + "', profilepictureid = '" + userModel.getProfileImage()
+                    + "', profilepictureid = " + userModel.getProfilePictureID()
+                    + " WHERE username = '" + userModel.getUsername() + "'";
+                
+                rowCount = stmt.executeUpdate(insertString);              
+                DBConn.close();
+            }
+            catch(SQLException e)
+            {
+                System.err.println(e.getMessage());
+            }
+        }
+        else
+        {
+            //ArrayList returned a user therefore User Already Exist
+            //Returning rowCount = 0 to the controlle
+            //Handle conflict there.
+            System.err.println("USERDAOIMPL: User Doesnt Exist");
+        }
+        
+        return rowCount;
+    }
+    
+    public int setProfilePictureId(int imageId, String username)
+    {
+        int rowCount = 0;
+        
+        try
+        {
+            connect2DB();
+            String insertString;
+            Statement stmt = DBConn.createStatement();
+            insertString = "UPDATE itkstu.users "
+                + "SET profilepictureid = " + imageId
+                + " WHERE username = '" + username + "'";
+
+            rowCount = stmt.executeUpdate(insertString);              
+            DBConn.close();
+        }
+        catch(SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+               
+        return rowCount;
+    }
+    public int setEmailId(UserBean userModel)
+    {
+        int rowCount = 0;
+        resultList = selectUserByUsername(userModel.getUsername());
+        System.out.println("USERDAOIMPL: Update Username - " + userModel.getUsername());
+        
+        if(!resultList.isEmpty())
+        {
+            try
+            {
+                connect2DB();
+                String insertString;
+                Statement stmt = DBConn.createStatement();
+                insertString = "UPDATE itkstu.users "
+                    + "SET emailId = '" + userModel.getEmailId()
                     + "' WHERE username = '" + userModel.getUsername() + "'";
                 
                 rowCount = stmt.executeUpdate(insertString);              

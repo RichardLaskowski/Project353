@@ -23,32 +23,31 @@
                 </div>
             </header>
             <feed class ="feed-grid">
-                <h:form class="status">
+                <h:form class="status" enctype="multipart/form-data">
+    
                     <div class="title">
                         <h1>Status Update</h1>
                     </div>
                     <div class="content"> 
-                        <h:graphicImage/>
+                        <p:graphicImage value="#{mediaController.image}" height="auto" width="100%"/>
                         <h:inputText value="#{profileController.postController.postModel.textContent}" a:placeholder="Write something..."></h:inputText>
                     </div>
                     <div class="post-button"> 
-                        <h:commandButton value="Post" action="#{profileController.createPost()}"></h:commandButton>
+                        <h:commandButton value="Post" action="#{profileController.createPost(mediaController.imageId)}"></h:commandButton>
                     </div> 
                     <div class="post-button"> 
-                        <h:commandButton value="Upload"></h:commandButton>
+                        <h:commandButton value="Upload" action="#{mediaController.uploadPostImage()}"></h:commandButton>
                     </div>
+                    <p:fileUpload value="#{mediaController.file}" mode="simple" skinSimple="true"/>
                 </h:form>
                 <h:dataTable value="#{profileController.userModel.getProfile().post}"  cellspacing="0px" cellpadding="0px" var="post">
                     <h:column>
                         <h:form class="post">
                             <div class="post-wrapper">
                                 <div class ="profilepic-post">
-                                    <center>
-                                        <h:graphicImage value="resources/images/default-profile.png" height="80px" width="80px" />
-                                    </center>
+                                        <p:graphicImage value="#{mediaController.getProfileImage()}" height="100px" width="160px"/>
                                 </div>
                                 <div class="post-content">
-                                    <h:graphicImage/>
                                     <h:outputText value="#{post.textContent}"/>
                                 </div>
                                 <div class="like-button">
@@ -86,50 +85,62 @@
                 </h:dataTable>
             </feed>
         <aside>
-                <h:form id="sidebar">
-                    <div class ="profilepic">
-                        <center>
-                            <p:graphicImage value="#{mediaController.image}" height="auto" width="100%" />
-                        </center>
-                    </div>
+            <h:form id="sidebar" enctype="multipart/form-data">
+                <div class ="profilepic">
+                    <p:graphicImage value="#{mediaController.getProfileImage()}" height="auto" width="100%" />
+                </div>
+                <div class="sidebar-buttons">
+                    <p:fileUpload value="#{mediaController.file}" mode="simple" skinSimple="true"/>
+                    <h:commandButton class="upload-button" value="Upload" action="#{mediaController.upload()}"></h:commandButton>
                     <h:commandButton  id="home" class="sidebarbutton" action="signUp?faces-redirect=true" value="Home" ></h:commandButton>
-                    <br/>
-                    <br/>
-                    <h:commandButton  id="search" class="sidebarbutton" action="searchResults?faces-redirect=true" value="Search" ></h:commandButton>
-                    <br/>
-                    <br/>
-                    <h:commandButton  id="feed" class="sidebarbutton" action="feed?faces-redirect=true" value="Feed" ></h:commandButton>
-                    <br/>
-                    <br/>
                     <h:commandButton  id="details" class="sidebarbutton" action="update.xhtml?faces-redirect=true" value="My Details" ></h:commandButton>
-                    <br/>
-                    <br/>
                     <h:commandButton  id="logOut" class="sidebarbutton" action="logOut.xhtml?faces-redirect=true" value="Log Out" ></h:commandButton>
-                    <br/>
-                    <br/>
+                </div>
+                <div class="featured">
                     <b><i>Featured College:
-                            <br/>
-                            Illinois State University
-                        </i></b>
-                    <h:outputLink value="https://illinoisstate.edu/">
-                        <h:graphicImage value="resources/images/illinois-state-showcase.jpg" height="auto" width="100%" />
-                    </h:outputLink>
-                </h:form>
+                        <br/>
+                        Illinois State University
+                    </i></b>
+                    <p:galleria value="#{showcaseUniversityController.images}" var="image" panelWidth="300" panelHeight="200">
+                        <p:graphicImage value="resources/images/#{image}" title="#{image}"/>
+                    </p:galleria>
+                </div>
+            </h:form>
             </aside>
             <aside2>
-                <h3> 
-                <h:outputText value="#{profileController.userName}"></h:outputText>
-                's Detailed Info</h3>
-                <br/>
-                <h:outputText value="#{profileController.department}"></h:outputText>
-                <br/>
-                <h:outputText value="#{profileController.university}"></h:outputText>
-                <br/>
-                <h:outputText value="#{profileController.phone}"></h:outputText>
-                <br/>                
-                <h:commandButton class="sidebarbutton" value="Request More Details"> </h:commandButton>   
+                <div class="sidebar-2">
+                    <h3>User's Detailed Info</h3>
+                    <br/>
+                    Date of Birth:
+                    <br/>
+                    Height:
+                    <br/>
+                    Weight:
+                    <br/>
+                    Country:
+                    <br/>
+                    Current School:
+                    <br/>
+                    Graduation Year:
+                    <br/>
+                    SAT:
+                    <br/>
+                    ACT:
+                    <br/>
+                    PSAT:
+                    <br/>
+                    Certifications:
+                    <br/>
+                    Hobbies:
+                    <br/>
+                    Majors:
+                    <br/>
+                    Contact info?
+                    <br/>
+                    <h:commandButton class="sidebarbutton" value="Request More Details"> </h:commandButton>
+                </div>
             </aside2>
-            <footer>LINKEDU LLC. Created By Eric, Akankshaw, Dryden and Ricky</footer>
+            <footer>LINKEDU LLC. Created By Eric, Akanksha, Dryden and Ricky</footer>
         </div>
     </h:body>
 </html>

@@ -22,7 +22,7 @@
                 <div class="text-center">
                     <h3 style="color:blue">Admin Home Page</h3>
                 </div><br/>
-                <div class="jumbotron" style="height: 70%; width: 50%; margin: 0 auto">
+                <div class="jumbotron" style="height: 70%; width: 50%; float: left;">
                     <div class="form-group">
                         <label style="color:brown">University List: </label>
                     </div>
@@ -56,11 +56,20 @@
                         </div>
                     </div>
                     <br/> <br/>
-                    <h:outputText id="result" style="color: blue;" value="#{adminController.response}"/>
+                    <h:outputText id="result" style="color:green;" value="#{adminController.response}"/>         
                 </div>
-
+                <div class="jumbotron" style=" float: right;"> 
+                    <table>
+                        <tr>
+                            <td valign="top">News Letter :</td>
+                            <td><h:inputTextarea value="#{adminController.universityBean.adminMessage}" cols="30" rows="5" /></td>
+                        </tr> 
+                    </table>
+                    <br/>
+                    <h:commandButton value="Submit" style="width: 50%; margin: 0 auto;" class="btn btn-primary" action="#{adminController.emailSubscription}" />
+                 
+                </div>
             </div>
-
 
         </h:form>
     </h:body>

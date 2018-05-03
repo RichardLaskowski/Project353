@@ -95,14 +95,14 @@
                             <br/>
                             Illinois State University
                         </i></b>
-                    <h:outputLink value="https://illinoisstate.edu/">
-                        <h:graphicImage value="resources/images/illinois-state-showcase.jpg" height="auto" width="100%" />
-                    </h:outputLink>
+                    <p:galleria value="#{showcaseUniversityController.images}" var="image" panelWidth="250" panelHeight="180">
+                        <p:graphicImage value="resources/images/#{image}" title="#{image}"/>
+                    </p:galleria>
                 </h:form>
             </aside>
             <aside2>
                 <h3> 
-                <h:outputText value="#{profileController.userName}"></h:outputText>
+                <h:outputText value="#{profileController.username}"></h:outputText>
                 's Detailed Info</h3>
                 <br/>
                 <b>Date of Birth:</b>
@@ -125,13 +125,13 @@
                 <h:outputText value="#{profileController.endYear}"></h:outputText>
                 <br/>
                 <b>SAT:</b>
-                <h:outputText value="#{profileController.SAT}"></h:outputText>
+                <h:outputText value="#{profileController.sat}"></h:outputText>
                 <br/>
                 <b>ACT:</b>
-                <h:outputText value="#{profileController.ACT}"></h:outputText>
+                <h:outputText value="#{profileController.act}"></h:outputText>
                 <br/>
                 <b>PSAT:</b>
-                <h:outputText value="#{profileController.PSAT}"></h:outputText>
+                <h:outputText value="#{profileController.psat}"></h:outputText>
 
                 <br/>
                 <b>Certifications:</b>

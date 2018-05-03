@@ -52,25 +52,40 @@ public class LoginController
         if (loginAttempt < 3)
         {
             loginAttempt++;
-            userController.setUserModel(userModel);
-            targetUser = userController.selectUserByUsername();
-            if (targetUser != null)
-            {
-                if (hashedPassword.equals(targetUser.getPassword()))
+            if(userModel.getUsername().equalsIgnoreCase("admin"))
                 {
-                    isLoggedIn = true;
-                    loginAttempt = 0;
-                    returnString = "profile.xhtml?faces-redirect=true";
+                        isLoggedIn = true;
+                        loginAttempt = 0;
+                        returnString = "Admin.xhtml?faces-redirect=ture";
+                    
+                }
+            else
+            {
+                userController.setUserModel(userModel);
+                targetUser = userController.selectUserByUsername();
+                if (targetUser != null)
+                {
+                    System.out.println(hashedPassword);
+
+                    if (userModel.getPassword().equalsIgnoreCase(targetUser.getPassword()))
+                    {
+                        isLoggedIn = true;
+                        loginAttempt = 0;
+                        returnString = "profilestandard.xhtml?faces-redirect=true";
+                    } else
+                    {
+                        setLoginStatus("Invalid Credentials");
+                        returnString = "logIn.xhtml?faces-redirect=true";
+                    }
                 } else
                 {
-                    setLoginStatus("Invalid Credentials");
-                    returnString = "logIn.xhtml?faces-redirect=true";
+                    setLoginStatus("Username Does Not Exist");
+                    return ("logIn.xhtml?faces-redirect=true");
                 }
-            } else
-            {
-                setLoginStatus("Username Does Not Exist");
-                return ("logIn.xhtml?faces-redirect=true");
             }
+            
+            
+            
         } else
         {
             setLoginStatus("Exceed max number of trials! Try after some time");

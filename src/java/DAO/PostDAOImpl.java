@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Controller.CommentController;
 import Model.PostBean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import org.primefaces.model.StreamedContent;
 
 /**
  *
@@ -27,7 +29,11 @@ public class PostDAOImpl implements PostDAO
     private int imageId;
     private int videoId;
     private String textContent;
+    private String username;
     private int postId;
+    private ArrayList comments;
+    private int profilePictureID;
+    private StreamedContent image;
      
     public void connect2DB()
     {
@@ -38,8 +44,10 @@ public class PostDAOImpl implements PostDAO
     @Override
     public ArrayList selectPostsByUsername(String targetUsername)
     {
+        CommentController commentController = new CommentController();
+        ImageDAO imageDAO = new ImageDAOImpl();
         resultList = new ArrayList();
-        String selectString = "SELECT textcontent FROM itkstu.posts "
+        String selectString = "SELECT * FROM itkstu.posts "
                 + "WHERE username = '" + targetUsername + "' "
                 + "ORDER BY postId DESC ";
         
@@ -52,7 +60,27 @@ public class PostDAOImpl implements PostDAO
             while(rs.next())
             {
                 textContent = rs.getString("textcontent");
+                postId = rs.getInt("postId");
+                username = rs.getString("username");
+                imageId = rs.getInt("imageid");
                 targetPost = new PostBean(textContent);
+                targetPost.setPostId(postId);
+                targetPost.setUsername(username);
+                
+                if(imageId != 0)
+                {
+                    targetPost.setImageId(imageId);
+                    System.out.println("TargetPost imageId set: " + targetPost.getImageId());
+                    image = imageDAO.selectImageByImageId(imageId);
+                    targetPost.setImage(image);
+                    System.out.println("TargetPost image set");
+                }
+                comments = commentController.selectCommentsByPostId(postId);
+                //System.out.println(comments.size());
+                //CommentBean comment = (CommentBean)comments.get(0);
+                //System.out.println(comment.getContent());
+                targetPost.setComments(comments);
+               
                 resultList.add(targetPost);
             }
             DBConn.close();
@@ -120,5 +148,26 @@ public class PostDAOImpl implements PostDAO
             e.printStackTrace();
         }
         return resultList;
+    }
+    
+    @Override
+    public void setImageId(int imageId, int postId)
+    {
+        try
+        {
+            connect2DB();
+            String insertString;
+            Statement stmt = DBConn.createStatement();
+            insertString = "UPDATE itkstu.posts "
+                    + "SET imageid = " + imageId + " "
+                    + "WHERE postId = " + postId;
+            
+            stmt.executeUpdate(insertString);
+            DBConn.close();
+        }
+        catch(SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
     }
 }

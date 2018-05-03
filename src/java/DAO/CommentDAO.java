@@ -5,17 +5,15 @@
  */
 package DAO;
 
-import Model.PostBean;
+import Model.CommentBean;
 import java.util.ArrayList;
 
 /**
  *
  * @author Richa
  */
-public interface PostDAO
+public interface CommentDAO
 {
-    public int createPost(PostBean PostModel);
-    public ArrayList selectAllPosts();
-    public ArrayList selectPostsByUsername(String targetUsername);
-    public void setImageId(int imageId, int postId);
+    public int createComment(CommentBean commentModel);
+    public ArrayList selectCommentsByPostId(int commentId);
 }

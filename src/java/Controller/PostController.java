@@ -11,7 +11,7 @@ import Model.PostBean;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 
 /**
  *

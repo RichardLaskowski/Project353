@@ -1,5 +1,6 @@
 package DAO;
 
+import Controller.PostController;
 import Model.StudentBean;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -28,6 +29,7 @@ public class StudentDAOImpl implements StudentDAO
     private String essay;
     private String hobbies;
     private String username;
+    private ArrayList posts;
 
     private ArrayList resultList;
     private Connection DBConn = null;
@@ -157,7 +159,6 @@ public class StudentDAOImpl implements StudentDAO
                         + "' WHERE username = '" + studentModel.getUsername() + "'";
              
                 rowCount = stmt.executeUpdate(insertString);
-                
                 DBConn.close();
             } 
             catch (SQLException e) 
@@ -175,6 +176,7 @@ public class StudentDAOImpl implements StudentDAO
     @Override 
     public ArrayList selectStudentByUsername(String targetUsername)
     {
+        PostController postController = new PostController();
         resultList = new ArrayList();
         String selectString = "SELECT * FROM itkstu.student "
             + "WHERE username = '" + targetUsername + "'";
@@ -210,6 +212,8 @@ public class StudentDAOImpl implements StudentDAO
 
                 targetStudent = new StudentBean(profileId, dateOfBirth, height, weight, street, city, country, zipcode,
                 phone, school, endYear, sat, act, psat, certification, essay, hobbies, username);
+                posts = postController.selectPostsByUsername(targetUsername);
+                targetStudent.setPost(posts);
                 resultList.add(targetStudent);
             }
             DBConn.close();
