@@ -5,7 +5,10 @@
  */
 package Model;
 
+import DAO.ImageDAO;
+import DAO.ImageDAOImpl;
 import java.util.ArrayList;
+import org.primefaces.model.StreamedContent;
 
 /**
  *
@@ -19,6 +22,8 @@ public class PostBean
     private String textContent;
     private String username;
     private ArrayList comments;
+    private int profilePictureID;
+    private StreamedContent image;
 
     public PostBean(int postId, int imageId, int videoId, String textContent, String username)
     {
@@ -142,5 +147,41 @@ public class PostBean
     {
         this.comments = comments;
     }
+
+    /**
+     * @return the profilePictureID
+     */
+    public int getProfilePictureID()
+    {
+        return profilePictureID;
+    }
+
+    /**
+     * @param profilePictureID the profilePictureID to set
+     */
+    public void setProfilePictureID(int profilePictureID)
+    {
+        this.profilePictureID = profilePictureID;
+    }
+
+    /**
+     * @return the image
+     */
+    public StreamedContent getImage()
+    {
+        System.out.println("getImage called");
+        ImageDAO imageDAO = new ImageDAOImpl();
+        return imageDAO.selectImageByImageId(imageId);
+    }
+
+    /**
+     * @param image the image to set
+     */
+    public void setImage(StreamedContent image)
+    {
+        System.out.println("setimage");
+        this.image = image;
+    }
+    
     
 }

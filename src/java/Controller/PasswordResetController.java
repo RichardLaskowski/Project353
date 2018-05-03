@@ -6,7 +6,6 @@
 package Controller;
 
 import Model.UserBean;
-import javax.inject.Named;
 import java.io.Serializable;
 import java.util.Properties;
 import java.util.UUID;
@@ -95,7 +94,7 @@ public class PasswordResetController implements Serializable
 
         // Sender's email ID needs to be mentioned
         String from = "rllask1@ilstu.edu";
-        String password = "Banditcleo12";
+        String password = "PASSWORD";
 
         // Assuming you are sending email from this host
         String host = "outlook.office365.com";

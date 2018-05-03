@@ -60,7 +60,7 @@ public class LoginController
                 {
                     isLoggedIn = true;
                     loginAttempt = 0;
-                    returnString = "profile.xhtml?faces-redirect=true";
+                    returnString = "profilestandard.xhtml?faces-redirect=true";
                 } else
                 {
                     setLoginStatus("Invalid Credentials");

@@ -11,7 +11,7 @@ import Model.UserBean;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 
 /**
  *
@@ -95,6 +95,14 @@ public class UserController implements Serializable
     {
         UserDAO userDAO = new UserDAOImpl();
         int rowCount = userDAO.setEmailId(targetUser);
+        
+        return rowCount;
+    }
+    
+    public int setProfilePictureId(int imageId, String username)
+    {
+        UserDAO userDAO = new UserDAOImpl();
+        int rowCount = userDAO.setProfilePictureId(imageId, username);
         
         return rowCount;
     }

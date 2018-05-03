@@ -10,4 +10,5 @@ public interface UserDAO
     public ArrayList selectUserByUsername(String targetUsername);
     public ArrayList selectUserByUsertype(String targetUsertype); 
     public int setEmailId(UserBean userModel);
+    public int setProfilePictureId(int imageId, String username);
 }

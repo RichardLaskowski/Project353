@@ -65,7 +65,7 @@ public class UserDAOImpl implements UserDAO
                     + "', '" + userModel.getSecurityQuestion()
                     + "', '" + userModel.getSecurityAnswer()
                     + "', '" + userModel.getUserType()
-                    + "', '" + userModel.getProfileImage()
+                    + "', '" + userModel.getProfilePictureID()
                     + "')";
                 
                 rowCount = stmt.executeUpdate(insertString); 
@@ -110,7 +110,7 @@ public class UserDAOImpl implements UserDAO
                     + "', securityquestion = '" + userModel.getSecurityQuestion()
                     + "', securityanswer = '" + userModel.getSecurityAnswer()
                     + "', usertype = '" + userModel.getUserType()
-                    + "', profilepictureid = '" + userModel.getProfileImage()
+                    + "', profilepictureid = '" + userModel.getProfilePictureID()
                     + "' WHERE username = '" + userModel.getUsername() + "'";
                 
                 rowCount = stmt.executeUpdate(insertString);              
@@ -132,6 +132,29 @@ public class UserDAOImpl implements UserDAO
         return rowCount;
     }
     
+    public int setProfilePictureId(int imageId, String username)
+    {
+        int rowCount = 0;
+        
+        try
+        {
+            connect2DB();
+            String insertString;
+            Statement stmt = DBConn.createStatement();
+            insertString = "UPDATE itkstu.users "
+                + "SET profilepictureid = " + imageId
+                + " WHERE username = '" + username + "'";
+
+            rowCount = stmt.executeUpdate(insertString);              
+            DBConn.close();
+        }
+        catch(SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+               
+        return rowCount;
+    }
     public int setEmailId(UserBean userModel)
     {
         int rowCount = 0;

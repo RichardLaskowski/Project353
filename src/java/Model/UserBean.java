@@ -1,5 +1,9 @@
 package Model;
 
+import DAO.ImageDAO;
+import DAO.ImageDAOImpl;
+import org.primefaces.model.StreamedContent;
+
 /**
  *
  * @author Ricky
@@ -17,12 +21,10 @@ public class UserBean
     private String userType;
     private StudentBean targetStudent;
     private RecruiterBean targetRecruiter;
-<<<<<<< HEAD
-    private int profileImage;
     private String emailId;
-=======
     private int profilePictureID;
->>>>>>> master
+    private StreamedContent profileImage;
+
 
     public UserBean()
     {
@@ -62,7 +64,9 @@ public class UserBean
         this.securityQuestion = secQuestion;
         this.securityAnswer = secAnswer;
         this.userType = userType;
-        this.profilePictureID= profilePictureID;
+        this.profilePictureID = profilePictureID;
+        ImageDAO imageDAO = new ImageDAOImpl();
+        profileImage = imageDAO.selectImageByImageId(profilePictureID);
     }
 
     public Object getProfile()
@@ -240,35 +244,13 @@ public class UserBean
         this.targetRecruiter = targetRecruiter;
     }
 
-    public int getProfileImage() {
-        return this.profilePictureID;
-    }
-
-    public void setProfileImage(int profileImage) {
-        this.profilePictureID = profileImage;
-    }
-
+   
     @Override
     public String toString() {
         return "UserBean{" + "username=" + username + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", userType=" + userType + "}";
     }
 
-    /**
-     * @return the profileImage
-     */
-    public int getProfileImage()
-    {
-        return profileImage;
-    }
-
-    /**
-     * @param profileImage the profileImage to set
-     */
-    public void setProfileImage(int profileImage)
-    {
-        this.profileImage = profileImage;
-    }
-
+    
     /**
      * @return the emailId
      */
@@ -284,7 +266,36 @@ public class UserBean
     {
         this.emailId = emailId;
     }
-    
-    
- 
+
+    /**
+     * @return the profilePictureID
+     */
+    public int getProfilePictureID()
+    {
+        return profilePictureID;
+    }
+
+    /**
+     * @param profilePictureID the profilePictureID to set
+     */
+    public void setProfilePictureID(int profilePictureID)
+    {
+        this.profilePictureID = profilePictureID;
+    }
+
+    /**
+     * @return the profileImage
+     */
+    public StreamedContent getProfileImage()
+    {
+        return profileImage;
+    }
+
+    /**
+     * @param profileImage the profileImage to set
+     */
+    public void setProfileImage(StreamedContent profileImage)
+    {
+        this.profileImage = profileImage;
+    }
 }
