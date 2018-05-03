@@ -7,34 +7,38 @@ package Controller;
 
 import Model.StudentBean;
 import Model.UserBean;
-import javax.inject.Named;
+//import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
-import javax.enterprise.context.SessionScoped;
-//import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ManagedBean;
+//import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.mail.BodyPart;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
+//import javax.mail.BodyPart;
+//import javax.mail.Message;
+//import javax.mail.MessagingException;
+//import javax.mail.PasswordAuthentication;
+//import javax.mail.Session;
+//import javax.mail.Transport;
+//import javax.mail.internet.InternetAddress;
+//import javax.mail.internet.MimeBodyPart;
+//import javax.mail.internet.MimeMessage;
+//import javax.mail.internet.MimeMultipart;
 import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Richa
  */
-@Named(value = "profileController")
+//@Named(value = "profileController")
+@ManagedBean
 @SessionScoped
 public class ProfileController implements Serializable {
 
     private UserBean userModel;
+    private UserBean userToNavigateTo;
     private StudentBean studentModel;
+    private StudentBean studentNavigatedTo;
     private PostController postController;
     private int imageId = 1;
     private int videoId = 1;
@@ -122,7 +126,7 @@ public class ProfileController implements Serializable {
     public String profilePage(){
 
 
-        return "profile_1.xhtml";
+        return "profileStudentFriend.xhtml";
     }
 
     public StudentBean getStudentModel() {
@@ -133,6 +137,26 @@ public class ProfileController implements Serializable {
         this.studentModel = studentModel;
     }
     
-    
+    public UserBean getUserToNavigateTo() {
+        return this.userToNavigateTo;
+    }
 
+    /**
+     * 
+     * @param user
+     */
+    public void setUserToNavigateTo(UserBean user) {
+        this.userToNavigateTo = user;
+        studentNavigatedTo= this.userToNavigateTo.returnThisAsStudent();
+    }
+
+    public StudentBean getStudentNavigatedTo() {
+        return studentNavigatedTo;
+    }
+
+    public void setStudentNavigatedTo(StudentBean studentNavigatedTo) {
+        this.studentNavigatedTo = studentNavigatedTo;
+    }
+
+    
 }

@@ -58,7 +58,7 @@ public class ImageDAOImpl implements ImageDAO
         try {
             connect2DB();
             String type = file.getFileName().substring(file.getFileName().indexOf("."));
-            String insert = "INSERT INTO IMAGES VALUES (default, ?, '" + username + "')";
+            String insert = "INSERT INTO IMAGES VALUES (default, ?, '" + username + "', default)";
             System.out.println(insert);
             PreparedStatement stmt = DBConn.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             stmt.setBinaryStream(1, file.getInputstream());
@@ -87,12 +87,12 @@ public class ImageDAOImpl implements ImageDAO
     public StreamedContent selectImageByImageId(int targetImageId) {
         StreamedContent image= null;
         String selectString = "SELECT IMAGE FROM itkstu.images "
-                + "WHERE imageId = '" + targetImageId + "'";
+                + "WHERE imageId = " + targetImageId ;
 
         try {
             connect2DB();
             PreparedStatement stmt = DBConn.prepareStatement(selectString);
-            ResultSet rs = stmt.executeQuery(selectString);
+            ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                image= new DefaultStreamedContent(new ByteArrayInputStream(rs.getBytes(1)));
             }

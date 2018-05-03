@@ -1,5 +1,8 @@
 package Model;
 
+import DAO.StudentDAO;
+import DAO.StudentDAOImpl;
+
 /**
  *
  * @author Ricky
@@ -34,6 +37,7 @@ public class UserBean
         this.securityQuestion = secQuestion;
         this.securityAnswer = secAnswer;
         this.userType = userType;
+        this.profilePictureID= 1;
     }
     
     public UserBean(String username, String password, String firstName, String lastName, String email, String secQuestion, String secAnswer)
@@ -45,6 +49,7 @@ public class UserBean
         this.email = email;
         this.securityQuestion = secQuestion;
         this.securityAnswer = secAnswer;
+        this.profilePictureID= 1;
     }
     
     public UserBean(String username, String password, String firstName, String lastName, String email, String secQuestion, String secAnswer, String userType, int profilePictureID)
@@ -233,6 +238,9 @@ public class UserBean
         return "UserBean{" + "username=" + username + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", userType=" + userType + "}";
     }
     
-    
+    public StudentBean returnThisAsStudent(){
+        StudentDAOImpl dao= new StudentDAOImpl();
+        return dao.selectStudentByUsername(username, "");
+    }
  
 }

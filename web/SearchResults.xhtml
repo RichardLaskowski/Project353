@@ -10,7 +10,7 @@
     <h:body>
         <h:form>
             <p:dataList value="#{searchController.results}" var="user" >
-                <p:commandLink action="#{profileController.profilePage()}" ajax="false">
+                <p:commandLink actionListener="#{profileController.setUserToNavigateTo(user)}"  action="#{profileController.profilePage()}" ajax="false">
                     <h:outputText value="#{user.toString()}" />
                 </p:commandLink>
             </p:dataList>

@@ -26,7 +26,7 @@
                         <h1>Status Update</h1>
                     </div>
                     <div class="content"> 
-                        <h:graphicImage/>
+                        <p:graphicImage value="#{mediaController.getImageByID(1)}" height="100px" width="100px"/>
                         <h:inputText id="postContents" value="#{profileController.postController.postModel.textContent}" a:placeholder="Status: What are you thinking?"></h:inputText>
                     </div>
                     <div class="post-button"> 
@@ -42,7 +42,7 @@
                             <div class="user">
                                 <div class ="profilepic">
                                     <center>
-                                        <p:graphicImage value="resources/images/default-profile.png" height="80px" width="80px" />
+                                       <p:graphicImage value="resources/images/default-profile.png" height="80px" width="80px" />
                                     </center>
                                 </div>
                                 <center>
@@ -79,7 +79,7 @@
                     <h:commandButton  id="home" class="sidebarbutton" action="signUp?faces-redirect=true" value="Home" ></h:commandButton>
                     <br/>
                     <br/>
-                    <h:commandButton  id="search" class="sidebarbutton" action="searchResults?faces-redirect=true" value="Search" ></h:commandButton>
+                    <h:commandButton  id="upload" class="sidebarbutton" action="upload?faces-redirect=true" value="Upload" ></h:commandButton>
                     <br/>
                     <br/>
                     <h:commandButton  id="feed" class="sidebarbutton" action="feed?faces-redirect=true" value="Feed" ></h:commandButton>

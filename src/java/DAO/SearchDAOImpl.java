@@ -40,8 +40,8 @@ public class SearchDAOImpl implements SearchDAO {
             Statement stmt = DBConn.createStatement();
             
             String query="SELECT * FROM USERS WHERE "
-                    + "FIRSTNAME= '"+name
-                    +"'"+" OR LASTNAME= '"+name+"'";
+                    + "FIRSTNAME LIKE '%"+name
+                    +"%'"+" OR LASTNAME LIKE '%"+name+"%'";
             ResultSet rs= stmt.executeQuery(query);
            
             while(rs.next()){

@@ -222,4 +222,54 @@ public class StudentDAOImpl implements StudentDAO
         }
         return resultList;
     }
+    
+    public StudentBean selectStudentByUsername(String targetUsername, String x)
+    {
+        StudentBean retVal= null;
+        String selectString = "SELECT * FROM itkstu.student "
+            + "WHERE username = '" + targetUsername + "'";
+        System.out.println("STUDENTDAOIMPL: Target Student Username - " + targetUsername);
+        try
+        {
+            connect2DB();
+            Statement stmt = DBConn.createStatement();
+            ResultSet rs = stmt.executeQuery(selectString);
+
+            while(rs.next())
+            {
+                profileId = rs.getInt("profileId");
+                dateOfBirth = rs.getString("dateOfBirth");
+                height = rs.getInt("height");
+                weight = rs.getInt("weight");
+                address = rs.getString("address");
+                country = rs.getString("country");
+                zipcode = rs.getString("zipcode");
+                phone = rs.getString("phone");
+                school = rs.getString("school");
+                endYear = rs.getInt("endYear");
+                sat = rs.getInt("sat");
+                act = rs.getInt("act");
+                psat = rs.getInt("psat");
+                certification = rs.getString("certification");
+                essay = rs.getString("essay");
+                hobbies = rs.getString("hobbies");
+                username = rs.getString("username");
+                
+                street = address.substring(0,address.indexOf(" "));
+                city = address.substring(address.indexOf(" ") + 1);
+
+                retVal = new StudentBean(profileId, dateOfBirth, height, weight, street, city, country, zipcode,
+                phone, school, endYear, sat, act, psat, certification, essay, hobbies, username);
+                
+            }
+            DBConn.close();
+        }
+        catch(Exception e)
+        {
+            System.err.println("ERROR SELECT STUDENT BY USERNAME FAILED");
+            System.err.println("TARGET: " + targetUsername);
+            e.printStackTrace();
+        }
+        return retVal;
+    }
 }
