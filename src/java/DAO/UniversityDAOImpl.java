@@ -30,7 +30,7 @@ public class UniversityDAOImpl implements UniversityDAO
         resultList = new ArrayList();
         String selectString = "SELECT * FROM itkstu.university "
             + "WHERE username = '" + targetUsername + "'";
-
+        System.out.println("UNIVERSITYDAOIMPL: " + selectString);
         try 
         {
             connect2DB();
@@ -63,6 +63,7 @@ public class UniversityDAOImpl implements UniversityDAO
         resultList = new ArrayList();
         String selectString = "SELECT * FROM itkstu.university "
             + "WHERE profileId = '" + targetProfileId + "'";
+        System.out.println("UNIVERSITYDAOIMPL: " + selectString);
 
         try 
         {

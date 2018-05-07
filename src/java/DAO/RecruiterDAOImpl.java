@@ -47,7 +47,8 @@ public class RecruiterDAOImpl implements RecruiterDAO
                 + "', '" + recruiterModel.getDepartment()
                 + "', '" + recruiterModel.getPhone()
                 + "')";
-
+                
+                System.out.println("RECRUITERDAOIMPL: " + insertString);
                 rowCount = stmt.executeUpdate(insertString);
                 DBConn.close();
             } 
@@ -85,7 +86,7 @@ public class RecruiterDAOImpl implements RecruiterDAO
                         + "', phone = '" + recruiterModel.getPhone()
                         + "', department = '" + recruiterModel.getDepartment()
                         +"' WHERE username = '" + recruiterModel.getUsername() + "'";
-             
+                System.out.println("RECRUITERDAOIMPL: " + insertString);
                 rowCount = stmt.executeUpdate(insertString);
                 
                 DBConn.close();
@@ -108,7 +109,7 @@ public class RecruiterDAOImpl implements RecruiterDAO
         resultList = new ArrayList();
         String selectString = "SELECT * FROM itkstu.recruiter "
             + "WHERE username = '" + targetUsername + "'";
-        
+        System.out.println("RECRUITERDAOIMPL: " + selectString);
         try
         {
             connect2DB();

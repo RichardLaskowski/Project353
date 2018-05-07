@@ -8,12 +8,13 @@ package Controller;
 import Model.RecruiterBean;
 import Model.StudentBean;
 import Model.UserBean;
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 @ManagedBean
 @SessionScoped
-public class LoginController
+public class LoginController implements Serializable
 {
 
     private RecruiterBean recruiterModel;
@@ -32,6 +33,7 @@ public class LoginController
     /**
      * Creates a new instance of LoginController
      */
+    
     public LoginController()
     {
         recruiterController = new RecruiterController();
@@ -53,21 +55,21 @@ public class LoginController
         {
             loginAttempt++;
             if(userModel.getUsername().equalsIgnoreCase("admin"))
-                {
-                        isLoggedIn = true;
-                        loginAttempt = 0;
-                        returnString = "Admin.xhtml?faces-redirect=ture";
-                    
-                }
+            {
+                    isLoggedIn = true;
+                    loginAttempt = 0;
+                    returnString = "Admin.xhtml?faces-redirect=ture";
+
+            }
             else
             {
                 userController.setUserModel(userModel);
                 targetUser = userController.selectUserByUsername();
                 if (targetUser != null)
                 {
-                    System.out.println(hashedPassword);
+                    System.out.println("LOGINCONTROLLER: " + hashedPassword);
 
-                    if (userModel.getPassword().equalsIgnoreCase(targetUser.getPassword()))
+                    if (hashedPassword.equalsIgnoreCase(targetUser.getPassword()))
                     {
                         isLoggedIn = true;
                         loginAttempt = 0;
@@ -82,11 +84,9 @@ public class LoginController
                     setLoginStatus("Username Does Not Exist");
                     return ("logIn.xhtml?faces-redirect=true");
                 }
-            }
-            
-            
-            
-        } else
+            }          
+        } 
+        else
         {
             setLoginStatus("Exceed max number of trials! Try after some time");
         }

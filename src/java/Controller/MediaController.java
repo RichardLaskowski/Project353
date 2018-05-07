@@ -52,7 +52,7 @@ public class MediaController implements Serializable
     public void setFile(UploadedFile file)
     {
         this.file = file;
-        System.out.println("file set");
+        //System.out.println("file set");
     }
     
     public MediaController()
@@ -61,16 +61,16 @@ public class MediaController implements Serializable
         session = (HttpSession) facesContext.getExternalContext().getSession(true);
         loginSession = (LoginController) session.getAttribute("loginController");
         user = loginSession.getTargetUser();
-        System.out.println("MediaController created");
+        //System.out.println("MediaController created");
     }
     
     public void upload()
     {
-        System.out.println(user.getUsername());
+        //System.out.println(user.getUsername());
         if (file != null)
         {
             ImageDAO dao = new ImageDAOImpl();
-            System.out.println(user.getUsername());
+            //System.out.println(user.getUsername());
             dao.createImage(file, user.getUsername());
             FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
             FacesContext.getCurrentInstance().addMessage(null, message);
@@ -82,11 +82,11 @@ public class MediaController implements Serializable
                  
         if(file != null)
         {
-            System.out.println("File being uploaded");
+            //System.out.println("File being uploaded");
             ImageDAO imageDAO = new ImageDAOImpl();
             //To-do - Change to new create Image method.
             imageId = imageDAO.createImage(file, user.getUsername());
-            System.out.println("UPLOADPOSTIMAGE: imageid =" + imageId);
+            //System.out.println("UPLOADPOSTIMAGE: imageid =" + imageId);
             image = imageDAO.selectImageByImageId(imageId);    
         }
         else
@@ -102,7 +102,7 @@ public class MediaController implements Serializable
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
         LoginController loginSession = (LoginController) session.getAttribute("loginController");
         UserBean user = loginSession.getTargetUser();
-        System.out.println(user.getUsername());
+        //System.out.println(user.getUsername());
 
         if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE)
         {
@@ -120,14 +120,14 @@ public class MediaController implements Serializable
     
     public StreamedContent selectImageByUsername(String username)
     {
-        System.out.println(username);
+        //System.out.println(username);
         StreamedContent targetImage;
         UserBean targetUser;       
         UserDAO userDAO = new UserDAOImpl();
         targetUser = (UserBean)userDAO.selectUserByUsername(username).get(0);
         ImageDAO imageDAO = new ImageDAOImpl();
         targetImage = imageDAO.selectImageByImageId(targetUser.getProfilePictureID());
-        System.out.println("image returned so media controller");
+        //System.out.println("image returned so media controller");
         return targetImage;
     }
     

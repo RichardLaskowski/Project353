@@ -50,7 +50,7 @@ public class PostDAOImpl implements PostDAO
         String selectString = "SELECT * FROM itkstu.posts "
                 + "WHERE username = '" + targetUsername + "' "
                 + "ORDER BY postId DESC ";
-        
+        System.out.println("POSTDAOIMPL: " + selectString);
         try
         {
             connect2DB();
@@ -76,11 +76,7 @@ public class PostDAOImpl implements PostDAO
                     System.out.println("TargetPost image set");
                 }
                 comments = commentController.selectCommentsByPostId(postId);
-                //System.out.println(comments.size());
-                //CommentBean comment = (CommentBean)comments.get(0);
-                //System.out.println(comment.getContent());
                 targetPost.setComments(comments);
-               
                 resultList.add(targetPost);
             }
             DBConn.close();
@@ -107,7 +103,7 @@ public class PostDAOImpl implements PostDAO
                     + "', " + postModel.getImageId()
                     + ", " + postModel.getVideoId()
                     + ", ?)";
-            System.out.println(insert);
+            System.out.println("POSTDAOIMPL: " + insert);
             PreparedStatement pstmt = DBConn.prepareStatement(insert);
             pstmt.setString(1,postModel.getTextContent());
             rowCount = pstmt.executeUpdate();
@@ -126,7 +122,7 @@ public class PostDAOImpl implements PostDAO
         resultList = new ArrayList();
         String selectString = "SELECT textcontent FROM itkstu.posts"
                 + " ORDER BY postId DESC";
-        
+        System.out.println("POSTDAOIMPL: " + selectString);
         try
         {
             connect2DB();
@@ -162,6 +158,7 @@ public class PostDAOImpl implements PostDAO
                     + "SET imageid = " + imageId + " "
                     + "WHERE postId = " + postId;
             
+            System.out.println("POSTDAOIMPL: " + insertString);
             stmt.executeUpdate(insertString);
             DBConn.close();
         }

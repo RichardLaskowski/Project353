@@ -31,30 +31,35 @@ import javax.mail.internet.MimeMultipart;
  *
  * @author IT353S843
  */
-public class ShowcaseUniversityDAOImpl implements ShowcaseUniversityDAO {
+public class ShowcaseUniversityDAOImpl implements ShowcaseUniversityDAO
+{
 
     private ArrayList resultList;
     private Connection DBConn = null;
     private String myDB = "jdbc:derby://localhost:1527/Project353";
     private String driver = "org.apache.derby.jdbc.ClientDriver";
 
-    public void connect2DB() {
+    public void connect2DB()
+    {
         DBHelper.loadDriver(driver);
         DBConn = DBHelper.connect2DB(myDB, "itkstu", "student");
     }
 
     @Override
-    public ArrayList<String> GetShowCaseUniversities() {
+    public ArrayList<String> GetShowCaseUniversities()
+    {
         resultList = new ArrayList();
         String selectString = "SELECT * FROM itkstu.ShowCaseUniversity "
                 + "WHERE isshowcase = '1'";
 
-        try {
+        try
+        {
             connect2DB();
             String image = "";
             Statement stmt = DBConn.createStatement();
             ResultSet rs = stmt.executeQuery(selectString);
-            while (rs.next()) {
+            while (rs.next())
+            {
                 // universityName = rs.getString("UNIVERSITYNAME");
                 image = rs.getString("IMAGENAME");
                 resultList.add(image);
@@ -62,61 +67,74 @@ public class ShowcaseUniversityDAOImpl implements ShowcaseUniversityDAO {
             stmt.close();
             rs.close();
             DBConn.close();
-        } catch (Exception ex) {
+        } catch (Exception ex)
+        {
             ex.printStackTrace();
         }
         return resultList;
     }
 
     @Override
-    public int updateUniversityShowcase(String universityName) {
+    public int updateUniversityShowcase(String universityName)
+    {
         int rowCount = 0;
         String query = "UPDATE itkstu.SHOWCASEUNIVERSITY"
                 + " SET ISSHOWCASE = '1'"
                 + " WHERE UNIVERSITYNAME = '" + universityName + "'";
-        try {
+        System.out.println("SHOWCASEUNIVERSITYDAOIMPL: " + query);
+        try
+        {
             connect2DB();
             Statement stmt = DBConn.createStatement();
             rowCount = stmt.executeUpdate(query);
             DBConn.close();
-        } catch (Exception ex) {
+        } catch (Exception ex)
+        {
             ex.printStackTrace();
         }
         return rowCount;
     }
 
     @Override
-    public int updateUniversityUnShowcase(String universityName) {
+    public int updateUniversityUnShowcase(String universityName)
+    {
         int rowCount = 0;
         String query = "UPDATE itkstu.SHOWCASEUNIVERSITY"
                 + " SET ISSHOWCASE = '0'"
                 + " WHERE UNIVERSITYNAME = '" + universityName + "'";
-        try {
+        System.out.println("SHOWCASEUNIVERSITY: " + query);
+        try
+        {
             connect2DB();
             Statement stmt = DBConn.createStatement();
             rowCount = stmt.executeUpdate(query);
             DBConn.close();
-        } catch (Exception ex) {
+        } catch (Exception ex)
+        {
             ex.printStackTrace();
         }
         return rowCount;
     }
 
     @Override
-    public int adminEmail(String text) {
+    public int adminEmail(String text)
+    {
         int rowCount = 0;
         String query = "SELECT EMAIL FROM ITKSTU.USERS WHERE EMAILSUBSCRIPTION = '1'";
-        try {
+        System.out.println("SHOWCASEUNIVERSITY: " + query);
+        try
+        {
             connect2DB();
             Statement stmt = DBConn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()) {
+            while (rs.next())
+            {
 
                 String to = rs.getString("EMAIL");
 
                 // Sender's email ID needs to be mentioned
-                String from = "atapadi@ilstu.edu";
-                String password = "Akki_ayu+3363-";
+                String from = "Email";
+                String password = "Password";
 
                 // Assuming you are sending email from this host
                 String host = "outlook.office365.com";
@@ -131,14 +149,17 @@ public class ShowcaseUniversityDAOImpl implements ShowcaseUniversityDAO {
                 properties.setProperty("mail.smtp.port", "587");
 
                 // Get the default Session object.
-                Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+                Session session = Session.getInstance(properties, new javax.mail.Authenticator()
+                {
                     @Override
-                    protected PasswordAuthentication getPasswordAuthentication() {
+                    protected PasswordAuthentication getPasswordAuthentication()
+                    {
                         return new PasswordAuthentication(from, password);
                     }
                 });
 
-                try {
+                try
+                {
                     session.setDebug(true);
                     Transport transport = session.getTransport();
                     // Create a default MimeMessage object.
@@ -151,13 +172,13 @@ public class ShowcaseUniversityDAOImpl implements ShowcaseUniversityDAO {
                     message.addRecipient(Message.RecipientType.TO,
                             new InternetAddress(to));
 
-            // This HTML mail have to 2 part, the BODY and the embedded image
+                    // This HTML mail have to 2 part, the BODY and the embedded image
                     //
                     MimeMultipart multipart = new MimeMultipart("related");
 
                     // first part  (the html)
                     BodyPart messageBodyPart = new MimeBodyPart();
-                    String htmlText = "<center><H1>"+text+"</H1></center>";
+                    String htmlText = "<center><H1>" + text + "</H1></center>";
                     messageBodyPart.setContent(htmlText, "text/html");
 
                     // add it
@@ -181,14 +202,16 @@ public class ShowcaseUniversityDAOImpl implements ShowcaseUniversityDAO {
                     transport.close();
 
                     System.out.println("Sent message successfully....");
-                    rowCount+=rowCount;
-                } catch (MessagingException mex) {
+                    rowCount += rowCount;
+                } catch (MessagingException mex)
+                {
                     mex.printStackTrace();
                     System.out.println(mex);
                 }
             }
             DBConn.close();
-        } catch (Exception ex) {
+        } catch (Exception ex)
+        {
             ex.printStackTrace();
         }
         return rowCount;

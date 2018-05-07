@@ -40,22 +40,23 @@ public class ImageDAOImpl implements ImageDAO
         try
         {
             connect2DB();
-            String insert = "SELECT IMAGE FROM IMAGES WHERE IMAGEID= " + user.getProfilePictureID();
-            System.out.println(insert);
+            String insert = "SELECT image FROM IMAGES WHERE IMAGEID= " + user.getProfilePictureID();
+            System.out.println("IMAGEDAOIMPL: " + insert);
             PreparedStatement stmt = DBConn.prepareStatement(insert);
-//            stmt.setBinaryStream(1, file.getInputstream());
+//          stmt.setBinaryStream(1, file.getInputstream());
             ResultSet rs = stmt.executeQuery();
             if (rs.next())
             {
                 image = new DefaultStreamedContent(new ByteArrayInputStream(rs.getBytes(1)));
             }
             DBConn.close();
-        } catch (Exception e)
+        } 
+        catch (Exception e)
         {
             System.err.println(e.getMessage());
         }
+        
         return image;
-
     }
 
     @Override
@@ -69,7 +70,7 @@ public class ImageDAOImpl implements ImageDAO
             connect2DB();
             //String type = file.getFileName().substring(file.getFileName().indexOf("."));
             String insert = "INSERT INTO IMAGES VALUES (default, ?, '" + username + "')";
-            System.out.println(insert);
+            System.out.println("IMAGEDAOIMPL: " + insert);
             PreparedStatement stmt = DBConn.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             stmt.setBinaryStream(1, file.getInputstream());
             rowCount = stmt.executeUpdate();
@@ -82,11 +83,12 @@ public class ImageDAOImpl implements ImageDAO
                 }
 
                 userController.setProfilePictureId(imgID, username);
-                System.out.println(imgID);
+                //System.out.println(imgID);
             }
 
             DBConn.close();
-        } catch (Exception e)
+        } 
+        catch (Exception e)
         {
             System.err.println(e.getMessage());
         }
@@ -97,25 +99,25 @@ public class ImageDAOImpl implements ImageDAO
     public StreamedContent selectImageByImageId(int targetImageId)
     {
         StreamedContent image = null;
-        String selectString = "SELECT IMAGE FROM itkstu.images "
+        String selectString = "SELECT image FROM itkstu.images "
                 + "WHERE imageId = " + targetImageId;
-        System.out.println(selectString);
+        System.out.println("IMAGEDAOIMPL: " + selectString);
+        
         try
         {
             connect2DB();
             PreparedStatement stmt = DBConn.prepareStatement(selectString);
             ResultSet rs = stmt.executeQuery();
-            System.out.println("Query");
             if (rs.next())
             {
                 image = new DefaultStreamedContent(new ByteArrayInputStream(rs.getBytes(1)));
-                System.out.println("image done");
+                //System.out.println("image done");
             }
             DBConn.close();
         } 
         catch (Exception e)
         {
-            System.err.println("ERROR: SELECT IMAGE BY IMAGEID FAILED.");
+            System.err.println("ERROR: SELECT image BY IMAGEID FAILED.");
             System.err.println("TARGET: " + targetImageId);
             e.printStackTrace();
             //image = new DefaultStreamedContent();
@@ -127,9 +129,9 @@ public class ImageDAOImpl implements ImageDAO
     public List<StreamedContent> selectAllImagesByUsername(UserBean user)
     {
         List<StreamedContent> images = new ArrayList<>();
-        String selectString = "SELECT IMAGE FROM itkstu.images "
+        String selectString = "SELECT image FROM itkstu.images "
                 + "WHERE USERNAME = '" + user.getUsername() + "'";
-
+        System.out.println("IMAGEDAOIMPL: " + selectString);
         try
         {
             connect2DB();
@@ -141,9 +143,10 @@ public class ImageDAOImpl implements ImageDAO
             }
 
             DBConn.close();
-        } catch (Exception e)
+        } 
+        catch (Exception e)
         {
-            System.err.println("ERROR: SELECT IMAGE BY IMAGEID FAILED.");
+            System.err.println("ERROR: SELECT image BY IMAGEID FAILED.");
             System.err.println("TARGET: " + user.getUsername());
             e.printStackTrace();
         }

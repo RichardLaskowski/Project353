@@ -37,7 +37,7 @@ public class UserController implements Serializable
     
     public boolean createUser(UserBean userModel)      
     {
-        System.out.println("USERCONTROLLER: createUser()");
+        //System.out.println("USERCONTROLLER: createUser()");
         boolean userInserted = false;
         UserDAO userDAO = new UserDAOImpl();
         int rowCount = userDAO.createUser(userModel);
@@ -52,7 +52,7 @@ public class UserController implements Serializable
     
     public boolean updateUser(UserBean userModel)
     {
-        System.out.println("USERCONTROLLER: updateUser() - username: " + userModel.getUsername());
+        //System.out.println("USERCONTROLLER: updateUser() - username: " + userModel.getUsername());
         boolean userUpdated = false;
         UserDAO userDAO = new UserDAOImpl();
         int rowCount = userDAO.updateUser(userModel);
@@ -72,8 +72,8 @@ public class UserController implements Serializable
         if(resultList.size() == 1)
         {
             targetUser = (UserBean)resultList.get(0);
-            System.out.println("USERCONTROLLER: Select By Username Successfull");
-            System.out.println("USERCONTROLLER: Target Username - " + targetUser.getUsername());
+            //System.out.println("USERCONTROLLER: Select By Username Successfull");
+            //System.out.println("USERCONTROLLER: Target Username - " + targetUser.getUsername());
         }
         return targetUser;   
     }
@@ -85,8 +85,8 @@ public class UserController implements Serializable
         for(int i = 0; i < resultList.size(); i++)
         {
             targetUser = (UserBean)resultList.get(i);
-            System.out.println("SELECT BY USERTYPE SUCCESSFULL");
-            System.out.println("TARGET: " + targetUser.getUsername());
+            //System.out.println("SELECT BY USERTYPE SUCCESSFULL");
+            //System.out.println("TARGET: " + targetUser.getUsername());
         }
         return resultList;
     }

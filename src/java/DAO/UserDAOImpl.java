@@ -67,7 +67,7 @@ public class UserDAOImpl implements UserDAO
                     + "', '" + userModel.getUserType()
                     + "', " + userModel.getProfilePictureID()
                     + ", '1')";
-                
+                System.out.println("USERDAOIMPL: " + insertString);
                 rowCount = stmt.executeUpdate(insertString); 
                 DBConn.close();
             }
@@ -220,7 +220,7 @@ public class UserDAOImpl implements UserDAO
         resultList = new ArrayList();
         String selectString = "SELECT * FROM itkstu.users "
                 + "WHERE username = '" + targetUsername + "'";
-        System.out.println("USERDAOIMPL: Target Username - " + targetUsername);
+        System.out.println("USERDAOIMPL: " + selectString);
         
         try
         {
@@ -273,6 +273,7 @@ public class UserDAOImpl implements UserDAO
         resultList = new ArrayList();
         String selectString = "SELECT * FROM itkstu.users "
                 + "WHERE usertype = '" + targetUserType + "'";
+        System.out.println("USERDAOIMPL: " + selectString);
         
         try
         {
@@ -290,7 +291,6 @@ public class UserDAOImpl implements UserDAO
                 secQuestion = rs.getString("securityquestion");
                 secAnswer = rs.getString("securityanswer");
                 userType = rs.getString("userType");
-                
                 targetUser = new UserBean(username, password, firstName, lastName, email, secQuestion, secAnswer, userType);
                 resultList.add(targetUser);
             }

@@ -93,7 +93,7 @@ public class StudentDAOImpl implements StudentDAO
                     + "', '" + studentModel.getHobbies()
                     + "', '" + studentModel.getUsername()
                     + "')";      
-             
+                System.out.println("STUDENTDAOIMPL: " + insertString);
                 rowCount = stmt.executeUpdate(insertString);
                 
                 DBConn.close();
@@ -157,6 +157,8 @@ public class StudentDAOImpl implements StudentDAO
                         + "', hobbies = '" + studentModel.getHobbies()
                         + "', certification = '" + studentModel.getCertification()
                         + "' WHERE username = '" + studentModel.getUsername() + "'";
+                        
+                        System.out.println("STUDENTDAOIMPL: " + insertString);
              
                 rowCount = stmt.executeUpdate(insertString);
                 DBConn.close();
@@ -180,7 +182,8 @@ public class StudentDAOImpl implements StudentDAO
         resultList = new ArrayList();
         String selectString = "SELECT * FROM itkstu.student "
             + "WHERE username = '" + targetUsername + "'";
-        System.out.println("STUDENTDAOIMPL: Target Student Username - " + targetUsername);
+        //System.out.println("STUDENTDAOIMPL: Target Student Username - " + targetUsername);
+        System.out.println("STUDENTDAOIMPL: " + selectString);
         try
         {
             connect2DB();
