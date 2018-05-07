@@ -157,6 +157,80 @@ public class ProfileController implements Serializable
         this.commentController = commentController;
     }
 
+    public int getHeight() {
+        
+        //if(userModel.getUserType().)
+        return userModel.getTargetStudent().getHeight();
+
+    }
+
+    public int getWeight() {
+
+        return userModel.getTargetStudent().getWeight();
+    }
+
+    public String getCountry() {
+
+        return userModel.getTargetStudent().getCountry();
+    }
+
+    public String getDOB() {
+
+        int length=userModel.getTargetStudent().getDateOfBirth().length();
+        return userModel.getTargetStudent().getDateOfBirth().substring(0, length-17);
+    }
+
+    public String getSchool() {
+        return userModel.getTargetStudent().getSchool();
+
+    }
+
+    public String getUserName() {
+
+        return userModel.getTargetStudent().getUsername();
+
+    }
+
+    public int getEndYear() {
+
+        return userModel.getTargetStudent().getEndYear();
+    }
+    public int getSAT(){
+        
+        return userModel.getTargetStudent().getSat();
+    }
+    public int getACT(){
+        
+        return userModel.getTargetStudent().getAct();
+        
+    }
+    public int getPSAT(){
+        
+        return userModel.getTargetStudent().getPsat();
+    }
+    public String getCertifications(){
+        
+        return userModel.getTargetStudent().getCertification();
+        
+    }
+    public String getHobbies(){
+        return userModel.getTargetStudent().getHobbies();
+        
+    }
+    public String getDepartment(){
+  
+        return userModel.getTargetRecruiter().getDepartment();
+    } 
+    public String getUniversity(){
+        
+        
+        return userModel.getTargetRecruiter().getUniversity();
+    }  
+    public String getPhone(){
+        
+        return userModel.getTargetRecruiter().getPhone();
+        
+    }
     public String profilePage()
     {
 
