@@ -37,7 +37,7 @@
                     <div class="post-button"> 
                         <h:commandButton value="Upload" action="#{mediaController.uploadPostImage()}"></h:commandButton>
                     </div>
-                    <p:fileUpload value="#{mediaController.file}" mode="simple" skinSimple="true"/>
+                    <p:fileUpload value="#{mediaController.file}" mode="simple" />
                 </h:form>
                 <h:dataTable value="#{profileController.userModel.getProfile().post}"  cellspacing="0px" cellpadding="0px" var="post">
                     <h:column>
@@ -89,7 +89,7 @@
                     <p:graphicImage value="#{mediaController.getProfileImage()}" height="auto" width="100%" />
                 </div>
                 <div class="sidebar-buttons">
-                    <p:fileUpload value="#{mediaController.file}" mode="simple" skinSimple="true"/>
+                    <p:fileUpload value="#{mediaController.file}" mode="simple" />
                     <h:commandButton class="upload-button" value="Upload" action="#{mediaController.upload()}"></h:commandButton>
                     <h:commandButton  id="home" class="sidebarbutton" action="signUp?faces-redirect=true" value="Home" ></h:commandButton>
                     <h:commandButton  id="details" class="sidebarbutton" action="update.xhtml?faces-redirect=true" value="My Details" ></h:commandButton>
@@ -108,34 +108,43 @@
             </aside>
             <aside2>
                 <div class="sidebar-2">
-                    <h3>User's Detailed Info</h3>
-                    <br/>
-                    Date of Birth:
-                    <br/>
-                    Height:
-                    <br/>
-                    Weight:
-                    <br/>
-                    Country:
-                    <br/>
-                    Current School:
-                    <br/>
-                    Graduation Year:
-                    <br/>
-                    SAT:
-                    <br/>
-                    ACT:
-                    <br/>
-                    PSAT:
-                    <br/>
-                    Certifications:
-                    <br/>
-                    Hobbies:
-                    <br/>
-                    Majors:
-                    <br/>
-                    Contact info?
-                    <br/>
+                    <h3> 
+                <h:outputText value="#{profileController.userName}"></h:outputText>
+                's Detailed Info</h3>
+                <u><b>Date of Birth: </b></u>
+                <h:outputText value="#{profileController.DOB}"></h:outputText>
+                <br/>    
+                <u><b>Height: </b></u>
+                <h:outputText value="#{profileController.height}"></h:outputText>
+                <br/>
+                <u><b>Weight: </b></u>
+                <h:outputText value="#{profileController.weight}"></h:outputText>
+                <br/>
+                <u><b>Country: </b></u>
+                <h:outputText value="#{profileController.country}"></h:outputText>
+                <br/>
+                <u><b>Current School: </b></u>
+                <h:outputText value="#{profileController.school}"></h:outputText>
+                <br/>
+                <u><b>Graduation Year: </b></u>
+                <h:outputText value="#{profileController.endYear}"></h:outputText>
+                <br/>
+                <u><b>SAT: </b></u>
+                <h:outputText value="#{profileController.SAT}"></h:outputText>
+                <br/>
+                <u><b>ACT: </b></u>
+                <h:outputText value="#{profileController.ACT}"></h:outputText>
+                <br/>
+                <u><b>PSAT: </b></u>
+                <h:outputText value="#{profileController.PSAT}"></h:outputText>
+
+                <br/>
+                <u><b>Certifications: </b></u>
+                <h:outputText value="#{profileController.certifications}"></h:outputText>
+                <br/>
+                <u><b>Hobbies: </b></u>
+                <h:outputText value="#{profileController.hobbies}"></h:outputText>
+                <br/>
                     <h:commandButton class="sidebarbutton" value="Request More Details"> </h:commandButton><br/>
                 <h:form>
                     <br/>
