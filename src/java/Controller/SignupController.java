@@ -35,7 +35,6 @@ public class SignupController implements Serializable
             case "student":
                 studentModel.setUsername(userModel.getUsername());
                 studentInserted = studentController.createStudent(studentModel);
-                System.out.println("SINGUPCONTROLLER: " + studentInserted);
                 if (studentInserted)
                 {
                     returnString = "logIn.xhtml";
@@ -45,7 +44,6 @@ public class SignupController implements Serializable
             case "recruiter":
                 recruiterModel.setUsername(userModel.getUsername());
                 recruiterInserted = recruiterController.createRecruiter(recruiterModel);
-                System.out.println("SINGUPCONTROLLER: " + recruiterInserted);
                 if (recruiterInserted)
                 {
                     returnString = "logIn.xhtml";
@@ -77,8 +75,6 @@ public class SignupController implements Serializable
         userModel.setPassword(hashedPassword);
         userInserted = userController.createUser(userModel);
 
-        System.out.println("SIGNUPCONTROLLER: " + userInserted);
-
         switch (userModel.getUserType().toLowerCase())
         {
             case "student":
@@ -93,6 +89,7 @@ public class SignupController implements Serializable
             case "recruiter":
                 if (userInserted)
                 {
+                    recruiterModel.setUsername(userModel.getUsername());
                     returnString = "recruiterDetails.xhtml";
                 } else
                 {

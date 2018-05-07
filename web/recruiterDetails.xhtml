@@ -36,23 +36,23 @@
                             <h:form role="form">
                                 <p:messages id="messages" showDetail="true" autoUpdate="true" />  <br/>  
                                 <div class="form-group">
-                                    <h:inputText id="universityName" requiredMessage="Please enter University Name" class="form-control input-sm" pt:placeholder="Enter University Name" required="true">
+                                    <h:inputText id="universityName"  value="#{recruiterController.recruiterModel.university}" requiredMessage="Please enter University Name" class="form-control input-sm" pt:placeholder="Enter University Name" required="true">
                                     </h:inputText>   
                                     <h:message for="universityName" style="color:red" />
                                 </div>
 
 
                                 <div class="form-group">
-                                    <h:inputText id="departmentName" requiredMessage="Please enter Department Name" class="form-control input-sm" pt:placeholder="Enter Department Name" required="true">
+                                    <h:inputText id="departmentName" value="#{recruiterController.recruiterModel.department}" requiredMessage="Please enter Department Name" class="form-control input-sm" pt:placeholder="Enter Department Name" required="true">
                                     </h:inputText>   
                                     <h:message for="departmentName" style="color:red" />
                                 </div>
                                 <div class="form-group">
-                                    <h:inputText id="number" requiredMessage="Phone Number" class="form-control input-sm" pt:placeholder="Enter Phone Number" required="true">
+                                    <h:inputText id="number" requiredMessage="Phone Number" value="#{recruiterController.recruiterModel.phone}" class="form-control input-sm" pt:placeholder="Enter Phone Number" required="true">
                                     </h:inputText>   
                                     <h:message for="number" style="color:red" />
                                 </div>
-                                <h:commandButton id="createAccount" style="width: 98%" class="btn btn-primary" value="Submit"/>                       
+                                <h:commandButton id="createAccount" style="width: 98%" action="#{signupController.signUp()}" class="btn btn-primary" value="Submit"/>                       
                             </h:form>
 
                         </div>

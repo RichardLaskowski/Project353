@@ -13,4 +13,6 @@ public interface UserDAO
     public int setEmailId(UserBean userModel);
     public int setProfilePictureId(int imageId, String username);
     int updateEmailDB(StudentBean studentBean);
+    public ArrayList DisplayStudentInfo();
+    int SubscribeEmail(StudentBean studentBean);
 }

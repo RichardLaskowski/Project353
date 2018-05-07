@@ -6,11 +6,14 @@
 package DAO;
 
 import Model.UniversityNameBean;
+import java.io.File;
 import java.sql.Connection;
+import java.util.Date;
 import java.sql.Driver;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Properties;
 import javax.activation.DataHandler;
@@ -26,6 +29,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
 
 /**
  *
@@ -36,7 +41,7 @@ public class ShowcaseUniversityDAOImpl implements ShowcaseUniversityDAO
 
     private ArrayList resultList;
     private Connection DBConn = null;
-    private String myDB = "jdbc:derby://localhost:1527/Project353";
+    private String myDB = "jdbc:derby://10.110.10.26/atapadi_spring2018_LinkedUAppDB";
     private String driver = "org.apache.derby.jdbc.ClientDriver";
 
     public void connect2DB()
@@ -133,8 +138,8 @@ public class ShowcaseUniversityDAOImpl implements ShowcaseUniversityDAO
                 String to = rs.getString("EMAIL");
 
                 // Sender's email ID needs to be mentioned
-                String from = "Email";
-                String password = "Password";
+                String from = "atapadi@ilstu.edu";
+                String password = "Akki_aman+3363-";
 
                 // Assuming you are sending email from this host
                 String host = "outlook.office365.com";
@@ -172,29 +177,13 @@ public class ShowcaseUniversityDAOImpl implements ShowcaseUniversityDAO
                     message.addRecipient(Message.RecipientType.TO,
                             new InternetAddress(to));
 
-                    // This HTML mail have to 2 part, the BODY and the embedded image
-                    //
-                    MimeMultipart multipart = new MimeMultipart("related");
+                    // Set Subject: header field
+                    message.setSubject("LinkedU NewsLetter");
 
-                    // first part  (the html)
-                    BodyPart messageBodyPart = new MimeBodyPart();
-                    String htmlText = "<center><H1>" + text + "</H1></center>";
-                    messageBodyPart.setContent(htmlText, "text/html");
-
-                    // add it
-                    multipart.addBodyPart(messageBodyPart);
-
-                    // second part (the image)
-                    messageBodyPart = new MimeBodyPart();
-                    DataSource fds = new FileDataSource("I:\\GitHub\\Project353\\web\\resources\\images\\book.jpg");
-                    messageBodyPart.setDataHandler(new DataHandler(fds));
-                    messageBodyPart.setHeader("Content-ID", "<image>");
-
-                    // add it
-                    multipart.addBodyPart(messageBodyPart);
-
-                    // put everything together
-                    message.setContent(multipart);
+                    // String str= aProfile.getFirst_name();
+                    // Send the actual HTML message, as big as you like
+                    message.setContent(
+                            "<h3>" + text + "</h3>", "text/html");
 
                     transport.connect();
                     transport.sendMessage(message,
@@ -202,9 +191,8 @@ public class ShowcaseUniversityDAOImpl implements ShowcaseUniversityDAO
                     transport.close();
 
                     System.out.println("Sent message successfully....");
-                    rowCount += rowCount;
-                } catch (MessagingException mex)
-                {
+                    rowCount = rowCount + 1;
+                } catch (MessagingException mex) {
                     mex.printStackTrace();
                     System.out.println(mex);
                 }
@@ -213,6 +201,34 @@ public class ShowcaseUniversityDAOImpl implements ShowcaseUniversityDAO
         } catch (Exception ex)
         {
             ex.printStackTrace();
+        }
+        return rowCount;
+    }
+
+    @Override
+    public int updateDate(Date date) {
+        int rowCount = 0;
+        String datefromDB;
+        
+        String query = "SELECT DATE FROM ITKSTU.UNIVERSITYSCHEDULE";
+        String query1 = "INSERT INTO ITKSTU.UNIVERSITYSCHEDULE (UNIVERSITYNAME, DATE) VALUES ('ISU', '"
+                + date + "')";
+        try {
+            connect2DB();
+            String str = date.toString();
+            Statement stmt = DBConn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                datefromDB = rs.getString("DATE");        
+                    if (str.equals(datefromDB)) {
+                        return rowCount;
+                    }
+          
+            }
+            rowCount = stmt.executeUpdate(query1);
+            DBConn.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
         }
         return rowCount;
     }

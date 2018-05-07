@@ -20,7 +20,7 @@ public class UserDAOImpl implements UserDAO
 {
     private ArrayList resultList;
     private Connection DBConn = null;
-    private String myDB = "jdbc:derby://localhost:1527/Project353";
+    private String myDB = "jdbc:derby://10.110.10.26/atapadi_spring2018_LinkedUAppDB";
     private String driver = "org.apache.derby.jdbc.ClientDriver";
     private UserBean targetUser;
     private StudentBean targetStudent;
@@ -304,4 +304,51 @@ public class UserDAOImpl implements UserDAO
         }
         return resultList;
     }   
+    
+      @Override
+       public ArrayList DisplayStudentInfo() {
+        ArrayList listOfStudent = new ArrayList();    
+        String selectString = "select * from itkstu.users where usertype = 'Student' ";
+        try  {
+            connect2DB();
+            Statement stmt = DBConn.createStatement();
+            ResultSet rs = stmt.executeQuery(selectString);
+
+            while(rs.next())
+            {
+                username = rs.getString("username");
+                firstName = rs.getString("firstname");
+                lastName = rs.getString("lastname");
+                email = rs.getString("email");
+                
+                targetUser = new UserBean(username, firstName, lastName, email);
+                listOfStudent.add(targetUser);
+            }
+            DBConn.close();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace(); 
+        }
+        return listOfStudent;
+    }
+
+    @Override
+    public int SubscribeEmail(StudentBean studentBean) {
+         int rowCount = 0;
+        try {
+                connect2DB();
+                String insertString;
+                Statement stmt = DBConn.createStatement();
+                insertString = "UPDATE ITKSTU.USERS SET EMAILSUBSCRIPTION = '1'"
+                        + " WHERE username = '" + studentBean.getUsername() + "'";
+                rowCount = stmt.executeUpdate(insertString);
+                DBConn.close();
+            } 
+            catch (SQLException e) 
+            {
+                System.err.println(e.getMessage());
+            }
+            return rowCount;
+    }
 }

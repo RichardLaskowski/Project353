@@ -5,12 +5,15 @@ import Model.StudentBean;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+//import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 @Named(value = "profileController")
 @SessionScoped
+@ManagedBean
 public class ProfileController implements Serializable
 {
 
@@ -41,6 +44,7 @@ public class ProfileController implements Serializable
       //MediaController mediaController = (MediaController)session.getAttribute("mediaController");
         postController.getPostModel().setUsername(userModel.getUsername());
         System.out.println("setUsername()");
+        
         //System.out.println(mediaController.getImageId());
         postController.getPostModel().setImageId(imageId);
         if(imageId == 0)         

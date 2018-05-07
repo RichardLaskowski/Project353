@@ -54,6 +54,14 @@ public class UserBean
         this.securityAnswer = secAnswer;
     }
     
+     public UserBean(String username, String firstName, String lastName, String email)
+    {
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+    
     public UserBean(String username, String password, String firstName, String lastName, String email, String secQuestion, String secAnswer, String userType, int profilePictureID)
     {
         this.username = username;

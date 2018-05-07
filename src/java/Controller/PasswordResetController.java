@@ -94,8 +94,8 @@ public class PasswordResetController implements Serializable
         userController.setEmailId(targetUser);
 
         // Sender's email ID needs to be mentioned
-        String from = "Email";
-        String password = "Password";
+         String from = "atapadi@ilstu.edu";
+         String password = "Akki_aman+3363-";
 
         // Assuming you are sending email from this host
         String host = "outlook.office365.com";
@@ -133,30 +133,15 @@ public class PasswordResetController implements Serializable
             message.addRecipient(Message.RecipientType.TO,
                     new InternetAddress(to));
 
-            // This HTML mail have to 2 part, the BODY and the embedded image
-            //
-            MimeMultipart multipart = new MimeMultipart("related");
-
-            // first part  (the html)
-            BodyPart messageBodyPart = new MimeBodyPart();
+           
             String htmlText = "<center><H1>Click the link to reset your password"
-                    + "<br/> http://localhost:8080/Project353/resetPassword.xhtml?id=" + emailId + "</H1></center>";
-            messageBodyPart.setContent(htmlText, "text/html");
+                    + "<br/> http://gfish3.it.ilstu.edu:8080/atapadi_Spring2018_LinkedU/resetPassword.xhtml?id=" + emailId + "</H1></center>";
+           
+            // String str= aProfile.getFirst_name();
+                    // Send the actual HTML message, as big as you like
+            message.setContent(htmlText, "text/html");
 
-            // add it
-            multipart.addBodyPart(messageBodyPart);
-
-            // second part (the image)
-            messageBodyPart = new MimeBodyPart();
-            DataSource fds = new FileDataSource("C:\\Users\\Richa\\Documents\\NetBeansProjects\\Project353\\web\\resources\\images\\book.jpg");
-            messageBodyPart.setDataHandler(new DataHandler(fds));
-            messageBodyPart.setHeader("Content-ID", "<image>");
-
-            // add it
-            multipart.addBodyPart(messageBodyPart);
-
-            // put everything together
-            message.setContent(multipart);
+          
 
             transport.connect();
             transport.sendMessage(message,
