@@ -71,7 +71,14 @@ public class LoginController
                     {
                         isLoggedIn = true;
                         loginAttempt = 0;
-                        returnString = "profilestandard.xhtml?faces-redirect=true";
+                        if(targetUser.getUserType().equalsIgnoreCase("recruiter"))
+                        {
+                            returnString = "recruiter.xhtml?faces-redirect=true";
+                        }
+                        else
+                        {
+                           returnString = "profilestandard.xhtml?faces-redirect=true";
+                        }
                     } else
                     {
                         setLoginStatus("Invalid Credentials");

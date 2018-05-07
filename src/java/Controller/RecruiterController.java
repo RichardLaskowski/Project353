@@ -9,6 +9,7 @@ import DAO.RecruiterDAO;
 import DAO.RecruiterDAOImpl;
 import Model.RecruiterBean;
 import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -23,10 +24,11 @@ public class RecruiterController
     private ArrayList resultList;
     private RecruiterBean recruiterModel;
     private RecruiterBean targetRecruiter;
+    private List listOfStudents;
     
     public boolean createRecruiter(RecruiterBean recruiterModel)
     {
-        boolean recruiterInserted = false;
+        boolean recruiterInserted = false;  
         RecruiterDAO recruiterDAO = new RecruiterDAOImpl();
         int rowCount = recruiterDAO.createRecruiter(recruiterModel);
         
@@ -113,5 +115,22 @@ public class RecruiterController
     public void setTargetRecruiter(RecruiterBean targetRecruiter)
     {
         this.targetRecruiter = targetRecruiter;
+    }
+
+    /**
+     * @return the listOfStudents
+     */
+    public List getListOfStudents() {
+        RecruiterDAO recruiterDAO = new RecruiterDAOImpl();
+        listOfStudents = recruiterDAO.DisplayStudentInfo();  
+        
+        return listOfStudents;
+    }
+
+    /**
+     * @param listOfStudents the listOfStudents to set
+     */
+    public void setListOfStudents(List listOfStudents) {
+        this.listOfStudents = listOfStudents;
     }
 }

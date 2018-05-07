@@ -33,7 +33,7 @@ public class StudentDAOImpl implements StudentDAO
 
     private ArrayList resultList;
     private Connection DBConn = null;
-    private String myDB = "jdbc:derby://localhost:1527/Project353";
+    private String myDB = "jdbc:derby://10.110.10.26/atapadi_spring2018_LinkedUAppDB";
     private String driver = "org.apache.derby.jdbc.ClientDriver";
     private StudentBean targetStudent;
 
@@ -48,23 +48,7 @@ public class StudentDAOImpl implements StudentDAO
     {
         int rowCount = 0;
         resultList = selectStudentByUsername(studentModel.getUsername());
-        System.out.println(studentModel.getDateOfBirth());
-        System.out.println(studentModel.getHeight());
-        System.out.println(studentModel.getWeight());
-        System.out.println(studentModel.getStreet());
-        System.out.println(studentModel.getCity());
-        System.out.println(studentModel.getCountry());
-        System.out.println(studentModel.getZipcode());
-        System.out.println(studentModel.getPhone());
-        System.out.println(studentModel.getSchool());
-        System.out.println(studentModel.getEndYear());
-        System.out.println(studentModel.getSat());
-        System.out.println(studentModel.getAct());
-        System.out.println(studentModel.getPsat());
-        System.out.println(studentModel.getEssay());
-        System.out.println(studentModel.getHobbies());
-        System.out.println(studentModel.getCertification());
-        System.out.println(studentModel.getUsername());
+       
         
         if(resultList.isEmpty())
         {
@@ -114,24 +98,7 @@ public class StudentDAOImpl implements StudentDAO
     public int updateStudent(StudentBean studentModel)
     {
         int rowCount = 0;
-        resultList = selectStudentByUsername(studentModel.getUsername());
-        System.out.println(studentModel.getDateOfBirth());
-        System.out.println(studentModel.getHeight());
-        System.out.println(studentModel.getWeight());
-        System.out.println(studentModel.getStreet());
-        System.out.println(studentModel.getCity());
-        System.out.println(studentModel.getCountry());
-        System.out.println(studentModel.getZipcode());
-        System.out.println(studentModel.getPhone());
-        System.out.println(studentModel.getSchool());
-        System.out.println(studentModel.getEndYear());
-        System.out.println(studentModel.getSat());
-        System.out.println(studentModel.getAct());
-        System.out.println(studentModel.getPsat());
-        System.out.println(studentModel.getEssay());
-        System.out.println(studentModel.getHobbies());
-        System.out.println(studentModel.getCertification());
-        System.out.println(studentModel.getUsername());
+        resultList = selectStudentByUsername(studentModel.getUsername()); 
         
         if(!resultList.isEmpty())
         {

@@ -9,9 +9,10 @@ import DAO.CommentDAO;
 import DAO.CommentDAOImpl;
 import Model.CommentBean;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
@@ -19,6 +20,7 @@ import java.util.ArrayList;
  */
 @Named(value = "commentController")
 @SessionScoped
+@ManagedBean
 public class CommentController implements Serializable
 {
     ArrayList resultList;

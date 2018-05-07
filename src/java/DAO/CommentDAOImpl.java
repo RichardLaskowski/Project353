@@ -22,7 +22,7 @@ public class CommentDAOImpl implements CommentDAO
 
     ArrayList resultList;
     private Connection DBConn = null;
-    private String myDB = "jdbc:derby://localhost:1527/Project353";
+    private String myDB = "jdbc:derby://10.110.10.26/atapadi_spring2018_LinkedUAppDB";
     private String driver = "org.apache.derby.jdbc.ClientDriver";
     
     int commentId;

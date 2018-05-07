@@ -7,8 +7,7 @@
 
     <h:head>
         <title></title>
-        <h:outputStylesheet library="css" name="signup.css"/>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>   
+        <h:outputStylesheet library="css" name="signup.css"/>  
         <link href="resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <style>
             body{
@@ -22,10 +21,31 @@
                 background: rgba(255, 255, 255, 0.8);
                 box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
             }
+            header
+            { 
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                top: 0;
+                position: fixed;
+                width: 100%;
+                height: 45px;
+                background-color: #d9edf7;
+                display: grid;
+                color:#31708F;
+
+            }
         </style>
     </h:head>
 
     <h:body >
+        <h:form>
+            <header>
+                <h:commandButton style="float:right; width: 10%" id="logOut" class="btn btn-primary" action="profilestandard.xhtml?faces-redirect=true" value="Back" ></h:commandButton>
+            </header>
+
+            <br/>
+            <br/>
+        </h:form>
+
         <div class="container">
             <div class="row centered-form">
                 <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
@@ -41,13 +61,28 @@
                                     <br/>that's Bloomington-Normal.</p>
                                 <br/>
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <h:commandButton id="info" style="width: 98%" class="btn btn-primary" value="Schedule a visit"/> &nbsp;
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <h:outputLabel id="info" value="Schedule a visit"/>
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <h:commandButton id="admission" style="width: 98%" class="btn btn-primary" value="Apply for Admission" action="#"/>                       
+
+                                    <div class="col-lg-2 col-md-2 col-sm-2">
+                                        <p:calendar id="event" value="#{calendarView.date}" mindate="#{calendarView.currentDate}">
+                                            <p:ajax event="dateSelect" listener="#{calendarView.onDateSelect}" update="msgs"/>
+                                        </p:calendar>
                                     </div>
+                                    <br/><br/>
+                                    <p><h:outputText id="msgs" value="#{calendarView.message}"></h:outputText></p>
+                                    <br/>
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <h:commandButton id="applyAdmission" style="width: 98%" class="btn btn-primary" value="Apply for Admission" action="#{updateController.applyAdmission()}"/>                                        
+                                    </div>
+                                    <br/><br/>
+                                    <p><h:outputText style="color: green;" id="msg" value="#{updateController.admissionMessage}"></h:outputText></p>
+                                    <br/>
+
                                 </div>
+
+
                             </h:form>
 
                         </div>
@@ -55,7 +90,6 @@
                 </div>
             </div>
         </div>
-
 
     </h:body>
 </html>

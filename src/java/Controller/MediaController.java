@@ -11,16 +11,18 @@ import DAO.UserDAO;
 import DAO.UserDAOImpl;
 import Model.UserBean;
 import java.io.Serializable;
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.SessionScoped;
+//import javax.enterprise.context.ApplicationScoped;
+//import javax.enterprise.context.SessionScoped;
 //import javax.annotation.ManagedBean;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 //import javax.faces.bean.ApplicationScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseId;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
-import static org.primefaces.component.focus.Focus.PropertyKeys.context;
+//import static org.primefaces.component.focus.Focus.PropertyKeys.context;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
@@ -31,6 +33,7 @@ import org.primefaces.model.UploadedFile;
  */
 @Named(value = "mediaController")
 @SessionScoped
+@ManagedBean
 public class MediaController implements Serializable
 {
 
@@ -71,9 +74,10 @@ public class MediaController implements Serializable
         {
             ImageDAO dao = new ImageDAOImpl();
             System.out.println(user.getUsername());
-            dao.createImage(file, user.getUsername());
+            imageId = dao.createImage(file, user.getUsername());
             FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
             FacesContext.getCurrentInstance().addMessage(null, message);
+            image = dao.selectImageByImageId(imageId);
         }
     }
     

@@ -11,7 +11,9 @@ import Model.UserBean;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
-import javax.enterprise.context.SessionScoped;
+//import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
@@ -19,6 +21,7 @@ import javax.enterprise.context.SessionScoped;
  */
 @Named(value = "userController")
 @SessionScoped
+@ManagedBean
 public class UserController implements Serializable
 {
     private String USER_TYPE_STUDENT = "student";
@@ -86,7 +89,18 @@ public class UserController implements Serializable
         {
             targetUser = (UserBean)resultList.get(i);
             System.out.println("SELECT BY USERTYPE SUCCESSFULL");
-            System.out.println("TARGET: " + targetUser.getUsername());
+        }
+        return resultList;
+    }
+    
+    // For Display Student
+    public ArrayList StudentInformation()
+    {
+         UserDAO userDAO = new UserDAOImpl();
+         resultList = userDAO.DisplayStudentInfo();
+           for(int i = 0; i < resultList.size(); i++)
+        {
+            targetUser = (UserBean)resultList.get(i);
         }
         return resultList;
     }

@@ -11,7 +11,9 @@ import Model.PostBean;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+//import javax.enterprise.context.SessionScoped;
 
 /**
  *
@@ -19,6 +21,7 @@ import javax.enterprise.context.SessionScoped;
  */
 @Named(value = "postController")
 @SessionScoped
+@ManagedBean
 public class PostController implements Serializable
 {
     private PostBean postModel;

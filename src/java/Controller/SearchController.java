@@ -5,7 +5,9 @@ import DAO.SearchDAOImpl;
 import Model.UserBean;
 import java.util.List;
 import java.io.Serializable;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+//import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 /**
@@ -14,6 +16,7 @@ import javax.inject.Named;
  */
 @Named(value = "searchController")
 @SessionScoped
+@ManagedBean
 public class SearchController implements Serializable {
 
     private String search;

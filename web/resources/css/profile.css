@@ -75,7 +75,7 @@ aside
     text-align: center;
     grid-area: sidebar;
     background-color: #aaaaa;
-    margin: 0px;
+    margin-left: -20%;
     padding: 0px;
 /*    position: fixed;*/
 }

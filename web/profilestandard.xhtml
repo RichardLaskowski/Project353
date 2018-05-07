@@ -7,7 +7,6 @@
     <h:head>
         <title>Profile</title>
         <h:outputStylesheet library="css" name="profile.css"/>
-        <h:outputScript library="js" name="jquery-2.2.3.min.js"/>
         <h:outputScript library="js" name="feed.js"/>
     </h:head>
     <h:body>
@@ -137,7 +136,15 @@
                     <br/>
                     Contact info?
                     <br/>
-                    <h:commandButton class="sidebarbutton" value="Request More Details"> </h:commandButton>
+                    <h:commandButton class="sidebarbutton" value="Request More Details"> </h:commandButton><br/>
+                <h:form>
+                    <br/>
+                <h:commandButton class="sidebarbutton" value="Unsubscribe to Email" action="#{updateController.updateUsers()}"> </h:commandButton>  
+               <br/> <br/>
+               <h:commandButton class="sidebarbutton" id="unsubscribeEmail" value="Subscribe to Email" action="#{updateController.subscribeEmail()}"> </h:commandButton>  
+                <br/>
+                <h:outputText id="result" style="color:green;" value="#{updateController.emailMessage}"/> 
+                </h:form>
                 </div>
             </aside2>
             <footer>LINKEDU LLC. Created By Eric, Akanksha, Dryden and Ricky</footer>
