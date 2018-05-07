@@ -64,7 +64,7 @@ public class MediaController implements Serializable
         //System.out.println("MediaController created");
     }
     
-    public void upload()
+    public String upload()
     {
         //System.out.println(user.getUsername());
         if (file != null)
@@ -75,6 +75,7 @@ public class MediaController implements Serializable
             FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
+        return "profilestandard.xhtml";
     }
     
     public void uploadPostImage()
@@ -88,6 +89,7 @@ public class MediaController implements Serializable
             imageId = imageDAO.createImage(file, user.getUsername());
             //System.out.println("UPLOADPOSTIMAGE: imageid =" + imageId);
             image = imageDAO.selectImageByImageId(imageId);    
+            
         }
         else
         {
@@ -97,13 +99,14 @@ public class MediaController implements Serializable
 
     public StreamedContent getProfileImage()
     {
+        UserDAO userDAO = new UserDAOImpl();
         FacesContext context = FacesContext.getCurrentInstance();
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
         LoginController loginSession = (LoginController) session.getAttribute("loginController");
-        UserBean user = loginSession.getTargetUser();
+        UserBean user = (UserBean)userDAO.selectUserByUsername(loginSession.getTargetUser().getUsername()).get(0);
         //System.out.println(user.getUsername());
-
+        System.out.println("MEDIACONTROLLER: getProfileImage() - profilePictureId = " + user.getProfilePictureID());
         if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE)
         {
             // So, we're rendering the HTML. Return a stub StreamedContent so that it will generate right URL.

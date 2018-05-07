@@ -43,10 +43,7 @@ public class ProfileController implements Serializable
         System.out.println("setUsername()");
         //System.out.println(mediaController.getImageId());
         postController.getPostModel().setImageId(imageId);
-        if(imageId == 0)
-        {
-            postController.getPostModel().setImageId(129);
-        }
+        if(imageId == 0)         
         System.out.println("getImageId");
         postController.getPostModel().setVideoId(videoId);
         postController.createPost();

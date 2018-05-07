@@ -40,7 +40,7 @@ public class ImageDAOImpl implements ImageDAO
         try
         {
             connect2DB();
-            String insert = "SELECT image FROM IMAGES WHERE IMAGEID= " + user.getProfilePictureID();
+            String insert = "SELECT image FROM IMAGES WHERE IMAGEID = " + user.getProfilePictureID();
             System.out.println("IMAGEDAOIMPL: " + insert);
             PreparedStatement stmt = DBConn.prepareStatement(insert);
 //          stmt.setBinaryStream(1, file.getInputstream());

@@ -103,6 +103,14 @@ public class PostDAOImpl implements PostDAO
                     + "', " + postModel.getImageId()
                     + ", " + postModel.getVideoId()
                     + ", ?)";
+            if(postModel.getImageId() == 0)
+            {
+                insert = "INSERT INTO itkstu.posts (username, videoId, textcontent) "
+                        + "VALUES ('" + postModel.getUsername() 
+                        + "', " + postModel.getVideoId() 
+                        + ", ?)";
+            }
+            
             System.out.println("POSTDAOIMPL: " + insert);
             PreparedStatement pstmt = DBConn.prepareStatement(insert);
             pstmt.setString(1,postModel.getTextContent());

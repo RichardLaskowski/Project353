@@ -29,16 +29,16 @@
                         <h1>Status Update</h1>
                     </div>
                     <div class="content"> 
-                        <p:graphicImage value="#{mediaController.image}" height="auto" width="100%"/>
+<!--                        <p:graphicImage value="#{mediaController.image}" height="auto" width="100%"/>-->
                         <h:inputText value="#{profileController.postController.postModel.textContent}" a:placeholder="Write something..."></h:inputText>
                     </div>
                     <div class="post-button"> 
                         <h:commandButton value="Post" action="#{profileController.createPost(mediaController.imageId)}"></h:commandButton>
                     </div> 
-                    <div class="post-button"> 
+<!--                    <div class="post-button"> 
                         <h:commandButton value="Upload" action="#{mediaController.uploadPostImage()}"></h:commandButton>
-                    </div>
-                    <p:fileUpload value="#{mediaController.file}" mode="simple" skinSimple="true"/>
+                    </div>-->
+<!--                    <p:fileUpload value="#{mediaController.file}" mode="simple" skinSimple="true"/>-->
                 </h:form>
                 <h:dataTable value="#{profileController.userModel.getProfile().post}"  cellspacing="0px" cellpadding="0px" var="post">
                     <h:column>
@@ -50,12 +50,9 @@
                                 <div class="post-content">
                                     <h:outputText value="#{post.textContent}"/>
                                 </div>
-                                <div class="like-button">
+<!--                                <div class="like-button">
                                     <h:commandButton value="Like"></h:commandButton>
-                                </div>
-                                <div class="view-button">
-                                    <h:commandButton id="view_comments_button" value="Upload"></h:commandButton>
-                                </div>
+                                </div>-->
                             </div>
                             <div class="comment">
                                 <div class="filler-grid">
