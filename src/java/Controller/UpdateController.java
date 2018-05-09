@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
 
 @ManagedBean
 @SessionScoped
-public class UpdateController
+public class UpdateController implements Serializable
 {
     private StudentController studentController;
     private StudentBean studentBean;

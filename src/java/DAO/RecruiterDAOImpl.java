@@ -1,5 +1,6 @@
 package DAO;
 
+import Controller.PostController;
 import Model.RecruiterBean;
 import Model.StudentInfoBean;
 import java.sql.Connection;
@@ -15,6 +16,7 @@ public class RecruiterDAOImpl implements RecruiterDAO
     private String username;
     private String department;
     private String phone;
+    private ArrayList posts;
 
     private ArrayList resultList;
     private Connection DBConn = null;
@@ -107,6 +109,7 @@ public class RecruiterDAOImpl implements RecruiterDAO
     @Override
     public ArrayList selectRecruiterByUsername(String targetUsername)
     {
+        PostController postController = new PostController();
         resultList = new ArrayList();
         String selectString = "SELECT * FROM itkstu.recruiter "
             + "WHERE username = '" + targetUsername + "'";
@@ -126,6 +129,8 @@ public class RecruiterDAOImpl implements RecruiterDAO
                 phone = rs.getString("phone");
 
                 targetRecruiter = new RecruiterBean(profileId, university, username, department, phone);
+                posts = postController.selectPostsByUsername(targetUsername);
+                targetRecruiter.setPosts(posts);
                 resultList.add(targetRecruiter);
             }
             DBConn.close();

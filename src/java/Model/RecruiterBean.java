@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class RecruiterBean
 {
     private int profileId;
@@ -15,6 +17,7 @@ public class RecruiterBean
     private String SAT;
     private String ACT;
     private String PSAT;
+    private ArrayList posts;
 
     public RecruiterBean(int profileId, String department, String phone, String university, String username)
     {
@@ -218,4 +221,21 @@ public class RecruiterBean
     public void setPSAT(String PSAT) {
         this.PSAT = PSAT;
     }
+
+    /**
+     * @return the posts
+     */
+    public ArrayList getPosts()
+    {
+        return posts;
+    }
+
+    /**
+     * @param posts the posts to set
+     */
+    public void setPosts(ArrayList posts)
+    {
+        this.posts = posts;
+    }
+    
 }

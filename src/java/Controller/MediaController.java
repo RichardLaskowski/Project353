@@ -55,7 +55,6 @@ public class MediaController implements Serializable
     public void setFile(UploadedFile file)
     {
         this.file = file;
-        //System.out.println("file set");
     }
     
     public MediaController()
@@ -80,25 +79,6 @@ public class MediaController implements Serializable
             image = dao.selectImageByImageId(imageId);
         }
         return "profilestandard.xhtml";
-    }
-    
-    public void uploadPostImage()
-    {
-                 
-        if(file != null)
-        {
-            //System.out.println("File being uploaded");
-            ImageDAO imageDAO = new ImageDAOImpl();
-            //To-do - Change to new create Image method.
-            imageId = imageDAO.createImage(file, user.getUsername());
-            //System.out.println("UPLOADPOSTIMAGE: imageid =" + imageId);
-            image = imageDAO.selectImageByImageId(imageId);    
-            
-        }
-        else
-        {
-            System.out.println("File = null");
-        }
     }
 
     public StreamedContent getProfileImage()
@@ -180,7 +160,6 @@ public class MediaController implements Serializable
     public void setImage(StreamedContent image)
     {
         this.image = image;
-        System.out.println("Image set");
     }
 
     /**

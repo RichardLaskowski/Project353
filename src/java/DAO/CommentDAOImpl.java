@@ -27,6 +27,7 @@ public class CommentDAOImpl implements CommentDAO
     
     int commentId;
     String content;
+    String username;
     CommentBean targetComment;
     
     public void connect2DB()
@@ -39,8 +40,8 @@ public class CommentDAOImpl implements CommentDAO
     public int createComment(CommentBean commentModel)
     {
         int rowCount = 0;
-        String insertString = "INSERT INTO comments (content, postid) "
-                + "VALUES ('" + commentModel.getContent() + "', " + commentModel.getPostId() + ")";
+        String insertString = "INSERT INTO comments (content, postid, username) "
+                + "VALUES ('" + commentModel.getContent() + "', " + commentModel.getPostId() +  ", '" + commentModel.getUsername() + "')";
         try
         {
             connect2DB();
@@ -71,7 +72,7 @@ public class CommentDAOImpl implements CommentDAO
     public ArrayList selectCommentsByPostId(int postId)
     {
         resultList = new ArrayList();
-        String selectString = "SELECT content FROM itkstu.comments "
+        String selectString = "SELECT content, username FROM itkstu.comments "
                 + "WHERE postId = " + postId;       
         
         try
@@ -83,8 +84,10 @@ public class CommentDAOImpl implements CommentDAO
             while(rs.next())
             {
                 content = rs.getString("content");
-                System.out.println(content);
+                //System.out.println(content);
+                username = rs.getString("username");
                 targetComment = new CommentBean(content);
+                targetComment.setUsername(username);
                 resultList.add(targetComment);
             }
         }
