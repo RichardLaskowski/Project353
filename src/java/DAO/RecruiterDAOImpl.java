@@ -1,6 +1,8 @@
 package DAO;
 
+import Controller.PostController;
 import Model.RecruiterBean;
+import Model.StudentInfoBean;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,10 +16,11 @@ public class RecruiterDAOImpl implements RecruiterDAO
     private String username;
     private String department;
     private String phone;
+    private ArrayList posts;
 
     private ArrayList resultList;
     private Connection DBConn = null;
-    private String myDB = "jdbc:derby://localhost:1527/Project353";
+    private String myDB = "jdbc:derby://10.110.10.26/atapadi_spring2018_LinkedUAppDB";
     private String driver = "org.apache.derby.jdbc.ClientDriver";
     private RecruiterBean targetRecruiter;
 
@@ -42,12 +45,13 @@ public class RecruiterDAOImpl implements RecruiterDAO
                 Statement stmt = DBConn.createStatement();
                 insertString = "INSERT INTO itkstu.recruiter "
                 + "(university, username, department, phone) "
-                + "', '" + recruiterModel.getUniversity()
+                + "VALUES ('" + recruiterModel.getUniversity()
                 + "', '" + recruiterModel.getUsername()
                 + "', '" + recruiterModel.getDepartment()
                 + "', '" + recruiterModel.getPhone()
                 + "')";
-
+                
+                System.out.println("RECRUITERDAOIMPL: " + insertString);
                 rowCount = stmt.executeUpdate(insertString);
                 DBConn.close();
             } 
@@ -85,7 +89,7 @@ public class RecruiterDAOImpl implements RecruiterDAO
                         + "', phone = '" + recruiterModel.getPhone()
                         + "', department = '" + recruiterModel.getDepartment()
                         +"' WHERE username = '" + recruiterModel.getUsername() + "'";
-             
+                System.out.println("RECRUITERDAOIMPL: " + insertString);
                 rowCount = stmt.executeUpdate(insertString);
                 
                 DBConn.close();
@@ -105,10 +109,11 @@ public class RecruiterDAOImpl implements RecruiterDAO
     @Override
     public ArrayList selectRecruiterByUsername(String targetUsername)
     {
+        PostController postController = new PostController();
         resultList = new ArrayList();
         String selectString = "SELECT * FROM itkstu.recruiter "
             + "WHERE username = '" + targetUsername + "'";
-        
+        System.out.println("RECRUITERDAOIMPL: " + selectString);
         try
         {
             connect2DB();
@@ -124,6 +129,8 @@ public class RecruiterDAOImpl implements RecruiterDAO
                 phone = rs.getString("phone");
 
                 targetRecruiter = new RecruiterBean(profileId, university, username, department, phone);
+                posts = postController.selectPostsByUsername(targetUsername);
+                targetRecruiter.setPosts(posts);
                 resultList.add(targetRecruiter);
             }
             DBConn.close();
@@ -135,5 +142,39 @@ public class RecruiterDAOImpl implements RecruiterDAO
             e.printStackTrace(); 
         }
         return resultList;
+    }
+
+    @Override
+    public ArrayList DisplayStudentInfo() {
+        ArrayList listOfStudent = new ArrayList();  
+        StudentInfoBean studentInfoBean;
+        String selectString = "select u.firstname, u.lastname, u.email, "
+                + "s.school,s.sat,s.act,s.psat from users u join student s on u.username = s.username";
+        String Fname, Lname, Email, School, ACT, SAT, PSAT;
+        try  {
+            connect2DB();
+            Statement stmt = DBConn.createStatement();
+            ResultSet rs = stmt.executeQuery(selectString);
+
+            while(rs.next())
+            {
+                Fname = rs.getString("firstname");
+                Lname = rs.getString("lastname");
+                Email = rs.getString("email");
+                School = rs.getString("school");
+                SAT = rs.getString("sat");
+                ACT = rs.getString("act");
+                PSAT = rs.getString("psat");
+
+                studentInfoBean = new StudentInfoBean(Fname, Lname, Email, School, SAT, ACT, PSAT);
+                listOfStudent.add(studentInfoBean);
+            }
+            DBConn.close();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace(); 
+        }
+        return listOfStudent;
     }
 }

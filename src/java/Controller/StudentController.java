@@ -25,7 +25,7 @@ public class StudentController implements Serializable
 
     public boolean createStudent(StudentBean studentModel)
     {
-        System.out.println("STUDENTCONTROLLER: createStudent");
+        //System.out.println("STUDENTCONTROLLER: createStudent");
         boolean studentInserted = false;
         StudentDAO studentDAO = new StudentDAOImpl();
         int rowCount = studentDAO.createStudent(studentModel);
@@ -40,7 +40,7 @@ public class StudentController implements Serializable
     
     public boolean updateStudent(StudentBean studentModel)
     {
-        System.out.println("STUDENTCONTROLLER: updateStudent");
+        //System.out.println("STUDENTCONTROLLER: updateStudent");
         boolean studentUpdated = false;
         StudentDAO studentDAO = new StudentDAOImpl();
         int rowCount = studentDAO.updateStudent(studentModel);
@@ -61,8 +61,8 @@ public class StudentController implements Serializable
         if(resultList.size() == 1)
         {
             targetStudent = (StudentBean)resultList.get(0);
-            System.out.println("STUDENTCONTROLLER: Select By Username Successfull");
-            System.out.println("STUDENTCONTROLLER: Target Username - " + targetStudent.getUsername());
+            //System.out.println("STUDENTCONTROLLER: Select By Username Successfull");
+            //System.out.println("STUDENTCONTROLLER: Target Username - " + targetStudent.getUsername());
         }
         
         return resultList;
@@ -70,8 +70,8 @@ public class StudentController implements Serializable
     
     public String onFlowProcess(FlowEvent event)
     {
-        System.out.println("ONFLOWPROCESS: " + event);
-        System.out.println("ONFLOWPROCESS: " + skip);
+        //System.out.println("ONFLOWPROCESS: " + event);
+        //System.out.println("ONFLOWPROCESS: " + skip);
         if (isSkip())
         {
             setSkip(false);   //reset in case user goes back

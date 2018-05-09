@@ -41,20 +41,20 @@ public class LoginFilter implements Filter
         HttpSession loginSession = req.getSession();
         //System.out.println("LOGINFILTER: isLoggedIn = " + session.getIsLoggedIn());
         String url = req.getRequestURI();
-        System.out.println("LOGINFILTER: requestURL = " + url);
+        //System.out.println("LOGINFILTER: requestURL = " + url);
         
         if(session == null || !session.getIsLoggedIn())
         {
             //System.out.println("LOGINFILTER: session = null isLogginIn = null");
             if(url.indexOf("profile.xhtml") >= 0)
             {
-                System.out.println("LOGINFILTER: request NOT GRANTED");
-                System.out.println("LOGINFILTER: redirect - " + req.getServletContext().getContextPath() + "/logIn.xhtml");
+                //System.out.println("LOGINFILTER: request NOT GRANTED");
+                //System.out.println("LOGINFILTER: redirect - " + req.getServletContext().getContextPath() + "/logIn.xhtml");
                 resp.sendRedirect(req.getServletContext().getContextPath() + "/logIn.xhtml");
             }
             else
             {
-                System.out.println("LOGINFILER: request GRANTED");
+                //System.out.println("LOGINFILER: request GRANTED");
                 chain.doFilter(request, response);
             }
         }
@@ -64,21 +64,21 @@ public class LoginFilter implements Filter
             {
                 if(session.getIsLoggedIn())
                 {
-                    System.out.println("LOGINFILTER: request NOT GRANTED");
-                    System.out.println("LOGINFILTER: redirect - " + req.getServletContext().getContextPath() + "/profile.xhtml");
+                    //System.out.println("LOGINFILTER: request NOT GRANTED");
+                    //System.out.println("LOGINFILTER: redirect - " + req.getServletContext().getContextPath() + "/profile.xhtml");
                     resp.sendRedirect(req.getServletContext().getContextPath() + "/profile.xhtml");
                 }
                 else
                 {
-                    System.out.println("LOGINFILTER: request NOT GRANTED");
-                    System.out.println("LOGINFILTER: redirect - " + req.getServletContext().getContextPath() + "/logIn.xhtml");
+                    //System.out.println("LOGINFILTER: request NOT GRANTED");
+                    //System.out.println("LOGINFILTER: redirect - " + req.getServletContext().getContextPath() + "/logIn.xhtml");
                     resp.sendRedirect(req.getServletContext().getContextPath() + "/logIn.xhtml");
                 }
                 
             }
             else if(url.indexOf("logOut.xhtml") >= 0)
             {
-                System.out.println("LOGINFILER: request GRANTED");
+                //System.out.println("LOGINFILER: request GRANTED");
                 session.setIsLoggedIn(false);
                 loginSession.invalidate(); 
                 session = new LoginController();
@@ -86,11 +86,10 @@ public class LoginFilter implements Filter
             }
             else
             {
-                System.out.println("LOGINFILER: request GRANTED");
+                //System.out.println("LOGINFILER: request GRANTED");
                 chain.doFilter(request, response);
             }
-        }
-    
+        }   
     }   
     
     @Override

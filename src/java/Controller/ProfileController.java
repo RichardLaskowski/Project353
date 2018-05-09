@@ -5,12 +5,15 @@ import Model.StudentBean;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+//import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 @Named(value = "profileController")
 @SessionScoped
+@ManagedBean
 public class ProfileController implements Serializable
 {
 
@@ -41,12 +44,10 @@ public class ProfileController implements Serializable
       //MediaController mediaController = (MediaController)session.getAttribute("mediaController");
         postController.getPostModel().setUsername(userModel.getUsername());
         System.out.println("setUsername()");
+        
         //System.out.println(mediaController.getImageId());
         postController.getPostModel().setImageId(imageId);
-        if(imageId == 0)
-        {
-            postController.getPostModel().setImageId(129);
-        }
+        if(imageId == 0)         
         System.out.println("getImageId");
         postController.getPostModel().setVideoId(videoId);
         postController.createPost();
@@ -153,10 +154,57 @@ public class ProfileController implements Serializable
         this.commentController = commentController;
     }
 
+    public int getHeight(){
+        return userModel.getTargetStudent().getHeight();
+    }
+    public int getWeight(){
+        return userModel.getTargetStudent().getWeight();
+    }
+    public String getCountry(){
+        return userModel.getTargetStudent().getCountry();
+    }
+    public String getDOB(){
+        int length=userModel.getTargetStudent().getDateOfBirth().length();
+        return userModel.getTargetStudent().getDateOfBirth().substring(0,length-17);
+    }
+    public String getSchool(){
+        return userModel.getTargetStudent().getSchool();
+    }
+    public String getUserName(){
+        return userModel.getTargetStudent().getUsername();
+    }
+    public int getACT(){
+        return userModel.getTargetStudent().getAct();
+    }
+    public int getSAT(){
+        return userModel.getTargetStudent().getSat();
+    }
+    public int getPSAT(){
+        return userModel.getTargetStudent().getPsat();
+    }
+    public int getEndYear(){
+        return userModel.getTargetStudent().getEndYear();
+    }
+    public String getCertifications(){
+        return userModel.getTargetStudent().getCertification();
+    }
+    public String getHobbies(){
+        return userModel.getTargetStudent().getHobbies();
+    }
+    //recruiter info
+    public String getDepartment(){
+        return userModel.getTargetRecruiter().getDepartment();
+    }
+    public String getUniversity(){
+        return userModel.getTargetRecruiter().getUniversity();
+    }
+    public String getPhone(){
+        return userModel.getTargetRecruiter().getPhone();
+    }
     public String profilePage()
     {
 
-        return "profile_1.xhtml";
+        return "profilestandard.xhtml";
     }
 
 }

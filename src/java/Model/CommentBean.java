@@ -9,6 +9,7 @@ public class CommentBean
     private String content;
     private int commentId;
     private int postId;
+    private String username;
     
     public CommentBean(int commentId, String content, int postId)
     {
@@ -83,4 +84,21 @@ public class CommentBean
     {
         this.postId = postId;
     }   
+
+    /**
+     * @return the username
+     */
+    public String getUsername()
+    {
+        return username;
+    }
+
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(String username)
+    {
+        this.username = username;
+    }
+    
 }

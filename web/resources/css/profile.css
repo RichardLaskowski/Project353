@@ -75,7 +75,7 @@ aside
     text-align: center;
     grid-area: sidebar;
     background-color: #aaaaa;
-    margin: 0px;
+    margin-left: -20%;
     padding: 0px;
 /*    position: fixed;*/
 }
@@ -117,9 +117,15 @@ footer
 }
 
 /*----------------------------------------------------------------------*/
-
+.feed-header
+{
+    grid-column: 1 / -1;
+    background-color: #a0cade;
+    padding: 5px;
+}
 .status
 {
+    grid-column: 100px;
     background-color:  #a0cade;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     display: grid;
@@ -157,7 +163,7 @@ footer
 
 .post-button
 {
-    grid-column: span 2;
+    grid-column: 1 / -1;
     margin-bottom: 2px;
 }
 
@@ -194,7 +200,7 @@ footer
     display: grid;
     grid-gap: 10px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: minmax(80px, auto) minmax(40px, auto);   
+    grid-suto-rows: minmax(40px, auto);   
 }
 
 .post-wrapper

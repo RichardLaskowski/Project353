@@ -16,6 +16,7 @@ import javax.faces.bean.RequestScoped;
 public class AdminController {
     private String response ="";    
     public UniversityNameBean universityBean;
+    private String responseEmail;
     
     public AdminController(){
         universityBean = new UniversityNameBean();
@@ -81,6 +82,7 @@ public class AdminController {
     public String getResponse() {
         return response;
     }
+    
      public String emailSubscription(){
         int result = 0;
         ShowcaseUniversityDAO auniversityDAO = new ShowcaseUniversityDAOImpl();    // Creating a new object each time.
@@ -88,11 +90,25 @@ public class AdminController {
                
            if(result > 0)
            {
-               response = "Email Successfully sent.";
+               responseEmail = "Email Successfully sent.";
            }
            else
-               response = "Error.";
-         return response;    
+               responseEmail = "Error.";
+         return responseEmail;    
+    }
+
+    /**
+     * @return the responseEmail
+     */
+    public String getResponseEmail() {
+        return responseEmail;
+    }
+
+    /**
+     * @param responseEmail the responseEmail to set
+     */
+    public void setResponseEmail(String responseEmail) {
+        this.responseEmail = responseEmail;
     }
 
 }

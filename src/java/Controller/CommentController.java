@@ -8,10 +8,14 @@ package Controller;
 import DAO.CommentDAO;
 import DAO.CommentDAOImpl;
 import Model.CommentBean;
+import Model.UserBean;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -19,17 +23,23 @@ import java.util.ArrayList;
  */
 @Named(value = "commentController")
 @SessionScoped
+@ManagedBean
 public class CommentController implements Serializable
 {
     ArrayList resultList;
     private CommentBean commentModel;
     private CommentBean targetComment;
+    private FacesContext facesContext;
+    private HttpSession session;
+    private LoginController loginSession;
+    private UserBean user;
     /**
      * Creates a new instance of CommentController
      */
     
     public boolean createComment()
     {
+        commentModel.setUsername(user.getUsername());
         boolean commentCreated = false;
         CommentDAO commentDAO = new CommentDAOImpl();
         int rowCount = commentDAO.createComment(commentModel);
@@ -53,6 +63,10 @@ public class CommentController implements Serializable
     public CommentController()
     {
         commentModel = new CommentBean();
+        facesContext = FacesContext.getCurrentInstance();
+        session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        loginSession = (LoginController) session.getAttribute("loginController");
+        user = loginSession.getTargetUser();
     }
 
     /**

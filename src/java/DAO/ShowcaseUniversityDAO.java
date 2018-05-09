@@ -6,6 +6,7 @@
 package DAO;
 
 import Model.UniversityNameBean;
+import java.util.Date;
 import java.util.ArrayList;
 
 /**
@@ -18,4 +19,5 @@ public interface ShowcaseUniversityDAO {
     public int updateUniversityUnShowcase(String universityName);
     public int updateUniversityShowcase(String universityName);
     public int adminEmail(String text);
+    public int updateDate(Date date);
 }

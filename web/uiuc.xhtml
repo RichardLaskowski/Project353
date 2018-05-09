@@ -8,7 +8,6 @@
     <h:head>
         <title></title>
         <h:outputStylesheet library="css" name="signup.css"/>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>   
         <link href="resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <style>
             body{
@@ -44,14 +43,30 @@
                                     classroom, are designed to produce alumni who desire to make a significant, societal 
                                     impact.</p>
                                 <br/>
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <h:commandButton id="info" style="width: 98%" class="btn btn-primary" value="Schedule a visit"/> &nbsp;
+                               <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <h:outputLabel id="info" value="Schedule a visit"/>
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <h:commandButton id="admission" style="width: 98%" class="btn btn-primary" value="Apply for Admission" action="#"/>                       
+                                    
+                                    <div class="col-lg-2 col-md-2 col-sm-2">
+                                        <p:calendar id="event" value="#{calendarView.date}" mindate="#{calendarView.currentDate}">
+                                            <p:ajax event="dateSelect" listener="#{calendarView.onDateSelect}" update="msgs"/>
+                                        </p:calendar>
                                     </div>
+                                    <br/><br/>
+                                   <p><h:outputText id="msgs" value="#{calendarView.message}"></h:outputText></p>
+                                   <br/>
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <h:commandButton id="applyAdmission" style="width: 98%" class="btn btn-primary" value="Apply for Admission" action="#{updateController.applyAdmission()}"/>                                        
+
+                                    </div>
+                                    <br/>
+                                    <br/><br/>
+                                    <p><h:outputText style="color: green;" id="msg" value="#{updateController.admissionMessage}"></h:outputText></p>
+                                   <br/>
                                 </div>
+
+
                             </h:form>
 
                         </div>

@@ -11,7 +11,9 @@ import Model.UserBean;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
-import javax.enterprise.context.SessionScoped;
+//import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
@@ -19,6 +21,7 @@ import javax.enterprise.context.SessionScoped;
  */
 @Named(value = "userController")
 @SessionScoped
+@ManagedBean
 public class UserController implements Serializable
 {
     private String USER_TYPE_STUDENT = "student";
@@ -37,7 +40,7 @@ public class UserController implements Serializable
     
     public boolean createUser(UserBean userModel)      
     {
-        System.out.println("USERCONTROLLER: createUser()");
+        //System.out.println("USERCONTROLLER: createUser()");
         boolean userInserted = false;
         UserDAO userDAO = new UserDAOImpl();
         int rowCount = userDAO.createUser(userModel);
@@ -52,7 +55,7 @@ public class UserController implements Serializable
     
     public boolean updateUser(UserBean userModel)
     {
-        System.out.println("USERCONTROLLER: updateUser() - username: " + userModel.getUsername());
+        //System.out.println("USERCONTROLLER: updateUser() - username: " + userModel.getUsername());
         boolean userUpdated = false;
         UserDAO userDAO = new UserDAOImpl();
         int rowCount = userDAO.updateUser(userModel);
@@ -72,8 +75,8 @@ public class UserController implements Serializable
         if(resultList.size() == 1)
         {
             targetUser = (UserBean)resultList.get(0);
-            System.out.println("USERCONTROLLER: Select By Username Successfull");
-            System.out.println("USERCONTROLLER: Target Username - " + targetUser.getUsername());
+            //System.out.println("USERCONTROLLER: Select By Username Successfull");
+            //System.out.println("USERCONTROLLER: Target Username - " + targetUser.getUsername());
         }
         return targetUser;   
     }
@@ -85,8 +88,20 @@ public class UserController implements Serializable
         for(int i = 0; i < resultList.size(); i++)
         {
             targetUser = (UserBean)resultList.get(i);
-            System.out.println("SELECT BY USERTYPE SUCCESSFULL");
-            System.out.println("TARGET: " + targetUser.getUsername());
+            //System.out.println("SELECT BY USERTYPE SUCCESSFULL");
+            //System.out.println("TARGET: " + targetUser.getUsername());
+        }
+        return resultList;
+    }
+    
+    // For Display Student
+    public ArrayList StudentInformation()
+    {
+         UserDAO userDAO = new UserDAOImpl();
+         resultList = userDAO.DisplayStudentInfo();
+           for(int i = 0; i < resultList.size(); i++)
+        {
+            targetUser = (UserBean)resultList.get(i);
         }
         return resultList;
     }
